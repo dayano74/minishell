@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/03 13:08:27 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/03 13:15:40 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC_DIR = src/
 INC_DIR = inc/
 OBJ_DIR = obj/
 
+MAKEFLAGS += --no-print-directory
 W_FLG = -Wall -Wextra -Werror
 I_FLG = -I$(INC_DIR)
 L_FLG = -lreadline
