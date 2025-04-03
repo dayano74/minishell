@@ -1,2 +1,2 @@
 # minishell-prv
-個人で進めているMinishell
+ttsubo, dayanoで進めているMinishellの開発リポジトリ
