@@ -36,7 +36,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
 
 clean:
-	rm -rf $(OBJ_DIR)/*.o
+	rm -rf $(OBJ_DIR)*.o
 
 fclean:
 	$(MAKE) clean
