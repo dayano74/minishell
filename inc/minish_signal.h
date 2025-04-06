@@ -1,43 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minish_signal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/06 16:20:07 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/05 13:35:17 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/05 14:13:59 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef MINISH_SIGNAL_H
+# define MINISH_SIGNAL_H
 
-static void	_initialize(void)
-{
-	rl_clear_history();
-}
+# include <readline/readline.h>
+# include <signal.h>
+# include <stdio.h>
 
-static void	_destructor(char *line)
-{
-	if (!line)
-		free(line);
-	rl_clear_history();
-}
+void	minish_signal(void);
 
-int	main(void)
-{
-	char	*line;
-
-	_initialize();
-	minish_signal();
-	while (1)
-	{
-		line = readline("minish>");
-		if (!line)
-			break ;
-		add_history(line);
-		free(line);
-	}
-	_destructor(line);
-	return (EXIT_SUCCESS);
-}
+#endif
