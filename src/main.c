@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/06 16:20:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/13 13:44:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	main(void)
 		line = readline("minish>");
 		if (!line)
 			break ;
-		add_history(line);
+		if (line[0] != '\0')
+			add_history(line);
 		free(line);
 	}
 	_destructor(line);
