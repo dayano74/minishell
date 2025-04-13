@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strnlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 15:08:11 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/02/15 15:30:54 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/02/15 15:43:15 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "libft.h"
 
-# include "libft.h"
-# include "cmd.h"
-# include "minish_signal.h"
+/**
+ * @brief 文字列sを長さnまでのsの文字数を返します。
+ *
+ * @param s
+ * @param n
+ * @return size_t
+ * @note ft_memchrで見つからなかった場合、nがそのまま返されます。
+ */
+size_t	ft_strnlen(const char *s, size_t n)
+{
+	const char	*p = ft_memchr(s, 0, n);
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-#endif
+	if (p)
+		return (p - s);
+	return (n);
+}

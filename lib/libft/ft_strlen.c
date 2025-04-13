@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 15:08:11 by ttsubo           ###   ########.fr       */
+/*   Created: 2024/10/26 18:57:35 by ttsubo            #+#    #+#             */
+/*   Updated: 2024/11/06 20:31:22 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+/*
+	DESCRIPTION:
+		Returns the length of a string
+		ARGS:
+			s:	string	
+	IN:
+		s:	NULL or allocated memory.
+	OUT:
+		normal:
+			return lentgh of a string
+		s is NULL
+			return 0;
+*/
 
-# include "libft.h"
-# include "cmd.h"
-# include "minish_signal.h"
+#include "libft.h"
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
 
-#endif
+	if (!s)
+		return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}

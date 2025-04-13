@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 15:08:11 by ttsubo           ###   ########.fr       */
+/*   Created: 2024/10/28 11:38:48 by ttsubo            #+#    #+#             */
+/*   Updated: 2024/11/09 12:13:45 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+/*
+	DESCRIPTION:
+		Change to upper case
+		ARGS:
+			c:	ASCII code number.
+	IN:
+			INT_MIN <= c <= INT_MAX
+	OUT:
+		c = [a-z]	-> return c - 32
+		else		-> return c
+*/
 
-# include "libft.h"
-# include "cmd.h"
-# include "minish_signal.h"
+#include "libft.h"
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-#endif
+int	ft_toupper(int c)
+{
+	if ('a' <= c && c <= 'z')
+		return (c - 32);
+	return (c);
+}

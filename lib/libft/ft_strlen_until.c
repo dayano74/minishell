@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strlen_until.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 15:08:11 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/02/15 15:38:39 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/02/15 15:42:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "libft.h"
 
-# include "libft.h"
-# include "cmd.h"
-# include "minish_signal.h"
+/**
+ * @brief 文字stopまでの文字列sの長さを返します。
+ *
+ * @param s
+ * @param stop
+ * @return size_t
+ * @note stopが見つからない場合、文字列sの長さが返されます。
+ */
+size_t	ft_strlen_until(const char *s, char stop)
+{
+	const char	*pos = ft_strchr(s, stop);
 
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-#endif
+	if (pos)
+		return ((size_t)(pos - s));
+	else
+		return (ft_strlen(s));
+}
