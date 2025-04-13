@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 21:40:39 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/13 21:20:48 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/13 21:40:27 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "../../inc/main.h"
 
-# define PATH_MAX 4096
-
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-
-#endif
+int	builtin_exit(int argc, char *argv[])
+{
+	if (argc != 1)
+	{
+		ft_putstr_fd(argv[0], STDERR_FILENO);
+		ft_putstr_fd(": too many arguments\n", STDERR_FILENO);
+		return (1);
+	}
+	exit(EXIT_SUCCESS);
+}
