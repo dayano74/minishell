@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 15:08:11 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/13 13:47:36 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/13 13:51:21 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef CMD_H
+# define CMD_H
 
-# include "libft.h"
-# include "cmd.h"
-# include "minish_signal.h"
-
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
+typedef struct s_cmd
+{
+	int				argc;
+	char			**argv;
+	int				capa;
+	int				status;
+	int				pid;
+	struct s_cmd	*next;
+}					t_cmd;
 
 #endif
