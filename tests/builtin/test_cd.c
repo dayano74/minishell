@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   test_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/14 11:13:08 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/14 11:33:50 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/14 12:34:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "builtin.h"
+#include <stdio.h>
+#include <unistd.h>
 
-# define PATH_MAX 4096
+int	main(int argc, char **argv)
+{
+	char	path[PATH_MAX];
 
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-
-#endif
+	printf("cd %s\n", argv[1]);
+	getcwd(path, PATH_MAX);
+	printf("before:path=%s\n", path);
+	builtin_cd(argc, argv);
+	getcwd(path, PATH_MAX);
+	printf("after :path=%s\n", path);
+	return (0);
+}
