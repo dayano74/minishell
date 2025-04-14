@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   test_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/14 16:00:00 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/14 16:07:28 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/14 16:11:42 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "main.h"
+#include <stdio.h>
 
-# include "builtin.h"
-# include "cmd.h"
-# include "libft.h"
-# include "main.h"
-# include "minish_signal.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+int	main(int argc, char **argv)
+{
+	int	i;
 
-#endif
+	printf("=====check function=====");
+	printf("argc = %d\n", argc);
+	i = 0;
+	while (argv[i])
+	{
+		printf("argv[%d] = %s\n", i, argv[i]);
+		i++;
+	}
+	printf("========================\n");
+	if (builtin_pwd(argc, argv))
+		printf("error\n");
+	return (0);
+}
