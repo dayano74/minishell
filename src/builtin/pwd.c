@@ -6,15 +6,17 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:46:01 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/13 21:09:08 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/14 16:04:36 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/main.h"
-#include <unistd.h>
+#include "main.h"
 
-// builtin command
-// pwd with no options
+static void	_error_mes(char *name, char *mes)
+{
+	ft_putstr_fd(name, STDERR_FILENO);
+	ft_putstr_fd(mes, STDERR_FILENO);
+}
 
 int	builtin_pwd(int argc, char *argv[])
 {
@@ -22,35 +24,15 @@ int	builtin_pwd(int argc, char *argv[])
 
 	if (argc != 1)
 	{
-		ft_putstr_fd(argv[0], STDERR_FILENO);
-		ft_putstr_fd(": wrong argument\n", STDERR_FILENO);
+		_error_mes(argv[0], ": wrong argument\n");
 		return (EXIT_FAILURE);
 	}
 	if (getcwd(pwd, sizeof(pwd)) == NULL)
 	{
-		ft_putstr_fd(argv[0], STDERR_FILENO);
-		ft_putstr_fd(": cannot get working directory\n", STDERR_FILENO);
+		_error_mes(argv[0], ": cannot get working directory\n");
 		return (EXIT_FAILURE);
 	}
-	if (ft_printf("%s\n", pwd) < 0)
-		return (EXIT_FAILURE);
+	if (printf("%s\n", pwd) < 0)
+		return (perror("printf"), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	int	i;
-
-// 	// printf{"=====check function====="};
-// 	// printf("argc = %d\n", argc);
-// 	// i = 0;
-// 	// while (argv[i])
-// 	// {
-// 	// 	printf("argv[%d] = %s\n", i, argv[i]);
-// 	// 	i++;
-// 	// }
-// 	// printf("========================");
-// 	if (builtin_pwd(argc, argv))
-// 		printf("error\n");
-// 	return (0);
-// }
