@@ -6,16 +6,16 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/13 21:00:29 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/14 14:53:23 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
 
-# include "../lib/libft/libft.h"
 # include "builtin.h"
 # include "cmd.h"
+# include "libft.h"
 # include "main.h"
 # include "minish_signal.h"
 # include <readline/history.h>
