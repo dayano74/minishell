@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:15:33 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:28:32 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	is_quote_closed(char *str)
 		str++;
 	}
 	if (in_squote)
-		show_tokenizer_error(ERR_SQUOTE_NOT_CLOSED);
+		show_tokenizer_error(ERR_SQ_UNCLOSED);
 	if (in_dquote)
-		show_tokenizer_error(ERR_DQUOTE_NOT_CLOSED);
+		show_tokenizer_error(ERR_DQ_UNCLOSED);
 	return (!(in_squote || in_dquote));
 }
