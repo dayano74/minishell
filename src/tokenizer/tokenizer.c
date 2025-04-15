@@ -6,20 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:15:21 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:53:44 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
-
-// TODO
-typedef struct s_tokenizer
-{
-	char	*input;
-	int		pos;
-	int		in_squote;
-	int		in_dquote;
-}			t_tokenizer;
 
 void	skip_spaces(t_tokenizer *tkn)
 {
@@ -52,10 +43,7 @@ char	**tokenizer(char *str)
 		skip_spaces(&tkn);
 		if (!tkn.input[tkn.pos])
 			break ;
-		start = tkn.pos;
-		while (tkn.input[tkn.pos] && !ft_isspace(tkn.input[tkn.pos]))
-			tkn.pos++;
-		tokens[token_i++] = ft_substr(tkn.input, start, tkn.pos - start);
+		tokens[token_i++] = read_token(&tkn);
 	}
 	tokens[token_i] = NULL;
 	return (tokens);

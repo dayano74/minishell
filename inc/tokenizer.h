@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:26:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:43:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef enum e_tokenizer_errors
 	NO_ERR,
 }		t_tokenizer_errors;
 
+typedef struct s_tokenizer
+{
+	char	*input;
+	int		pos;
+	int		in_squote;
+	int		in_dquote;
+}			t_tokenizer;
+
+char	*read_token(t_tokenizer *tkn);
 void	show_tokenizer_error(t_tokenizer_errors err_code);
 size_t	get_token_capa(char *str);
 int		is_quote_closed(char *str);
