@@ -6,11 +6,11 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 17:55:31 by dayano            #+#    #+#             */
-/*   Updated: 2025/03/29 18:02:35 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/15 18:51:57 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
