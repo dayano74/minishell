@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 14:00:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 15:33:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ char	**tokenizer(char *str)
 	int i;
 	char **tokens;
 
-	tokens = ft_calloc(_get_token_capa(str), sizeof(char *));
-	if (!tokens)
+	if (!is_quote_closed(str))
 		return (NULL);
+	tokens = ft_calloc(get_token_capa(str), sizeof(char *));
+	if (!tokens)
+		return (show_tokenizer_error(ERR_FAILED_ALLOCATE_TOKEN), NULL);
 	i = 0;
 	while (str[i])
 	{
