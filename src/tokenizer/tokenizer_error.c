@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:12:29 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 15:33:13 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:04:31 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	show_tokenizer_error(t_tokenizer_errors err_code)
 		ERR_FAILED_ALLOCATE_TOKEN_STR,
 	};
 	if(0 <= err_code && err_code < NO_ERR)
-		(err_str[err_code]);
+		printf("%s", err_str[err_code]);
 	else
-		printf(err_str[ERR_UNEXPECTED]);
+		printf("%s", err_str[ERR_UNEXPECTED]);
 }

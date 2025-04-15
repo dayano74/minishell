@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 14:02:28 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:03:34 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	get_token_capa(char *str)
 			in_dquote = !in_dquote;
 		if (!in_squote && !in_dquote)
 		{
-			if (_ft_isspace(*str) || *str == '|')
+			if (ft_isspace(*str) || *str == '|')
 				capa++;
 			else if (*str == '<' || *str == '>')
 			{
