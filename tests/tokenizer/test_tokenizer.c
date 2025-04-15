@@ -6,13 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:56:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:10:02 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:12:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	char	**tokens;
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (printf("usage: ./test_tokenizer.out <any message>"), 1);
 	tokens = tokenizer(argv[1]);
-	while(*tokens)
+	while (*tokens)
 		printf("token=%s\n", *tokens++);
 	return (0);
 }

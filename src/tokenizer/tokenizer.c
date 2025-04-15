@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:00:51 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 16:15:21 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	skip_spaces(t_tokenizer *tkn)
  */
 char	**tokenizer(char *str)
 {
-	int token_i;
-	int start;
-	char **tokens;
-	t_tokenizer tkn;
+	int			token_i;
+	int			start;
+	char		**tokens;
+	t_tokenizer	tkn;
 
 	tkn = (t_tokenizer){.input = str, .pos = 0, .in_squote = 0, .in_dquote = 0};
 	if (!is_quote_closed(str))
