@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   test_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 17:11:42 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/15 18:39:37 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "main.h"
+#include <stdio.h>
 
-# define PATH_MAX 4096
+/**
+ * @brief
+ *
+ * @param argc
+ * @param argv
+ * @param envp
+ * @return int
+ */
+int	main(int argc, char *argv[], char **envp)
+{
+	t_minish	*minish;
 
-# include "struct.h"
-
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-int	builtin_env(int argc, char *argv[], char *envp[]);
-int	builtin_unset(int argc, char *argv[], t_minish *minish);
-
-#endif
+	minish = _initialize(envp);
+	builtin_unset(argc, argv, minish);
+	return (0);
+}

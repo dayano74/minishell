@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 14:45:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 15:45:46 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-static t_minish	*_initialize(char **envp)
-{
-	t_minish	*minish;
-
-	minish = ft_calloc(1, sizeof(t_minish));
-	rl_clear_history();
-	minish->envp = envp;
-	return (minish);
-}
 
 static void	_destructor(char *line, t_minish *minish)
 {
@@ -35,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
 	char		*line;
-	
+
 	(void)argc;
 	(void)argv;
 	minish = _initialize(envp);

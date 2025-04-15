@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   initialize.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 17:11:42 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/15 15:43:35 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/15 17:11:36 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#ifndef INITIALIZE_H
+# define INITIALIZE_H
 
-# define PATH_MAX 4096
-
+# include "libft.h"
 # include "struct.h"
+# include <readline/history.h>
+# include <readline/readline.h>
 
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-int	builtin_env(int argc, char *argv[], char *envp[]);
-int	builtin_unset(int argc, char *argv[], t_minish *minish);
+t_minish	*_initialize(char **envp);
 
 #endif
