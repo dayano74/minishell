@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:53:44 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/15 17:01:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	skip_spaces(t_tokenizer *tkn)
 char	**tokenizer(char *str)
 {
 	int			token_i;
-	int			start;
 	char		**tokens;
 	t_tokenizer	tkn;
 
