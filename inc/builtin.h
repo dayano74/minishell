@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:53:46 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 15:57:28 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define BUILTIN_H
 
 # define PATH_MAX 4096
+
+# include "struct.h"
 
 int	builtin_echo(int argc, char *argv[]);
 int	builtin_pwd(int argc, char *argv[]);
