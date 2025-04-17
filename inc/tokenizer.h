@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 14:50:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/17 15:13:49 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char		*read_token(t_tokenizer *tkn);
 void		show_tokenizer_error(t_tokenizer_errors err_code);
 size_t		get_token_capa(char *str);
 int			is_quote_closed(char *str);
+int			is_redirect_validate(char *str);
 char		**tokenizer(char *str);
 
 #endif
