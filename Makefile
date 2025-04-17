@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
+#    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/15 11:44:38 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/17 14:14:18 by dayano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,11 @@ W_FLG = -Wall -Wextra -Werror
 I_FLG = -I$(INC_DIR) -I$(FT_DIR)
 L_FLG = -lreadline -lft
 
-SRC	 		= main.c minish_signal.c
-BUILTIN_SRC = cd.c exit.c pwd.c echo.c
+
+SRC	 		=	main.c minish_signal.c initialize.c
+BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
+				env_utils.c env_utils_2.c
+
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS += $(addprefix $(BUILTIN_SRC_DIR), $(BUILTIN_SRC))
 OBJS = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
@@ -42,10 +45,10 @@ $(FT_DIR)$(LIBFT):
 	$(MAKE) -C $(FT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
+	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(BUILTIN_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
+	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(FT_DIR) clean

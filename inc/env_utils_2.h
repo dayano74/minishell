@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   env_utils_2.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 11:18:16 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/17 11:40:36 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:42:07 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef ENV_UTILS_2_H
+# define ENV_UTILS_2_H
 
-# include "builtin.h"
-# include "cmd.h"
-# include "env_utils.h"
-# include "env_utils_2.h"
-# include "initialize.h"
-# include "libft.h"
-# include "minish_signal.h"
 # include "struct.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+
+void	free_env_list(t_env *head);
+void	cleanup_minish(t_minish *minish);
+void	handle_error_and_exit(const char *func_name, t_minish *minish);
 
 #endif
