@@ -6,7 +6,7 @@
 #    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:03:51 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/15 14:56:19 by dayano           ###   ########.fr        #
+#    Updated: 2025/04/17 10:34:30 by dayano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS	= 	ft_atoi.c     ft_isdigit.c  ft_memmove.c     ft_split.c     ft_strlcpy.c
 			$(GNL_DIR)get_next_line.c	$(GNL_DIR)get_next_line_utils.c								\
 			ft_max.c	  ft_min.c		ft_abs.c	ft_strnlen.c	ft_strlen_until.c \
 			ft_lstnew.c	ft_lstadd_front.c	ft_lstsize.c	ft_lstlast.c	ft_lstadd_back.c		\
-			ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c	ft_lstmap.c
+			ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c	ft_lstmap.c		ft_strcmp.c
 
 ifeq ($(MAKECMDGOALS), debug)
 	CC := gcc -Wall -Wextra -Werror -g

@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   env_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 16:06:27 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/17 11:17:22 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:39:05 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "main.h"
 
-typedef struct s_env
+void	free_env_list(t_env *head)
 {
-	char			*value;
-	struct s_env	*next;
-}					t_env;
+	t_env	*next;
 
-typedef struct s_minish
+	while (head)
+	{
+		next = head->next;
+		free(head->next);
+		free(head);
+		head = next;
+	}
+}
+
+void	cleanup_minish(t_minish *minish)
 {
-	t_env			*env;
-}					t_minish;
+	if (!minish)
+		return ;
+	free_env_list(minish->env);
+	free(minish);
+}
 
-#endif
+void	handle_error_and_exit(const char *func_name, t_minish *minish)
+{
+	cleanup_minish(minish);
+	perror(func_name);
+	exit(EXIT_FAILURE);
+}

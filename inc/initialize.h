@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   initialize.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 16:06:27 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/15 15:43:35 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:33:19 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef INITIALIZE_H
+# define INITIALIZE_H
 
-typedef struct s_env
-{
-	char			*value;
-	struct s_env	*next;
-}					t_env;
+# include "libft.h"
+# include "struct.h"
+# include <readline/history.h>
+# include <readline/readline.h>
 
-typedef struct s_minish
-{
-	t_env			*env;
-}					t_minish;
+t_minish	*initialize(char **envp);
 
 #endif

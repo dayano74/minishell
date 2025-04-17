@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:20:58 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 16:06:16 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "builtin.h"
 # include "cmd.h"
+# include "env_utils.h"
+# include "env_utils_2.h"
+# include "initialize.h"
 # include "libft.h"
 # include "minish_signal.h"
 # include "struct.h"

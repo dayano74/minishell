@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 16:06:27 by dayano           ###   ########.fr       */
+/*   Created: 2025/03/29 17:55:31 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/15 18:51:57 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-typedef struct s_env
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char			*value;
-	struct s_env	*next;
-}					t_env;
-
-typedef struct s_minish
-{
-	t_env			*env;
-}					t_minish;
-
-#endif
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
