@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 14:41:06 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 16:51:13 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	_builtin_env(int argc, char **argv, t_minish *minish)
 	t_env	*next;
 	t_env	*current;
 
+	(void)argv;
 	if (argc != 1)
 		return (ft_putstr_fd("error\n", STDERR_FILENO), EXIT_FAILURE);
 	current = minish->env;
