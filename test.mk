@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/17 16:17:30 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/17 16:21:20 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@
 # make -f test.mk
 # make -f test.mk clean
 
+SELF := $(lastword $(MAKEFILE_LIST))
+MAKEFLAGS += --no-print-directory
 I_FLG = -Iinc -Ilib/libft
 L_FLG = -Llib/libft -lft -lreadline
 
@@ -32,3 +34,9 @@ test_unset.out: tests/builtin/test_unset.c
 
 clean:
 	rm -f test_*.out
+
+re:
+	$(MAKE) -f $(SELF) clean
+	$(MAKE) -f $(SELF) all
+
+.PHONY: all clean re
