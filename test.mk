@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/17 16:30:03 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/17 16:38:47 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@
 
 CC = cc -Wall -Wextra -Werror -g
 
+SELF := $(lastword $(MAKEFILE_LIST))
+MAKEFLAGS += --no-print-directory
 I_FLG = -Iinc -Ilib/libft
 L_FLG = -Llib/libft -lft -lreadline
 
@@ -34,3 +36,9 @@ test_%.out: tests/tokenizer/test_%.c
 
 clean:
 	rm -f test_*.out
+
+re:
+	$(MAKE) -f $(SELF) clean
+	$(MAKE) -f $(SELF) all
+
+.PHONY: all clean re
