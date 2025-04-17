@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:26:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 11:44:08 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 14:08:36 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void	free_env_content(char *value)
 	free(value);
 }
 
+void	del_one_env_value(t_env *lst, void (*del)(char *))
+{
+	if (!lst || !del)
+		return ;
+	del(lst->value);
+	free(lst);
+}
+
 void	remove_env_node(t_env **env_lst, t_env *target)
 {
 	t_env	*current;
@@ -42,7 +50,7 @@ void	remove_env_node(t_env **env_lst, t_env *target)
 	if (current == target)
 	{
 		*env_lst = current->next;
-		ft_lstdelone(current, free_env_content);
+		del_one_env_value(current, free_env_content);
 		return ;
 	}
 	while (current)
@@ -50,7 +58,7 @@ void	remove_env_node(t_env **env_lst, t_env *target)
 		if (current == target)
 		{
 			prev->next = current->next;
-			ft_lstdelone(current, free_env_content);
+			del_one_env_value(current, free_env_content);
 			return ;
 		}
 		prev = current;

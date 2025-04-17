@@ -6,7 +6,7 @@
 #    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/17 11:23:55 by dayano           ###   ########.fr        #
+#    Updated: 2025/04/17 14:14:18 by dayano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,9 @@ I_FLG = -I$(INC_DIR) -I$(FT_DIR)
 L_FLG = -lreadline -lft
 
 
-SRC	 		= main.c minish_signal.c
-BUILTIN_SRC = cd.c exit.c pwd.c echo.c
+SRC	 		=	main.c minish_signal.c initialize.c
+BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
+				env_utils.c env_utils_2.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS += $(addprefix $(BUILTIN_SRC_DIR), $(BUILTIN_SRC))

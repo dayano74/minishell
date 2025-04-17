@@ -6,27 +6,88 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 13:40:13 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 14:41:06 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdio.h>
 
-/**
- * @brief
- *
- * @param argc
- * @param argv
- * @param envp
- * @return int
- */
-int	main(int argc, char *argv[], char **envp)
+int	_builtin_env(int argc, char **argv, t_minish *minish)
 {
+	t_env	*next;
+	t_env	*current;
+
+	if (argc != 1)
+		return (ft_putstr_fd("error\n", STDERR_FILENO), EXIT_FAILURE);
+	current = minish->env;
+	while (current)
+	{
+		next = current->next;
+		if (printf("%s\n", current->value) < 0)
+			handle_error_and_exit("printf", minish);
+		current = next;
+	}
+	return (EXIT_SUCCESS);
+}
+
+#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+static size_t	_count_words(char **cmds)
+{
+	size_t	i;
+
+	i = 0;
+	while (cmds[i])
+		i++;
+	return (i);
+}
+
+static void	cmds_free(char **cmds)
+{
+	size_t	i;
+	size_t	length;
+
+	i = 0;
+	length = _count_words(cmds);
+	while (i < length)
+		free(cmds[i++]);
+	free(cmds);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	char		*line;
+	char		**cmds;
 	t_minish	*minish;
 
-	minish = _initialize(envp);
-	builtin_unset(argc, argv, minish);
-	// builtin_env(argc, argv, minish);
-	return (0);
+	(void)argc;
+	(void)argv;
+	minish = initialize(envp);
+	while (1)
+	{
+		line = readline("minish>");
+		if (!line)
+			break ;
+		if (line[0] == '\0')
+			continue ;
+		cmds = ft_split(line, ' ');
+		if (!ft_strcmp(cmds[0], "env"))
+			_builtin_env(_count_words(cmds), cmds, minish);
+		if (!ft_strcmp(cmds[0], "unset"))
+		{
+			if (builtin_unset(_count_words(cmds), cmds, minish))
+			{
+				cmds_free(cmds);
+				free(line);
+				handle_error_and_exit("builtin-unset", minish);
+			}
+		}
+		cmds_free(cmds);
+		free(line);
+	}
+	cleanup_minish(minish);
+	free(line);
+	return (EXIT_SUCCESS);
 }
