@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_unset.c                                       :+:      :+:    :+:   */
+/*   env_utils_2.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 13:40:13 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/17 11:40:36 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:42:07 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include <stdio.h>
+#ifndef ENV_UTILS_2_H
+# define ENV_UTILS_2_H
 
-/**
- * @brief
- *
- * @param argc
- * @param argv
- * @param envp
- * @return int
- */
-int	main(int argc, char *argv[], char **envp)
-{
-	t_minish	*minish;
+# include "struct.h"
 
-	minish = _initialize(envp);
-	builtin_unset(argc, argv, minish);
-	// builtin_env(argc, argv, minish);
-	return (0);
-}
+void	free_env_list(t_env *head);
+void	cleanup_minish(t_minish *minish);
+void	handle_error_and_exit(const char *func_name, t_minish *minish);
+
+#endif
