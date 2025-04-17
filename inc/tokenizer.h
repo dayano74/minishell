@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 12:35:23 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/17 14:50:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # define ERR_SQ_UNCLOSED_STR "unexpected EOF while looking for matching `''\n"
 # define ERR_DQ_UNCLOSED_STR "unexpected EOF while looking for matching `\"'\n"
 # define ERR_FAILED_ALLOCATE_TOKEN_STR "Failed to allocate memory for token.\n"
+# define ERR_UNEXPECTED_TOKEN_R1_STR "syntax error near unexpected token `>'\n"
+# define ERR_UNEXPECTED_TOKEN_R2_STR "syntax error near unexpected token `>>'\n"
+# define ERR_UNEXPECTED_TOKEN_L1_STR "syntax error near unexpected token `<'\n"
+# define ERR_UNEXPECTED_TOKEN_L2_STR "syntax error near unexpected token `<<'\n"
 
 typedef enum e_tokenizer_errors
 {
@@ -27,6 +31,10 @@ typedef enum e_tokenizer_errors
 	ERR_SQ_UNCLOSED,
 	ERR_DQ_UNCLOSED,
 	ERR_FAILED_ALLOCATE_TOKEN,
+	ERR_UNEXPECTED_TOKEN_R1,
+	ERR_UNEXPECTED_TOKEN_R2,
+	ERR_UNEXPECTED_TOKEN_L1,
+	ERR_UNEXPECTED_TOKEN_L2,
 	NO_ERR,
 }			t_tokenizer_errors;
 
