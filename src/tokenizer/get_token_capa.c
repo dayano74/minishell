@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 12:55:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/17 12:58:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ size_t	get_token_capa(char *str)
 	{
 		_check_quote(*str, &in_squote, &in_dquote);
 		curr_token = _check_token_type(*str, (in_squote || in_dquote));
-		if (*str == '<' || *str == '>' && *(str + 1) == *str)
+		if ((*str == '<' || *str == '>') && *(str + 1) == *str)
 			str++;
 		if (curr_token != prev_token
 			|| prev_token == TK_SPACE
