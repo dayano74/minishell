@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:43:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/17 12:35:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,16 @@ typedef enum e_tokenizer_errors
 	ERR_DQ_UNCLOSED,
 	ERR_FAILED_ALLOCATE_TOKEN,
 	NO_ERR,
-}		t_tokenizer_errors;
+}			t_tokenizer_errors;
+
+typedef enum e_token_type
+{
+	TK_NONE,
+	TK_WORD,
+	TK_REDIR,
+	TK_PIPE,
+	TK_SPACE
+}			t_token_type;
 
 typedef struct s_tokenizer
 {
@@ -38,10 +47,10 @@ typedef struct s_tokenizer
 	int		in_dquote;
 }			t_tokenizer;
 
-char	*read_token(t_tokenizer *tkn);
-void	show_tokenizer_error(t_tokenizer_errors err_code);
-size_t	get_token_capa(char *str);
-int		is_quote_closed(char *str);
-char	**tokenizer(char *str);
+char		*read_token(t_tokenizer *tkn);
+void		show_tokenizer_error(t_tokenizer_errors err_code);
+size_t		get_token_capa(char *str);
+int			is_quote_closed(char *str);
+char		**tokenizer(char *str);
 
 #endif
