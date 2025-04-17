@@ -6,7 +6,7 @@
 #    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/15 16:43:53 by dayano           ###   ########.fr        #
+#    Updated: 2025/04/17 11:25:29 by dayano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@
 I_FLG = -Iinc -Ilib/libft
 L_FLG = -Llib/libft -lft -lreadline
 
+
 # testを追加する場合はSRCにファイル名を追加してください。
-SRC = cd.c exit.c env.c unset.c
+SRC = cd.c exit.c echo.c env.c unset.c
 OUT = $(addprefix test_, $(SRC:.c=.out))
 
 all: $(OUT)
