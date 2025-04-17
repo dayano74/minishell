@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/15 16:08:39 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/17 11:18:26 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@
 I_FLG = -Iinc -Ilib/libft
 L_FLG = -Llib/libft -lft -lreadline
 
-# testを追加する場合はSRCにファイル名を追加してください。
-SRC = cd.c exit.c env.c \
+# testを追加する場合はSRCにファイル名を追加してください。 
+SRC = cd.c exit.c echo.c env.c \
 	  tokenizer.c
 OUT = $(addprefix test_, $(SRC:.c=.out))
 

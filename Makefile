@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/15 17:00:54 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/17 11:17:49 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ L_FLG = -lreadline -lft
 SRC	 		= main.c minish_signal.c
 TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
 				is_quote_closed.c get_token_capa.c
-BUILTIN_SRC = cd.c exit.c pwd.c
+BUILTIN_SRC = cd.c exit.c pwd.c echo.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS += $(addprefix $(TOKENIZER_SRC_DIR), $(TOKENIZER_SRC))
 SRCS += $(addprefix $(BUILTIN_SRC_DIR), $(BUILTIN_SRC))
