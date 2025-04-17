@@ -21,7 +21,7 @@ L_FLG = -Llib/libft -lft -lreadline
 
 
 # testを追加する場合はSRCにファイル名を追加してください。
-SRC = cd.c exit.c echo.c env.c unset.c unset.c
+SRC = cd.c exit.c echo.c env.c unset.c
 OUT = $(addprefix test_, $(SRC:.c=.out))
 
 all: $(OUT)
