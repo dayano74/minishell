@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   env_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 11:26:31 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/17 11:17:22 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:39:05 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "main.h"
 
-# define PATH_MAX 4096
+void	free_env_list(t_env *head)
+{
+	t_env	*next;
 
-# include "struct.h"
+	while (head)
+	{
+		next = head->next;
+		free(head->next);
+		free(head);
+		head = next;
+	}
+}
 
-int	builtin_echo(int argc, char *argv[]);
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-int	builtin_env(int argc, char *argv[], char *envp[]);
-int	builtin_unset(int argc, char *argv[], t_minish *minish);
+void	cleanup_minish(t_minish *minish)
+{
+	if (!minish)
+		return ;
+	free_env_list(minish->env);
+	free(minish);
+}
 
-#endif
+void	handle_error_and_exit(const char *func_name, t_minish *minish)
+{
+	cleanup_minish(minish);
+	perror(func_name);
+	exit(EXIT_FAILURE);
+}

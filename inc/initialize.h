@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   initialize.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 16:30:19 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/15 15:43:35 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:33:19 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef INITIALIZE_H
+# define INITIALIZE_H
 
-# include "builtin.h"
-# include "cmd.h"
-# include "env_utils.h"
-# include "env_utils_2.h"
-# include "initialize.h"
 # include "libft.h"
-# include "minish_signal.h"
 # include "struct.h"
-# include "tokenizer.h"
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+
+t_minish	*initialize(char **envp);
 
 #endif

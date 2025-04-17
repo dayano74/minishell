@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 11:26:31 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/15 17:11:19 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-# define PATH_MAX 4096
+typedef struct s_env
+{
+	char			*value;
+	struct s_env	*next;
+}					t_env;
 
-# include "struct.h"
-
-int	builtin_echo(int argc, char *argv[]);
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-int	builtin_env(int argc, char *argv[], char *envp[]);
-int	builtin_unset(int argc, char *argv[], t_minish *minish);
+typedef struct s_minish
+{
+	t_env			*env;
+}					t_minish;
 
 #endif

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   env_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 11:26:31 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/17 10:25:47 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 10:29:25 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-
-# define PATH_MAX 4096
+#ifndef ENV_UTILS_H
+# define ENV_UTILS_H
 
 # include "struct.h"
 
-int	builtin_echo(int argc, char *argv[]);
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-int	builtin_env(int argc, char *argv[], char *envp[]);
-int	builtin_unset(int argc, char *argv[], t_minish *minish);
+char	*get_env_name(const char *env_entry);
+void	free_env_content(char *value);
+void	remove_env_node(t_env **env_lst, t_env *target);
 
 #endif

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   env_utils_2.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 11:26:31 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/17 11:40:36 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/17 11:42:07 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-
-# define PATH_MAX 4096
+#ifndef ENV_UTILS_2_H
+# define ENV_UTILS_2_H
 
 # include "struct.h"
 
-int	builtin_echo(int argc, char *argv[]);
-int	builtin_pwd(int argc, char *argv[]);
-int	builtin_exit(int argc, char *argv[]);
-int	builtin_cd(int argc, char *argv[]);
-int	builtin_env(int argc, char *argv[], char *envp[]);
-int	builtin_unset(int argc, char *argv[], t_minish *minish);
+void	free_env_list(t_env *head);
+void	cleanup_minish(t_minish *minish);
+void	handle_error_and_exit(const char *func_name, t_minish *minish);
 
 #endif

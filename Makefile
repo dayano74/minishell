@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/17 16:27:44 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/17 16:29:26 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,12 @@ W_FLG = -Wall -Wextra -Werror
 I_FLG = -I$(INC_DIR) -I$(FT_DIR)
 L_FLG = -lreadline -lft
 
-SRC	 		= main.c minish_signal.c
+SRC	 		=	main.c minish_signal.c initialize.c
 TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
 				is_quote_closed.c get_token_capa.c is_redirect_validate.c
-BUILTIN_SRC = cd.c exit.c pwd.c echo.c
+BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
+				env_utils.c env_utils_2.c
+
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS += $(addprefix $(TOKENIZER_SRC_DIR), $(TOKENIZER_SRC))
 SRCS += $(addprefix $(BUILTIN_SRC_DIR), $(BUILTIN_SRC))
@@ -47,13 +49,13 @@ $(FT_DIR)$(LIBFT):
 	$(MAKE) -C $(FT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
+	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(TOKENIZER_SRC_DIR)%.c
 	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
 
 $(OBJ_DIR)%.o: $(BUILTIN_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
+	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(FT_DIR) clean
