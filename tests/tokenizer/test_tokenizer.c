@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:56:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:22:08 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/18 14:54:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	_free_tokens(char **tokens)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(tokens[i])
+	while (tokens[i])
 		free(tokens[i++]);
 	free(tokens);
 }

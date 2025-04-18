@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:19:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/18 14:55:08 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	is_redirect_validate(char *str)
 			return (show_tokenizer_error(ERR_UNEXPECTED_TOKEN_L1), 0);
 		if (*str == '>')
 		{
-			if(*(str + 1) == '<')
+			if (*(str + 1) == '<')
 				return (show_tokenizer_error(ERR_UNEXPECTED_TOKEN_L1), 0);
 		}
 		if (*str == '<')
 		{
-			if(*(str + 1) == '>')
+			if (*(str + 1) == '>')
 				return (show_tokenizer_error(ERR_UNEXPECTED_TOKEN_R1), 0);
 		}
 		str++;
