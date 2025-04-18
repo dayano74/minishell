@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:41:08 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 18:52:30 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 16:30:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
 int					ft_abs(int a);
+int					ft_isspace(int c);
 size_t				ft_strnlen(const char *s, size_t n);
 size_t				ft_strlen_until(const char *s, char stop);
 
