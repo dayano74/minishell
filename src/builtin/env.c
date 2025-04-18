@@ -6,13 +6,11 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:19:11 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/15 10:48:56 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/17 15:20:41 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-// env with no options or arguments
 
 static void	_error_mes(char *name)
 {
@@ -20,18 +18,20 @@ static void	_error_mes(char *name)
 	ft_putstr_fd(": too many arguments\n", STDERR_FILENO);
 }
 
-int	builtin_env(int argc, char *argv[], char *envp[])
+int	builtin_env(int argc, char **argv, t_minish *minish)
 {
-	int	i;
+	t_env	*next;
+	t_env	*current;
 
 	if (argc != 1)
 		return (_error_mes(argv[0]), EXIT_FAILURE);
-	i = 0;
-	while (envp[i] != NULL)
+	current = minish->env;
+	while (current)
 	{
-		if (printf("%s\n", envp[i]) < 0)
-			return (perror("printf"), EXIT_FAILURE);
-		i++;
+		next = current->next;
+		if (printf("%s\n", current->value) < 0)
+			handle_error_and_exit("printf", minish);
+		current = next;
 	}
 	return (EXIT_SUCCESS);
 }
