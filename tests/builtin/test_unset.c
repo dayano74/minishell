@@ -6,11 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/18 14:57:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/18 21:59:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int	_builtin_env(int argc, char **argv, t_minish *minish)
 {
@@ -30,10 +32,6 @@ int	_builtin_env(int argc, char **argv, t_minish *minish)
 	}
 	return (EXIT_SUCCESS);
 }
-
-#include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static size_t	_count_words(char **cmds)
 {
