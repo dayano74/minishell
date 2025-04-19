@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:48:09 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/14 15:27:43 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/18 22:00:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// builtin_exit argcは手動で操作する必要あり
 int	main(void)
 {
 	char	*line;
@@ -28,7 +29,7 @@ int	main(void)
 		if (strcmp("exit", line) == 0)
 		{
 			strings_line = ft_split(line, ' ');
-			if (builtin_exit(1, strings_line) == 1) // argcは手動で操作する必要あり
+			if (builtin_exit(1, strings_line) == 1)
 			{
 				printf("error\n");
 				free(line);
