@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:26:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 14:08:36 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 18:55:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	del_one_env_value(t_env *lst, void (*del)(char *))
 {
 	if (!lst || !del)
 		return ;
+	del(lst->key);
 	del(lst->value);
 	free(lst);
 }
