@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 11:17:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 11:39:05 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 19:36:26 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	free_env_list(t_env *head)
 	while (head)
 	{
 		next = head->next;
-		free(head->next);
+		free(head->key);
+		free(head->value);
 		free(head);
 		head = next;
 	}
