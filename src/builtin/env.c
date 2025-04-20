@@ -23,7 +23,7 @@ int	builtin_env(int argc, char **argv, t_minish *minish)
 	while (current)
 	{
 		next = current->next;
-		if (printf("%s\n", current->value) < 0)
+		if (printf("%s=%s\n", current->key, current->value) < 0)
 			handle_error_and_exit("printf", minish);
 		current = next;
 	}

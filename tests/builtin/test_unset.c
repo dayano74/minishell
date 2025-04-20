@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/18 22:06:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/20 18:59:35 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	cmds_free(char **cmds)
 static void	_exec_cmd(char *line, char **cmds, t_minish *minish)
 {
 	if (!ft_strcmp(cmds[0], "env"))
-		_builtin_env(_count_words(cmds), cmds, minish);
+		builtin_env(_count_words(cmds), cmds, minish);
 	if (!ft_strcmp(cmds[0], "unset"))
 	{
 		if (builtin_unset(_count_words(cmds), cmds, minish))
