@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 20:14:26 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 20:41:20 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 static void	destroy_minish(t_minish *minish)
 {
-	if (minish)
-		free(minish);
+	if (!minish)
+		return ;
+	free(minish);
 	rl_clear_history();
 }
 
-static int	prompt(t_minish *minish)
+static bool	prompt(t_minish *minish)
 {
 	char	*line;
 
 	line = readline("minish>");
 	if (!line)
-		return (EXIT_FAILURE);
+		return (false);
 	if (line[0] != '\0')
 		add_history(line);
 	free(line);
-	return (EXIT_SUCCESS);
+	return (true);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -40,11 +41,8 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	minish = initialize(envp);
 	minish_signal();
-	while (1)
-	{
-		if (prompt(minish))
-			break ;
-	}
+	while (prompt(minish))
+		;
 	destroy_minish(minish);
-	return (EXIT_SUCCESS);
+	return (0);
 }

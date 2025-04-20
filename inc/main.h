@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 16:06:16 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 20:41:25 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "tokenizer.h"
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
