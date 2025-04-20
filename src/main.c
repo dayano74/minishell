@@ -6,25 +6,35 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 13:59:09 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 20:14:26 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	_destructor(char *line, t_minish *minish)
+static void	destroy_minish(t_minish *minish)
 {
-	if (line)
-		free(line);
 	if (minish)
 		free(minish);
 	rl_clear_history();
 }
 
+static int	prompt(t_minish *minish)
+{
+	char	*line;
+
+	line = readline("minish>");
+	if (!line)
+		return (EXIT_FAILURE);
+	if (line[0] != '\0')
+		add_history(line);
+	free(line);
+	return (EXIT_SUCCESS);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
-	char		*line;
 
 	(void)argc;
 	(void)argv;
@@ -32,13 +42,9 @@ int	main(int argc, char **argv, char **envp)
 	minish_signal();
 	while (1)
 	{
-		line = readline("minish>");
-		if (!line)
+		if (prompt(minish))
 			break ;
-		if (line[0] != '\0')
-			add_history(line);
-		free(line);
 	}
-	_destructor(line, minish);
+	destroy_minish(minish);
 	return (EXIT_SUCCESS);
 }
