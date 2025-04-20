@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    test.mk                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
+#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/18 16:05:23 by dayano           ###   ########.fr        #
+#    Updated: 2025/04/20 19:58:13 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OUT = $(addprefix test_, $(SRC:.c=.out))
 all: $(OUT)
 
 test_%.out: tests/builtin/test_%.c src/builtin/%.c
-	$(CC) $^ $(L_FLG) $(I_FLG) -o $@
+	$(CC) $^ src/builtin/builtin_utils.c $(L_FLG) $(I_FLG) -o $@
 
 test_%.out: tests/tokenizer/test_%.c
 	$(CC) $^ src/tokenizer/*.c $(L_FLG) $(I_FLG) -o $@
