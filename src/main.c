@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 21:16:16 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 21:25:55 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	destroy_minish(t_minish *minish)
  * @return true
  * @return false
  */
-static bool	prompt(char *program_name, t_minish *minish)
+static bool	prompt(char *program_name, t_minish *minish, int *status)
 {
 	char	*line;
 	t_cmd	*cmd;
@@ -40,7 +40,7 @@ static bool	prompt(char *program_name, t_minish *minish)
 	if (!cmd)
 		return (error_mes(program_name, ": syntax error\n"), false);
 	if (cmd->argc > 0)
-		invoke_commands(cmd);
+		*status = invoke_commands(cmd);
 	free(line);
 	return (true);
 }
@@ -49,13 +49,14 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
 	char		*program_name;
+	int			exit_status;
 
 	(void)argc;
 	program_name = argv[0];
 	minish = initialize(envp);
 	minish_signal();
-	while (prompt(program_name, minish))
+	while (prompt(program_name, minish, &exit_status))
 		;
 	destroy_minish(minish);
-	return (0);
+	return (exit_status);
 }
