@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 16:46:01 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 19:53:56 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/20 19:46:40 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/20 19:53:02 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+# include "main.h"
 
-int	builtin_pwd(int argc, char *argv[])
+/**
+ * @brief "<name>: <mes>\n"形式でSTDERRに出力します。
+ * 
+ * @param name 
+ * @param mes 
+ */
+void	error_mes(char *name, char *mes)
 {
-	char	pwd[PATH_MAX];
-
-	if (argc != 1)
-	{
-		error_mes(argv[0], "wrong argument");
-		return (EXIT_FAILURE);
-	}
-	if (getcwd(pwd, sizeof(pwd)) == NULL)
-	{
-		error_mes(argv[0], "cannot get working directory");
-		return (EXIT_FAILURE);
-	}
-	if (printf("%s\n", pwd) < 0)
-		return (perror("printf"), EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	ft_putstr_fd(name, STDERR_FILENO);
+    ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(mes, STDERR_FILENO);
 }
