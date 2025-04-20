@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:35:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 10:29:26 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 18:57:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ static void	_error_mes(char *name, char *mes)
 
 static int	is_value(char **value, int value_count, t_env *env)
 {
-	char	*env_name;
 	int		i;
 
-	env_name = get_env_name(env->value);
-	if (!env_name)
+	if (!env->key)
 	{
 		ft_putstr_fd("Error: malformed environment entry: ", STDERR_FILENO);
 		ft_putendl_fd(env->value, STDERR_FILENO);
@@ -37,14 +35,10 @@ static int	is_value(char **value, int value_count, t_env *env)
 	i = 0;
 	while (i < value_count)
 	{
-		if (ft_strcmp(value[i], env_name) == 0)
-		{
-			free(env_name);
+		if (ft_strcmp(value[i], env->key) == 0)
 			return (EXIT_SUCCESS);
-		}
 		i++;
 	}
-	free(env_name);
 	return (EXIT_FAILURE);
 }
 
