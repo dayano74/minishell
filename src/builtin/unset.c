@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:35:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 10:29:26 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 19:54:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 // unset with no options
 // description: delete VALUE
 // use case: unset VALUE
-
-static void	_error_mes(char *name, char *mes)
-{
-	ft_putstr_fd(name, STDERR_FILENO);
-	ft_putstr_fd(mes, STDERR_FILENO);
-}
 
 static int	is_value(char **value, int value_count, t_env *env)
 {
@@ -72,7 +66,7 @@ int	builtin_unset(int argc, char *argv[], t_minish *minish)
 
 	if (argc < 2)
 	{
-		_error_mes(argv[0], ": wrong argument\n");
+		error_mes(argv[0], "wrong argument");
 		return (EXIT_FAILURE);
 	}
 	values = &argv[1];
