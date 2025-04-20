@@ -6,18 +6,15 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 12:53:13 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:01:40 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	_destructor(char *line, t_minish *minish)
+static void	destroy_minish(char *line, t_minish *minish)
 {
-	if (line)
-		free(line);
-	if (minish)
-		free(minish);
+	cleanup_minish(minish);
 	rl_clear_history();
 }
 
@@ -29,7 +26,7 @@ static void	_destructor(char *line, t_minish *minish)
  * @return true
  * @return false
  */
-static bool	prompt(char *program_name, t_minish *minish, int *status)
+static bool	prompt(char *program_name, t_minish *minish)
 {
 	char	*line;
 	t_cmd	*cmd;
@@ -43,7 +40,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	if (!cmd)
 		return (error_mes(program_name, ": syntax error\n"), false);
 	if (cmd->argc > 0)
-		*status = invoke_commands(cmd);
+		invoke_commands(cmd);
 	free(line);
 	return (true);
 }
@@ -55,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 	int			exit_status;
 
 	(void)argc;
-	(void)argv;
+	program_name = argv[0];
 	minish = initialize(envp);
 	minish_signal();
 	while (prompt(program_name, minish, &exit_status))
