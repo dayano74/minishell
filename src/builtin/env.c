@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:19:11 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/17 15:20:41 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/20 18:45:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	builtin_env(int argc, char **argv, t_minish *minish)
 	while (current)
 	{
 		next = current->next;
-		if (printf("%s\n", current->value) < 0)
+		if (printf("%s=%s\n", current->key, current->value) < 0)
 			handle_error_and_exit("printf", minish);
 		current = next;
 	}
