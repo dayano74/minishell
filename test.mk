@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/20 19:58:13 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/21 11:23:43 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ I_FLG = -Iinc -Ilib/libft
 L_FLG = -Llib/libft -lft -lreadline
 
 # testを追加する場合はSRCにファイル名を追加してください。
-SRC = cd.c exit.c echo.c env.c unset.c tokenizer.c
+SRC = cd.c exit.c echo.c env.c unset.c tokenizer.c export.c
 
 OUT = $(addprefix test_, $(SRC:.c=.out))
 
@@ -33,6 +33,9 @@ test_%.out: tests/builtin/test_%.c src/builtin/%.c
 
 test_%.out: tests/tokenizer/test_%.c
 	$(CC) $^ src/tokenizer/*.c $(L_FLG) $(I_FLG) -o $@
+
+test_export.out: tests/builtin/test_export.c
+	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
 
 test_unset.out: tests/builtin/test_unset.c
 	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
