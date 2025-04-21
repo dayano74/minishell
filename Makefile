@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/17 16:29:26 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/21 13:06:21 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC	 		=	main.c minish_signal.c initialize.c
 TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
 				is_quote_closed.c get_token_capa.c is_redirect_validate.c
 BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
-				env_utils.c env_utils_2.c
+				env_utils.c env_utils_2.c builtin_utils.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS += $(addprefix $(TOKENIZER_SRC_DIR), $(TOKENIZER_SRC))
