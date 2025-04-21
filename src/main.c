@@ -6,11 +6,23 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 13:27:08 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:45:20 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+t_cmd	*parse_command_line(char *line)
+{
+	(void)line;
+	return (NULL);
+}
+
+int	invoke_commands(t_cmd *cmd)
+{
+	(void)cmd;
+	return (0);
+}
 
 static void	destroy_minish(t_minish *minish)
 {
@@ -38,7 +50,11 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 		add_history(line);
 	cmd = parse_command_line(line);
 	if (!cmd)
-		return (error_mes(program_name, ": syntax error\n"), false);
+	{
+		error_mes(program_name, ": syntax error\n");
+		cleanup_minish(minish);
+		return (false);
+	}
 	if (cmd->argc > 0)
 		*status = invoke_commands(cmd);
 	free(line);
