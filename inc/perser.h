@@ -6,11 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 14:15:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/21 14:35:06 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PERSER_H
 # define PERSER_H
+
+# include "libft.h"
+# include "cmd.h"
 
 #endif
