@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 21:47:46 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:19:41 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 static bool	is_unit_builtin(t_cmd *cmd_head);
 static int	exec_unit_builtin(t_cmd *cmd_head);
-static void	exec_pipeline(t_cmd *cmd_head);
-static int	wait_pipeline(t_cmd *cmd_head);
 
+/**
+ * @brief fdの0, 1, 2をもとに戻せるように確保し、コマンド実行後に戻す。
+ * @brief コマンドの実行はビルトインコマンド単体 or それ以外（外部関数やパイプ）
+ * @brief に分岐処理する。
+ *
+ * @param cmd_head
+ * @return int
+ */
 int	invoke_commands(t_cmd *cmd_head)
 {
 	int	status;
