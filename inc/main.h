@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 21:26:57 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:54:41 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAIN_H
 
 # include "builtin.h"
+# include "builtin_utils.h"
 # include "cmd.h"
 # include "env_utils.h"
 # include "env_utils_2.h"
