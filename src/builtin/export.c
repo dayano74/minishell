@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:35:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 11:24:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/21 12:02:53 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	_show_export(t_minish *minish)
 	{
 		next = current->next;
 		if (current->is_exported)
-			printf("declare -x %s=%s\n", current->key, current->value);
+			printf("declare -x %s=\"%s\"\n", current->key, current->value);
 		current = next;
 	}
 }
