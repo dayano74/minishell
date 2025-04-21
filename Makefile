@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/21 13:06:21 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/21 13:54:36 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(TOKENIZER_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@ 
+	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(BUILTIN_SRC_DIR)%.c
 	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
