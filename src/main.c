@@ -6,13 +6,13 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 13:07:25 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:27:08 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	destroy_minish(char *line, t_minish *minish)
+static void	destroy_minish(t_minish *minish)
 {
 	cleanup_minish(minish);
 	rl_clear_history();
