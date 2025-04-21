@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 18:05:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/21 11:00:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
+	int				is_exported;
 	struct s_env	*next;
 }					t_env;
 

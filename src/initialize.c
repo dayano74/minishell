@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:42:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 18:39:53 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/21 11:01:56 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static t_env	*create_envp_list(char **envp)
 		_split_key_value(envp[i], &(node->key), &(node->value));
 		if (!node->key || !node->value)
 			return (free(node), NULL);
+		node->is_exported = 1;
 		node->next = NULL;
 		if (!head)
 			head = node;
