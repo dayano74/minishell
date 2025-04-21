@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 13:54:41 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 15:56:16 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "cmd.h"
 # include "env_utils.h"
 # include "env_utils_2.h"
+# include "exec_pipeline.h"
 # include "initialize.h"
 # include "invoke_command.h"
 # include "libft.h"
