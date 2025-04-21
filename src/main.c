@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 13:45:20 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:59:35 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+/**
+ * @brief debug用　tokenを表示します。　後で削除予定。
+ *
+ * @param tokens
+ */
+static void	_dbg_show_tokens(char **tokens)
+{
+	printf("DEBUG: show tokens\n");
+	printf("[");
+	while (*tokens)
+		printf("\"%s\", ", *tokens++);
+	printf("NULL]\n");
+}
+
+static void	_free_tokens(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		free(tokens[i]);
+		tokens[i++] = NULL;
+	}
+	free(tokens);
+	tokens = NULL;
+}
 
 t_cmd	*parse_command_line(char *line)
 {
@@ -41,6 +69,7 @@ static void	destroy_minish(t_minish *minish)
 static bool	prompt(char *program_name, t_minish *minish, int *status)
 {
 	char	*line;
+	char	**tokens;
 	t_cmd	*cmd;
 
 	line = readline("minish>");
@@ -48,6 +77,8 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 		return (false);
 	if (line[0] != '\0')
 		add_history(line);
+	tokens = tokenizer(line);
+	_dbg_show_tokens(tokens);
 	cmd = parse_command_line(line);
 	if (!cmd)
 	{
@@ -57,6 +88,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	}
 	if (cmd->argc > 0)
 		*status = invoke_commands(cmd);
+	_free_tokens(tokens);
 	free(line);
 	return (true);
 }
