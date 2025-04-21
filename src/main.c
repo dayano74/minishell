@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 13:56:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:59:35 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ static void	_free_tokens(char **tokens)
 	tokens = NULL;
 }
 
-static void	_destructor(char *line, char **tokens, t_minish *minish)
-{
-	if (line)
-		free(line);
-	if (tokens)
-		_free_tokens(tokens);
-	if (minish)
-		free(minish);
 t_cmd	*parse_command_line(char *line)
 {
 	(void)line;
@@ -77,6 +69,7 @@ static void	destroy_minish(t_minish *minish)
 static bool	prompt(char *program_name, t_minish *minish, int *status)
 {
 	char	*line;
+	char	**tokens;
 	t_cmd	*cmd;
 
 	line = readline("minish>");
