@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 15:40:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 22:06:17 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 		}
 		token_i++;
 	}
+	cmds[cmd_i]->argc = arg_i;
 	cmds[++cmd_i] = NULL;
 	return (cmds);
 }
