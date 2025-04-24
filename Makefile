@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/24 12:17:10 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/24 15:32:30 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ L_FLG = -lreadline -lft
 SRC	 		=	main.c minish_signal.c initialize.c debug.c
 TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
 				is_quote_closed.c get_token_capa.c is_redirect_validate.c
-PERSER_SRC	=	perser.c
+PERSER_SRC	=	allocate_cmds.c  perser.c  perser_utils.c  setup_cmds.c
 BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
 				env_utils.c env_utils_2.c builtin_utils.c
 
