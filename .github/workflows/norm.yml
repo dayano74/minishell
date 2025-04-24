@@ -18,3 +18,9 @@ jobs:
         run: |
           set -e
           norminette
+          echo "exit code: $?"
+          if [ $? -ne 0 ]; then
+            echo "Norminette check failed"
+            exit 1
+          fi
+        continue-on-error: false
