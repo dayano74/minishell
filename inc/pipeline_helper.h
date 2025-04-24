@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pipeline.h                                    :+:      :+:    :+:   */
+/*   pipeline_helper.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 13:12:27 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 14:17:43 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/24 14:32:27 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/24 15:02:17 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_PIPELINE_H
-# define EXEC_PIPELINE_H
+#ifndef PIPELINE_HELPER_H
+# define PIPELINE_HELPER_H
 
 # include "cmd.h"
+# include <stdbool.h>
 
-void	exec_pipeline(t_cmd *cmd_head, t_minish *minish);
-int		wait_pipeline(t_cmd *cmd_head);
+// pipeline_helper.c
+void	redirect_stdout(t_cmd *cmd);
+bool	is_redirect(t_cmd *cmd);
+bool	is_head(t_cmd *cmd);
+bool	is_tail(t_cmd *cmd);
+bool	is_builtin(t_cmd *cmd);
 
 #endif

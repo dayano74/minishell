@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pipeline.h                                    :+:      :+:    :+:   */
+/*   create_envp.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 13:12:27 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 14:17:43 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/24 13:58:03 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/24 13:59:24 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_PIPELINE_H
-# define EXEC_PIPELINE_H
+#ifndef CREATE_ENVP_H
+# define CREATE_ENVP_H
 
-# include "cmd.h"
+# include "struct.h"
 
-void	exec_pipeline(t_cmd *cmd_head, t_minish *minish);
-int		wait_pipeline(t_cmd *cmd_head);
+char	**create_envp(t_minish *minish);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 21:00:51 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/24 21:20:27 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ static void	_free_tokens(char **tokens)
 	}
 	free(tokens);
 	tokens = NULL;
-}
-
-t_cmd	*parse_command_line(char *line)
-{
-	(void)line;
-	return (NULL);
 }
 
 static void	destroy_minish(t_minish *minish)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    test.mk                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
+#    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/20 19:58:13 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/24 15:05:40 by dayano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ I_FLG = -Iinc -Ilib/libft
 L_FLG = -Llib/libft -lft -lreadline
 
 # testを追加する場合はSRCにファイル名を追加してください。
-SRC = cd.c exit.c echo.c env.c unset.c tokenizer.c
+SRC = cd.c exit.c echo.c env.c unset.c tokenizer.c create_envp.c
 
 OUT = $(addprefix test_, $(SRC:.c=.out))
 
@@ -39,6 +39,9 @@ test_unset.out: tests/builtin/test_unset.c
 
 test_env.out: tests/builtin/test_env.c
 	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
+
+test_create_envp.out: tests/invoke_cmd/test_create_envp.c
+	$(CC) $< src/initialize.c src/invoke_cmd/create_envp.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
 
 clean:
 	rm -f test_*.out

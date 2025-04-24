@@ -6,14 +6,23 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:01:08 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:57:09 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static bool	is_unit_builtin(t_cmd *cmd_head);
-static int	exec_unit_builtin(t_cmd *cmd_head);
+static bool	is_unit_builtin(t_cmd *cmd_head)
+{
+	(void)cmd_head;
+	return (true);
+}
+
+static int	exec_unit_builtin(t_cmd *cmd_head)
+{
+	(void)cmd_head;
+	return (0);
+}
 
 /**
  * @brief fdの0, 1, 2をもとに戻せるように確保し、コマンド実行後に戻す。

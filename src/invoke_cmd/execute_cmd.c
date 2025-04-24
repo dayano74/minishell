@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:38:33 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:09:02 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ bool	is_pathname(char *cmd, char **envp, char **fullpath)
 	if (!*fullpath)
 		return (false);
 	return (true);
-}
-
-char	**create_envp(t_minish *minish)
-{
-	char	**envp;
-
-	return (envp);
 }
 
 void	execute_cmd(t_cmd *cmd, t_minish *minish)
