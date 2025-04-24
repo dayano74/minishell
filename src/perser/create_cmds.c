@@ -1,0 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_cmds.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/24 12:38:09 by ttsubo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "perser.h"
+
+static int	_is_separator(char *token)
+{
+	return (!ft_strcmp(token, "|")
+		|| !ft_strcmp(token, "<")
+		|| !ft_strcmp(token, ">")
+		|| !ft_strcmp(token, "<<")
+		|| !ft_strcmp(token, ">>")
+	);
+}
+
+static size_t	_count_cmds(char **tokens)
+{
+	size_t	i;
+	size_t	cmd_count;
+
+	i = 0;
+	cmd_count = 1;
+	while (tokens[i])
+	{
+		if (_is_separator(tokens[i]))
+			cmd_count++;
+		i++;
+	}
+	return (cmd_count);
+}
+
+static void	_free_cmds(t_cmd **cmds, size_t count)
+{
+	size_t	cmd_i;
+	size_t	arg_i;
+
+	cmd_i = 0;
+	while (cmd_i < count)
+	{
+		arg_i = 0;
+		while (cmds[cmd_i]->argv && cmds[cmd_i]->argv[arg_i])
+			free(cmds[cmd_i]->argv[arg_i++]);
+		free(cmds[cmd_i]->argv);
+		free(cmds[cmd_i]);
+		cmd_i++;
+	}
+	free(cmds);
+}
+
+static t_cmd	**_allocate_cmds(size_t count)
+{
+	size_t	i;
+	t_cmd	**cmds;
+
+	i = 0;
+	cmds = ft_calloc(count, sizeof(t_cmd *) + 1);
+	if (!cmds)
+		return (NULL);
+	while (i < count)
+	{
+		cmds[i] = ft_calloc(1, sizeof(t_cmd));
+		if (!cmds[i])
+			return (_free_cmds(cmds, i), NULL);
+		i++;
+	}
+	cmds[i] = NULL;
+	return (cmds);
+}
+
+t_cmd	**create_cmds(char **tokens)
+{
+	size_t	i;
+	t_cmd	**cmds;
+
+	cmds = _allocate_cmds(_count_cmds(tokens));
+	if (!cmds)
+		return (NULL);
+	return (cmds);
+}
