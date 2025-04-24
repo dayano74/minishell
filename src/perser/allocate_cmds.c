@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_cmds.c                                      :+:      :+:    :+:   */
+/*   allocate_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 12:38:09 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 13:36:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,20 @@ static size_t	_count_cmds(char **tokens)
 	return (cmd_count);
 }
 
+/**
+ * @brief Free memory for the command.
+ * 
+ * @param cmds 
+ * @param count
+ * @note cmds[i]->argv is not covered here.
+ */
 static void	_free_cmds(t_cmd **cmds, size_t count)
 {
 	size_t	cmd_i;
-	size_t	arg_i;
 
 	cmd_i = 0;
 	while (cmd_i < count)
 	{
-		arg_i = 0;
-		while (cmds[cmd_i]->argv && cmds[cmd_i]->argv[arg_i])
-			free(cmds[cmd_i]->argv[arg_i++]);
-		free(cmds[cmd_i]->argv);
 		free(cmds[cmd_i]);
 		cmd_i++;
 	}
@@ -76,7 +78,7 @@ static t_cmd	**_allocate_cmds(size_t count)
 	return (cmds);
 }
 
-t_cmd	**create_cmds(char **tokens)
+t_cmd	**allocate_cmds(char **tokens)
 {
 	size_t	i;
 	t_cmd	**cmds;
