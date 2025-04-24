@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:28:00 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:37:36 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:55:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void _show_cmd(t_cmd *cmd)
 	printf("\tcmd->argc=%d\n", cmd->argc);
 	printf("\tcmd->argv=[");
 	while (cmd->argv[arg_i])
-		printf("%s,", cmd->argv[arg_i]);
+		printf("%s,", cmd->argv[arg_i++]);
 	printf("NULL]\n");
 }
 
