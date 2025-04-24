@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/21 14:16:50 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/24 12:17:10 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ W_FLG = -Wall -Wextra -Werror
 I_FLG = -I$(INC_DIR) -I$(FT_DIR)
 L_FLG = -lreadline -lft
 
-SRC	 		=	main.c minish_signal.c initialize.c
+SRC	 		=	main.c minish_signal.c initialize.c debug.c
 TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
 				is_quote_closed.c get_token_capa.c is_redirect_validate.c
 PERSER_SRC	=	perser.c

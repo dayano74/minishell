@@ -1,0 +1,27 @@
+name: Norminette Check
+
+on:
+  pull_request:
+
+jobs:
+  norm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install norminette
+        run: |
+          sudo apt update
+          sudo apt install python3-pip -y
+          pip3 install norminette
+      - name: Run norminette
+        shell: bash
+        run: |
+          norminette > norm_result.txt
+          cat norm_result.txt
+          if grep -q "Error:" norm_result.txt; then
+            echo "❌ Norminette check failed"
+            exit 1
+          else
+            echo "✅ Norminette passed"
+          fi
+        continue-on-error: false
