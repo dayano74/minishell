@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 12:10:52 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 13:31:00 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 		return (false);
 	}
 	if (cmd->argc > 0)
-		*status = invoke_commands(cmd);
+		*status = invoke_commands(cmd, minish);
 	_free_tokens(tokens);
 	free(line);
 	return (true);
