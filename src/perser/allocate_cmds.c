@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:16:04 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:37:59 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static t_cmd	**_allocate_cmds(size_t count)
 
 t_cmd	**allocate_cmds(char **tokens)
 {
-	size_t	i;
 	t_cmd	**cmds;
 
 	cmds = _allocate_cmds(_count_cmds(tokens));
