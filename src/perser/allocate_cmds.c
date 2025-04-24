@@ -72,6 +72,8 @@ static t_cmd	**_allocate_cmds(size_t count)
 		cmds[i] = ft_calloc(1, sizeof(t_cmd));
 		if (!cmds[i])
 			return (_free_cmds(cmds, i), NULL);
+		if (i > 0)
+			cmds[i - 1]->next = cmds[i];
 		i++;
 	}
 	cmds[i] = NULL;
