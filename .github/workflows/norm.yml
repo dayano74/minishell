@@ -2,9 +2,6 @@ name: Norminette Check
 
 on:
   pull_request:
-    paths:
-      - '**.c'
-      - '**.h'
 
 jobs:
   norm:
