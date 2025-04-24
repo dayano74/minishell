@@ -15,4 +15,4 @@ jobs:
           pip3 install norminette
       - name: Run norminette
         run: |
-          norminette | tee norm_report.txt
+          norminette
