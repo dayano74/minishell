@@ -2,9 +2,6 @@ name: Norminette Check
 
 on:
   pull_request:
-    paths:
-      - '**.c'
-      - '**.h'
 
 jobs:
   norm:
@@ -17,5 +14,14 @@ jobs:
           sudo apt install python3-pip -y
           pip3 install norminette
       - name: Run norminette
+        shell: bash
         run: |
-          norminette | tee norm_report.txt
+          norminette > norm_result.txt
+          cat norm_result.txt
+          if grep -q "Error:" norm_result.txt; then
+            echo "❌ Norminette check failed"
+            exit 1
+          else
+            echo "✅ Norminette passed"
+          fi
+        continue-on-error: false
