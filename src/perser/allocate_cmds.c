@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:10:16 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:16:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,11 @@ static size_t	_count_cmds(char **tokens)
 	cmd_count = 1;
 	while (tokens[i])
 	{
-		if (_is_separator(tokens[i]))
+		if (is_separator(tokens[i]))
 			cmd_count++;
 		i++;
 	}
 	return (cmd_count);
-}
-
-/**
- * @brief Free memory for the command.
- * 
- * @param cmds 
- * @param count
- * @note cmds[i]->argv is not covered here.
- */
-static void	_free_cmds(t_cmd **cmds, size_t count)
-{
-	size_t	cmd_i;
-
-	cmd_i = 0;
-	while (cmd_i < count)
-	{
-		free(cmds[cmd_i]);
-		cmd_i++;
-	}
-	free(cmds);
 }
 
 static t_cmd	**_allocate_cmds(size_t count)
@@ -62,7 +42,7 @@ static t_cmd	**_allocate_cmds(size_t count)
 	{
 		cmds[i] = ft_calloc(1, sizeof(t_cmd));
 		if (!cmds[i])
-			return (_free_cmds(cmds, i), NULL);
+			return (free_cmds(cmds, i), NULL);
 		if (i > 0)
 			cmds[i - 1]->next = cmds[i];
 		i++;
