@@ -6,21 +6,12 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 13:36:04 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:10:16 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perser.h"
 
-static int	_is_separator(char *token)
-{
-	return (!ft_strcmp(token, "|")
-		|| !ft_strcmp(token, "<")
-		|| !ft_strcmp(token, ">")
-		|| !ft_strcmp(token, "<<")
-		|| !ft_strcmp(token, ">>")
-	);
-}
 
 static size_t	_count_cmds(char **tokens)
 {

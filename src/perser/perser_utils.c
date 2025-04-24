@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_cmds.h                                    :+:      :+:    :+:   */
+/*   perser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 12:39:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 13:37:20 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/24 13:40:56 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/24 13:41:26 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALLOCATE_CMDS_H
-# define ALLOCATE_CMDS_H
+#include "perser.h"
 
-#include "cmd.h"
-
-t_cmd	**allocate_cmds(char **tokens);
-
-#endif
+int	is_separator(char *token)
+{
+	return (!ft_strcmp(token, "|")
+		|| !ft_strcmp(token, "<")
+		|| !ft_strcmp(token, ">")
+		|| !ft_strcmp(token, "<<")
+		|| !ft_strcmp(token, ">>")
+	);
+}

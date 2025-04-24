@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 12:41:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 13:38:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_cmd	*perser(char **tokens)
 	t_cmd	**cmds;
 	t_cmd	*cmd;
 
-	cmds = create_cmds(tokens);
+	cmds = allocate_cmds(tokens);
 	if (!cmds)
 		return (NULL);
 	return (cmds);
