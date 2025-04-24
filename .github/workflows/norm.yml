@@ -14,6 +14,7 @@ jobs:
           sudo apt install python3-pip -y
           pip3 install norminette
       - name: Run norminette
+        shell: bash
         run: |
           set -e
           norminette
