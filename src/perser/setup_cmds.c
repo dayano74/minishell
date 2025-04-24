@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 15:21:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:24:03 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ static void	_set_type(t_cmd *cmd, char *token)
 		cmd->type = REDIR_NONE;
 }
 
+static void	_next_cmd(t_cmd **cmds, size_t *cmd_i, size_t *arg_i, char *token)
+{
+	cmds[*cmd_i]->argv[*arg_i] = NULL;
+	cmds[*cmd_i]->argc = *arg_i;
+	(*arg_i) = 0;
+	(*cmd_i)++;
+	_set_type(cmds[*cmd_i], token);
+	_allocate_argv(cmds[*cmd_i], &token);
+}
+
 t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 {
 	size_t	token_i;
@@ -58,14 +68,7 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 	while (tokens[token_i])
 	{
 		if (is_separator(tokens[token_i]))
-		{
-			cmds[cmd_i]->argv[arg_i] = NULL;
-			cmds[cmd_i]->argc = arg_i;
-			arg_i = 0;
-			cmd_i++;
-			_set_type(cmds[cmd_i], tokens[token_i]);
-			_allocate_argv(cmds[cmd_i], &tokens[token_i]);
-		}
+			_next_cmd(cmds, &cmd_i, &arg_i, tokens[token_i]);
 		else
 		{
 			cmds[cmd_i]->argv[arg_i] = ft_strdup(tokens[token_i]);
