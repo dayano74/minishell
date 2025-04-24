@@ -16,11 +16,12 @@ jobs:
       - name: Run norminette
         shell: bash
         run: |
-          set -e
-          norminette
-          echo "exit code: $?"
-          if [ $? -ne 0 ]; then
-            echo "Norminette check failed"
+          norminette > norm_result.txt
+          cat norm_result.txt
+          if grep -q "Error:" norm_result.txt; then
+            echo "❌ Norminette check failed"
             exit 1
+          else
+            echo "✅ Norminette passed"
           fi
         continue-on-error: false
