@@ -6,16 +6,16 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:56:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:21:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perser.h"
 
-static int _allocate_argv(t_cmd *cmd, char **tokens)
+static int	_allocate_argv(t_cmd *cmd, char **tokens)
 {
-	size_t token_i;
-	size_t argc;
+	size_t	token_i;
+	size_t	argc;
 
 	token_i = 0;
 	argc = 0;
@@ -30,7 +30,7 @@ static int _allocate_argv(t_cmd *cmd, char **tokens)
 	return (0);
 }
 
-static void _set_type(t_cmd *cmd, char *token)
+static void	_set_type(t_cmd *cmd, char *token)
 {
 	if (!ft_strcmp(token, ">"))
 		cmd->type = REDIR_OUT;
@@ -42,10 +42,9 @@ static void _set_type(t_cmd *cmd, char *token)
 		cmd->type = REDIR_HEREDOC;
 	else
 		cmd->type = REDIR_NONE;
-	
 }
 
-t_cmd **setup_cmds(t_cmd **cmds, char **tokens)
+t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 {
 	size_t	token_i;
 	size_t	cmd_i;

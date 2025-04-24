@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:29:25 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:22:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "cmd.h"
 # include "libft.h"
-
 
 t_cmd	**perser(char **tokens);
 size_t	cmds_len(t_cmd **cmds);
