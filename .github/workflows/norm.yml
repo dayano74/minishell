@@ -1,0 +1,21 @@
+name: Norminette Check
+
+on:
+  pull_request:
+    paths:
+      - '**.c'
+      - '**.h'
+
+jobs:
+  norm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install norminette
+        run: |
+          sudo apt update
+          sudo apt install python3-pip -y
+          pip3 install norminette
+      - name: Run norminette
+        run: |
+          norminette | tee norm_report.txt
