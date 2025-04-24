@@ -6,12 +6,12 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:28:00 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:55:11 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:59:28 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
 #include "perser.h"
+#include "tokenizer.h"
 
 static void	_free_tokens(char **tokens)
 {
@@ -23,9 +23,9 @@ static void	_free_tokens(char **tokens)
 	free(tokens);
 }
 
-static void _show_cmd(t_cmd *cmd)
+static void	_show_cmd(t_cmd *cmd)
 {
-	size_t arg_i;
+	size_t	arg_i;
 
 	arg_i = 0;
 	printf("\tcmd->type=%d\n", cmd->type);
