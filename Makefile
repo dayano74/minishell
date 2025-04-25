@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 21:12:49 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/25 21:30:27 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ L_FLG = -lreadline -lft
 
 # 1.Add more directories as they are added.
 SRC_DIR 			= src/
+PARSER_SRC_DIR		= src/parser/
 TOKENIZER_SRC_DIR	= src/tokenizer/
-PERSER_SRC_DIR		= src/perser/
+INVOKE_CMD_SRC_DIR	= src/invoke_cmd/
 BUILTIN_SRC_DIR		= src/builtin/
 INC_DIR 			= inc/
 OBJ_DIR 			= obj/
@@ -44,14 +45,17 @@ endef
 
 # 2.Add the source code when it is added
 MAIN_SRC		=	main.c minish_signal.c initialize.c debug.c
+INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
+					execute_cmd_helper.c  invoke_command.c pipeline_helper.c
 TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
 					is_quote_closed.c get_token_capa.c is_redirect_validate.c
-PERSER_SRC		=	allocate_cmds.c  perser.c  perser_utils.c  setup_cmds.c
+PARSER_SRC		=	allocate_cmds.c  parser.c  parser_utils.c  setup_cmds.c
 BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c \
 					env_utils.c env_utils_2.c builtin_utils.c
 
 # 3.Add more directories as they are added.
 $(eval $(call add_module,root,MAIN))
+$(eval $(call add_module,invoke_cmd,INVOKE_CMD))
 $(eval $(call add_module,tokenizer,TOKENIZER))
 $(eval $(call add_module,perser,PERSER))
 $(eval $(call add_module,builtin,BUILTIN))

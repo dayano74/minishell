@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 22:06:17 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 18:20:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "perser.h"
+#include "parser.h"
 
 static int	_allocate_argv(t_cmd *cmd, char **tokens)
 {

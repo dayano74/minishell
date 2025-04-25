@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   invoke_command.h                                   :+:      :+:    :+:   */
+/*   execute_cmd.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:00:48 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/21 21:39:18 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/25 20:46:25 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INVOKE_COMMAND_H
-# define INVOKE_COMMAND_H
+#ifndef EXECUTE_CMD_H
+# define EXECUTE_CMD_H
 
-# include "cmd.h"
+# define PATH_PREFIX_LEN 5
+# define EQUAL_LEN 1
+# define CMD_NOT_FOUND_EXIT_STATUS 127
 
-int	invoke_commands(t_cmd *cmd_head, t_minish *minish);
+void	execute_cmd(t_cmd *cmd, t_minish *minish);
+
+// execute_cmd_helper.c
+char	*join_path(char *dir, char *cmd);
+char	*get_path_line(char **envp);
+void	free_str_array(char **str);
+void	print_cmd_not_found(t_cmd *cmd);
 
 #endif

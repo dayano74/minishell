@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 15:28:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/25 18:16:36 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@
 # include "builtin.h"
 # include "builtin_utils.h"
 # include "cmd.h"
+# include "create_envp.h"
 # include "env_utils.h"
 # include "env_utils_2.h"
+# include "exec_pipeline.h"
+# include "execute_cmd.h"
 # include "initialize.h"
 # include "invoke_command.h"
 # include "libft.h"
 # include "minish_signal.h"
+# include "parser.h"
+# include "pipeline_helper.h"
 # include "struct.h"
 # include "tokenizer.h"
-# include "perser.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>

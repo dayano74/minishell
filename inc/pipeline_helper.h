@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   invoke_command.h                                   :+:      :+:    :+:   */
+/*   pipeline_helper.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:00:48 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/24 14:32:27 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/24 15:02:17 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INVOKE_COMMAND_H
-# define INVOKE_COMMAND_H
+#ifndef PIPELINE_HELPER_H
+# define PIPELINE_HELPER_H
 
 # include "cmd.h"
+# include <stdbool.h>
 
-int	invoke_commands(t_cmd *cmd_head, t_minish *minish);
+// pipeline_helper.c
+void	redirect_stdout(t_cmd *cmd);
+bool	is_redirect(t_cmd *cmd);
+bool	is_head(t_cmd *cmd);
+bool	is_tail(t_cmd *cmd);
+bool	is_builtin(t_cmd *cmd);
 
 #endif

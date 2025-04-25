@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perser.c                                           :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 14:38:19 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/25 18:16:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "perser.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-/**
- * @brief 
- * 
- * @param tokens 
- * @return t_cmd** 
- */
-t_cmd	**perser(char **tokens)
-{
-	t_cmd	**cmds;
+# include "cmd.h"
+# include "libft.h"
 
-	cmds = allocate_cmds(tokens);
-	if (!cmds)
-		return (NULL);
-	cmds = setup_cmds(cmds, tokens);
-	if (!cmds)
-		return (NULL);
-	return (cmds);
-}
+t_cmd	**parser(char **tokens);
+size_t	cmds_len(t_cmd **cmds);
+int		is_separator(char *token);
+void	free_cmds(t_cmd **cmds, size_t count);
+t_cmd	**allocate_cmds(char **tokens);
+t_cmd	**setup_cmds(t_cmd **cmds, char **tokens);
+
+#endif
