@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   invoke_command.h                                   :+:      :+:    :+:   */
+/*   create_envp.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:00:48 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/24 13:58:03 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/24 13:59:24 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INVOKE_COMMAND_H
-# define INVOKE_COMMAND_H
+#ifndef CREATE_ENVP_H
+# define CREATE_ENVP_H
 
-# include "cmd.h"
+# include "struct.h"
 
-int	invoke_commands(t_cmd *cmd_head, t_minish *minish);
+char	**create_envp(t_minish *minish);
 
 #endif
