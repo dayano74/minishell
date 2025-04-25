@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 21:37:35 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/25 21:59:36 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,13 @@ OBJ_DIR 			= obj/
 FT_DIR  			= lib/libft/
 
 define add_module
+  $(eval UPPER := $(shell echo $(1) | tr 'a-z' 'A-Z'))
   ifeq ($(1), root)
-  	SRCS += $(addprefix $(SRC_DIR), $($(2)_SRC))
+  	SRCS += $(addprefix $(SRC_DIR), $($(UPPER)_SRC))
   else
-  	SRCS += $(addprefix $(SRC_DIR)$(1)/, $($(2)_SRC))
+  	SRCS += $(addprefix $(SRC_DIR)$(1)/, $($(UPPER)_SRC))
   endif
-  	OBJS += $(addprefix $(OBJ_DIR)$(1)/, $($(2)_SRC:.c=.o))
+  	OBJS += $(addprefix $(OBJ_DIR)$(1)/, $($(UPPER)_SRC:.c=.o))
   	MODULE_DIRS += $(1)
 endef
 
@@ -44,7 +45,7 @@ define define_rule
 endef
 
 # 2.Add the source code when it is added
-MAIN_SRC		=	main.c minish_signal.c initialize.c
+ROOT_SRC		=	main.c minish_signal.c initialize.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c
 TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
@@ -54,11 +55,11 @@ BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c \
 					env_utils.c env_utils_2.c builtin_utils.c
 
 # 3.Add more directories as they are added.
-$(eval $(call add_module,root,MAIN))
-$(eval $(call add_module,invoke_cmd,INVOKE_CMD))
-$(eval $(call add_module,tokenizer,TOKENIZER))
-$(eval $(call add_module,parser,PARSER))
-$(eval $(call add_module,builtin,BUILTIN))
+$(eval $(call add_module,root))
+$(eval $(call add_module,invoke_cmd))
+$(eval $(call add_module,tokenizer))
+$(eval $(call add_module,parser))
+$(eval $(call add_module,builtin))
 
 LIBFT=libft.a
 TEST=MAIN
