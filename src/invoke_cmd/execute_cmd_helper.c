@@ -6,11 +6,19 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:37:20 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:41:05 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 20:50:51 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+void	print_cmd_not_found(t_cmd *cmd)
+{
+	ft_putstr_fd("minish: ", STDERR_FILENO);
+	ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
+	ft_putstr_fd(": command not found", STDERR_FILENO);
+	cmd->status = CMD_NOT_FOUND_EXIT_STATUS;
+}
 
 void	free_str_array(char **str)
 {

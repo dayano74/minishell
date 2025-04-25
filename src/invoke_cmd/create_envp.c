@@ -6,13 +6,29 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:56:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 15:38:39 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 20:54:11 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	count_value(t_minish *minish)
+static void	free_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	if (!envp)
+		return ;
+	while (envp[i])
+	{
+		if (envp[i])
+			free(envp[i]);
+		i++;
+	}
+	free(envp);
+}
+
+static int	_count_value(t_minish *minish)
 {
 	int		count;
 	t_env	*current_env;
@@ -28,7 +44,7 @@ int	count_value(t_minish *minish)
 	return (count);
 }
 
-static char	*get_envp_key_value(t_env *env)
+static char	*_get_envp_key_value(t_env *env)
 {
 	char	*result;
 	int		key_len;
@@ -40,15 +56,19 @@ static char	*get_envp_key_value(t_env *env)
 	buf_size = key_len + EQUAL_LEN + value_len + 1;
 	result = (char *)ft_calloc(buf_size, sizeof(char));
 	if (!result)
-		perror("ft_calloc");
+		return (NULL);
 	ft_strlcpy(result, env->key, buf_size);
 	ft_strlcat(result, "=", buf_size);
 	ft_strlcat(result, env->value, buf_size);
-	if (!result)
-		perror("ft_strlcat");
 	return (result);
 }
 
+/**
+ * @brief Create envp array
+ *
+ * @param minish
+ * @return char**
+ */
 char	**create_envp(t_minish *minish)
 {
 	char	**envp;
@@ -56,7 +76,7 @@ char	**create_envp(t_minish *minish)
 	int		i;
 	int		count;
 
-	count = count_value(minish);
+	count = _count_value(minish);
 	envp = (char **)ft_calloc(count, sizeof(char *));
 	if (!envp)
 		return (NULL);
@@ -65,7 +85,14 @@ char	**create_envp(t_minish *minish)
 	while (env)
 	{
 		if (env->value)
-			envp[i] = get_envp_key_value(env);
+		{
+			envp[i] = _get_envp_key_value(env);
+			if (!envp[i])
+			{
+				free_envp(envp);
+				return (NULL);
+			}
+		}
 		env = env->next;
 		i++;
 	}

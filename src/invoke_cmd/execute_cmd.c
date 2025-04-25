@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 14:09:02 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 20:46:52 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	execute_cmd(t_cmd *cmd, t_minish *minish)
 	envp = create_envp(minish);
 	if (!envp)
 	{
-		perror("create_envp");
+		print_cmd_not_found(cmd);
+		return ;
 	}
 	if (!cmd->argv[0] || ft_strlen(cmd->argv[0]) == 0)
 	{
