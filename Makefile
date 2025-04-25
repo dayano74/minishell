@@ -6,13 +6,18 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 18:21:35 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/25 21:59:36 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
+MAKEFLAGS += --no-print-directory
+W_FLG = -Wall -Wextra -Werror
+I_FLG = -Iinc/ -Ilib/libft/
+L_FLG = -lreadline -lft
 
+# 1.Add more directories as they are added.
 SRC_DIR 			= src/
 PARSER_SRC_DIR		= src/parser/
 TOKENIZER_SRC_DIR	= src/tokenizer/
@@ -22,32 +27,42 @@ INC_DIR 			= inc/
 OBJ_DIR 			= obj/
 FT_DIR  			= lib/libft/
 
-MAKEFLAGS += --no-print-directory
-W_FLG = -Wall -Wextra -Werror
-I_FLG = -I$(INC_DIR) -I$(FT_DIR)
-L_FLG = -lreadline -lft
+define add_module
+  $(eval UPPER := $(shell echo $(1) | tr 'a-z' 'A-Z'))
+  ifeq ($(1), root)
+  	SRCS += $(addprefix $(SRC_DIR), $($(UPPER)_SRC))
+  else
+  	SRCS += $(addprefix $(SRC_DIR)$(1)/, $($(UPPER)_SRC))
+  endif
+  	OBJS += $(addprefix $(OBJ_DIR)$(1)/, $($(UPPER)_SRC:.c=.o))
+  	MODULE_DIRS += $(1)
+endef
 
-SRC	 		=	main.c minish_signal.c initialize.c
-INVOKE_CMD_SRC = create_envp.c  exec_pipeline.c  execute_cmd.c \
-				execute_cmd_helper.c  invoke_command.c pipeline_helper.c
-TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
-				is_quote_closed.c get_token_capa.c is_redirect_validate.c
-PARSER_SRC	=	allocate_cmds.c  parser.c  parser_utils.c  setup_cmds.c
-BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
-				env_utils.c env_utils_2.c builtin_utils.c
+define define_rule
+  $(eval $(1): $(2) ; \
+    @mkdir -p $$(dir $$@) ; \
+    $(CC) $(W_FLG) $(I_FLG) -c $$< -o $$@)
+endef
 
-SRCS = $(addprefix $(SRC_DIR), $(SRC))
-SRCS += $(addprefix $(PARSER_SRC_DIR), $(PARSER_SRC))
-SRCS += $(addprefix $(TOKENIZER_SRC_DIR), $(TOKENIZER_SRC))
-SRCS += $(addprefix $(INVOKE_CMD_SRC_DIR), $(INVOKE_CMD_SRC))
-SRCS += $(addprefix $(BUILTIN_SRC_DIR), $(BUILTIN_SRC))
-OBJS = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
-OBJS += $(addprefix $(OBJ_DIR), $(PARSER_SRC:.c=.o))
-OBJS += $(addprefix $(OBJ_DIR), $(TOKENIZER_SRC:.c=.o))
-OBJS += $(addprefix $(OBJ_DIR), $(INVOKE_CMD_SRC:.c=.o))
-OBJS += $(addprefix $(OBJ_DIR), $(BUILTIN_SRC:.c=.o))
+# 2.Add the source code when it is added
+ROOT_SRC		=	main.c minish_signal.c initialize.c
+INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
+					execute_cmd_helper.c  invoke_command.c pipeline_helper.c
+TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
+					is_quote_closed.c get_token_capa.c is_redirect_validate.c
+PARSER_SRC		=	allocate_cmds.c  parser.c  parser_utils.c  setup_cmds.c
+BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c \
+					env_utils.c env_utils_2.c builtin_utils.c
+
+# 3.Add more directories as they are added.
+$(eval $(call add_module,root))
+$(eval $(call add_module,invoke_cmd))
+$(eval $(call add_module,tokenizer))
+$(eval $(call add_module,parser))
+$(eval $(call add_module,builtin))
 
 LIBFT=libft.a
+TEST=MAIN
 
 all: $(NAME)
 
@@ -57,24 +72,17 @@ $(NAME): $(FT_DIR)$(LIBFT) $(OBJS)
 $(FT_DIR)$(LIBFT):
 	$(MAKE) -C $(FT_DIR)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
-
-$(OBJ_DIR)%.o: $(PARSER_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
-
-$(OBJ_DIR)%.o: $(TOKENIZER_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
-
-$(OBJ_DIR)%.o: $(INVOKE_CMD_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
-
-$(OBJ_DIR)%.o: $(BUILTIN_SRC_DIR)%.c
-	$(CC) $(W_FLG) $(I_FLG) -c $< -o $@
+$(foreach DIR,$(MODULE_DIRS), \
+  $(if $(filter $(DIR),root), \
+    $(call define_rule, $(OBJ_DIR)$(DIR)/%.o, $(SRC_DIR)%.c), \
+    $(call define_rule, $(OBJ_DIR)$(DIR)/%.o, $(SRC_DIR)$(DIR)/%.c) \
+  ) \
+)
 
 clean:
 	$(MAKE) -C $(FT_DIR) clean
-	rm -rf $(OBJ_DIR)*.o
+	find $(OBJ_DIR) -type f -name '*.o' -exec rm -f {} +
+	find $(OBJ_DIR) -type d -empty -not -name '.' -exec rmdir {} +
 
 fclean:
 	$(MAKE) -C $(FT_DIR) fclean
