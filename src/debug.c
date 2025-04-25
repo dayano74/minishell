@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:19:47 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/24 12:09:42 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/24 12:12:26 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "main.h"
 
-/**
- * @brief 
- * 
- * @param tokens 
- * @return t_cmd** 
- */
-t_cmd	**parser(char **tokens)
+t_cmd	*parse_command_line(char *line)
 {
-	t_cmd	**cmds;
+	(void)line;
+	return (NULL);
+}
 
-	cmds = allocate_cmds(tokens);
-	if (!cmds)
-		return (NULL);
-	cmds = setup_cmds(cmds, tokens);
-	if (!cmds)
-		return (NULL);
-	return (cmds);
+int	invoke_commands(t_cmd *cmd)
+{
+	(void)cmd;
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 18:09:50 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/25 18:21:35 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ I_FLG = -I$(INC_DIR) -I$(FT_DIR)
 L_FLG = -lreadline -lft
 
 SRC	 		=	main.c minish_signal.c initialize.c
-PARSER_SRC	=	parser.c
-TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
-				is_quote_closed.c get_token_capa.c is_redirect_validate.c
 INVOKE_CMD_SRC = create_envp.c  exec_pipeline.c  execute_cmd.c \
 				execute_cmd_helper.c  invoke_command.c pipeline_helper.c
+TOKENIZER_SRC = tokenizer.c tokenizer_error.c read_token.c \
+				is_quote_closed.c get_token_capa.c is_redirect_validate.c
+PARSER_SRC	=	allocate_cmds.c  parser.c  parser_utils.c  setup_cmds.c
 BUILTIN_SRC	=	cd.c exit.c pwd.c echo.c env.c unset.c \
 				env_utils.c env_utils_2.c builtin_utils.c
 
