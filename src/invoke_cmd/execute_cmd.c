@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 14:09:02 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 17:53:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ char	*get_cmd_path(char *cmd, char **envp)
 	char	*path_line;
 	char	**path_set;
 	char	*full_path;
-	int		i;
 
-	i = 0;
 	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	path_line = get_path_line(envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 21:15:55 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 17:52:19 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
 	int		fds1[2];
 	int		fds2[2];
 
+	(void)minish;
 	cmd = cmd_head;
 	initialize_fds(fds1, fds2);
 	while (cmd && !is_redirect(cmd))
