@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:56:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/25 20:54:11 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 21:22:44 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,7 @@ char	**create_envp(t_minish *minish)
 		{
 			envp[i] = _get_envp_key_value(env);
 			if (!envp[i])
-			{
-				free_envp(envp);
-				return (NULL);
-			}
+				return (free_envp(envp), NULL);
 		}
 		env = env->next;
 		i++;
