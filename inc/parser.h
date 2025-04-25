@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 21:21:07 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 21:22:19 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/25 18:16:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 # define PARSER_H
 
 # include "cmd.h"
+# include "libft.h"
 
-t_cmd	*parse_command_line(char *line);
+t_cmd	**parser(char **tokens);
+size_t	cmds_len(t_cmd **cmds);
+int		is_separator(char *token);
+void	free_cmds(t_cmd **cmds, size_t count);
+t_cmd	**allocate_cmds(char **tokens);
+t_cmd	**setup_cmds(t_cmd **cmds, char **tokens);
 
 #endif
