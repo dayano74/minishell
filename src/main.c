@@ -6,24 +6,36 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 12:10:52 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:34:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /**
- * @brief debug用　tokenを表示します。　後で削除予定。
+ * @brief debug用　cmdを表示します。　後で削除予定。
  *
  * @param tokens
  */
-static void	_dbg_show_tokens(char **tokens)
+static void	_dbg_show_cmd(t_cmd **cmds)
 {
-	printf("DEBUG: show tokens\n");
-	printf("[");
-	while (*tokens)
-		printf("\"%s\", ", *tokens++);
-	printf("NULL]\n");
+	size_t	cmd_i;
+	size_t	arg_i;
+
+	cmd_i = 0;
+	printf("DEBUG: show cmds\n");
+	while (cmds[cmd_i])
+	{
+		arg_i = 0;
+		printf("cmd[%zu]\n", cmd_i);
+		printf("\tcmd->type=%d\n", cmds[cmd_i]->type);
+		printf("\tcmd->argc=%d\n", cmds[cmd_i]->argc);
+		printf("\tcmd->argv=[");
+		while (cmds[cmd_i]->argv[arg_i])
+			printf("%s,", cmds[cmd_i]->argv[arg_i++]);
+		printf("NULL]\n");
+		cmd_i++;
+	}
 }
 
 static void	_free_tokens(char **tokens)
@@ -58,25 +70,25 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 {
 	char	*line;
 	char	**tokens;
-	t_cmd	*cmd;
+	t_cmd	**cmds;
 
+	(void) status;
 	line = readline("minish>");
 	if (!line)
 		return (false);
 	if (line[0] != '\0')
 		add_history(line);
 	tokens = tokenizer(line);
-	_dbg_show_tokens(tokens);
-	cmd = parse_command_line(line);
-	if (!cmd)
+	cmds = perser(tokens);
+	if (!cmds)
 	{
 		error_mes(program_name, ": syntax error\n");
 		cleanup_minish(minish);
 		return (false);
 	}
-	if (cmd->argc > 0)
-		*status = invoke_commands(cmd);
+	_dbg_show_cmd(cmds);
 	_free_tokens(tokens);
+	free_cmds(cmds, cmds_len(cmds));
 	free(line);
 	return (true);
 }

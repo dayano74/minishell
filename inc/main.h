@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 12:13:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:28:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "minish_signal.h"
 # include "struct.h"
 # include "tokenizer.h"
+# include "perser.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
