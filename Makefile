@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 21:30:27 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/25 21:37:35 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ define define_rule
 endef
 
 # 2.Add the source code when it is added
-MAIN_SRC		=	main.c minish_signal.c initialize.c debug.c
+MAIN_SRC		=	main.c minish_signal.c initialize.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c
 TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
@@ -57,7 +57,7 @@ BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c \
 $(eval $(call add_module,root,MAIN))
 $(eval $(call add_module,invoke_cmd,INVOKE_CMD))
 $(eval $(call add_module,tokenizer,TOKENIZER))
-$(eval $(call add_module,perser,PERSER))
+$(eval $(call add_module,parser,PARSER))
 $(eval $(call add_module,builtin,BUILTIN))
 
 LIBFT=libft.a
