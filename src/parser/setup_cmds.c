@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:27:15 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 21:11:33 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,27 @@ static char	*_expand_arg(char *token, t_minish *minish)
 {
 	size_t	token_i;
 	bool	is_squote;
+	char	*result;
+	char	*expaned;
 
 	token_i = 0;
 	is_squote = 0;
-	while (token[token_i])
+	result = ft_strdup(token);
+	while (result[token_i])
 	{
-		if (token[token_i] == '\'')
+		if (result[token_i] == '\'')
 			is_squote = !is_squote;
-		if (!is_squote && token[token_i] == '$')
-			token = expand_env(token, minish);
+		if (!is_squote && result[token_i] == '$')
+		{
+			expaned = expand_env(result, minish);
+			free(result);
+			result = expaned;
+			token_i = 0;
+			continue ;
+		}
 		token_i++;
 	}
-	return (ft_strdup(token));
+	return (result);
 }
 
 static void	_next_cmd(t_cmd **cmds, size_t *cmd_i, size_t *arg_i, char *token)
