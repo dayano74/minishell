@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:19:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:48:19 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	if (line[0] != '\0')
 		add_history(line);
 	tokens = tokenizer(line);
-	cmds = parser(tokens);
+	cmds = parser(tokens, minish);
 	if (!cmds)
 	{
 		error_mes(program_name, ": syntax error\n");

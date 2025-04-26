@@ -6,11 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:23:44 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:43:31 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
+#include "parser.h"
 
 static char	*_ft_strndup(const char *s1, size_t n)
 {
@@ -60,15 +60,15 @@ static void	_free_tmp(t_expand_temp *tmp)
 	free(tmp->prefix);
 }
 
-static void	_set_tmpstr(t_minish *minish, t_tokenizer *tkn,
+static void	_set_tmpstr(t_minish *minish, char *token,
 		t_expand_env *ex_env, t_expand_temp *tmp)
 {
-	tmp->key = _ft_strndup(tkn->input + ex_env->key_st, ex_env->key_len);
+	tmp->key = _ft_strndup(token + ex_env->key_st, ex_env->key_len);
 	tmp->value = ft_strdup(get_env_value(minish->env, tmp->key));
 	if (!tmp->value)
 		tmp->value = ft_strdup("");
-	tmp->prefix = _ft_strndup(tkn->input, ex_env->pre_len);
-	tmp->suffix = tkn->input + ex_env->key_st + ex_env->key_len;
+	tmp->prefix = _ft_strndup(token, ex_env->pre_len);
+	tmp->suffix = token + ex_env->key_st + ex_env->key_len;
 	tmp->result = _join_str(*tmp);
 }
 
@@ -79,27 +79,27 @@ static void	_set_tmpstr(t_minish *minish, t_tokenizer *tkn,
  * @param minish
  * @return t_tokenizer*
  */
-t_tokenizer	*expand_env(t_tokenizer *tkn, t_minish *minish)
+char	*expand_env(char *token, t_minish *minish)
 {
 	const char		*env_ptr;
 	t_expand_env	ex_env;
 	t_expand_temp	tmp;
 
-	env_ptr = ft_strchr(tkn->input, '$');
+	env_ptr = ft_strchr(token, '$');
 	if (!env_ptr)
-		return (tkn);
+		return (token);
 	ft_bzero(&tmp, sizeof(tmp));
 	ex_env.key_len = 0;
-	ex_env.pre_len = env_ptr - tkn->input;
+	ex_env.pre_len = env_ptr - token;
 	ex_env.key_st = ex_env.pre_len + 1;
-	if (!is_key_start(tkn->input[ex_env.key_st]))
-		return (tkn);
-	while (is_key_char(tkn->input[ex_env.key_st + ex_env.key_len]))
+	if (!is_key_start(token[ex_env.key_st]))
+		return (token);
+	while (is_key_char(token[ex_env.key_st + ex_env.key_len]))
 		ex_env.key_len++;
-	_set_tmpstr(minish, tkn, &ex_env, &tmp);
+	_set_tmpstr(minish, token, &ex_env, &tmp);
 	if (!tmp.result)
-		return (_free_tmp(&tmp), tkn);
-	free(tkn->input);
-	tkn->input = tmp.result;
-	return (tkn);
+		return (_free_tmp(&tmp), token);
+	free(token);
+	token = tmp.result;
+	return (token);
 }

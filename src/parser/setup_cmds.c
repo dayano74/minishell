@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:20:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:48:33 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,23 @@ static void	_set_type(t_cmd *cmd, char *token)
 		cmd->type = REDIR_NONE;
 }
 
+static char *_expand_arg(char *token, t_minish *minish)
+{
+	size_t token_i;
+	bool is_squote;
+
+	token_i = 0;
+	is_squote = 0;
+	while (token[token_i])
+	{
+		if (token[token_i] == '\'')
+			is_squote = !is_squote;
+		if (!is_squote && token[token_i] == '$')
+			expand_env(token, minish);
+	}
+	return (ft_strdup(token));
+}
+
 static void	_next_cmd(t_cmd **cmds, size_t *cmd_i, size_t *arg_i, char *token)
 {
 	cmds[*cmd_i]->argv[*arg_i] = NULL;
@@ -54,7 +71,7 @@ static void	_next_cmd(t_cmd **cmds, size_t *cmd_i, size_t *arg_i, char *token)
 	_allocate_argv(cmds[*cmd_i], &token);
 }
 
-t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
+t_cmd	**setup_cmds(t_cmd **cmds, char **tokens, t_minish *minish)
 {
 	size_t	token_i;
 	size_t	cmd_i;
@@ -71,7 +88,7 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 			_next_cmd(cmds, &cmd_i, &arg_i, tokens[token_i]);
 		else
 		{
-			cmds[cmd_i]->argv[arg_i] = ft_strdup(tokens[token_i]);
+			cmds[cmd_i]->argv[arg_i] = _expand_arg(tokens[token_i], minish);
 			if (!cmds[cmd_i]->argv[arg_i])
 				return (free_cmds(cmds, cmds_len(cmds)), NULL);
 			arg_i++;

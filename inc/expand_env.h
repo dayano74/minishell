@@ -6,13 +6,15 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:24:25 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:25:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:50:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPAND_ENV_H
 # define EXPAND_ENV_H
 
+# include "env_utils.h"
+# include "struct.h"
 # include <stdbool.h>
 
 typedef struct s_expand_env
@@ -31,6 +33,7 @@ typedef struct s_expand_temp
 	char	*result;
 }			t_expand_temp;
 
+char		*expand_env(char *token, t_minish *minish);
 bool		is_key_start(int c);
 bool		is_key_char(int c);
 
