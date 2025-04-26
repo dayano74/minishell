@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:48:33 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 12:02:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static char *_expand_arg(char *token, t_minish *minish)
 			is_squote = !is_squote;
 		if (!is_squote && token[token_i] == '$')
 			expand_env(token, minish);
+		token_i++;
 	}
 	return (ft_strdup(token));
 }
