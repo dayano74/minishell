@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:36:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:56:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	_free_tmp(t_expand_temp *tmp)
 {
 	free(tmp->key);
 	free(tmp->value);
+	free(tmp->result);
 	free(tmp->prefix);
 	free(tmp->suffix);
 }
