@@ -6,17 +6,15 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:27:06 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:52:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-# include "env_utils.h"
 # include "libft.h"
 # include "struct.h"
-# include "expand_env.h"
 # include <stdio.h>
 
 # define ERR_UNEXPECTED_STR "unexpected error occureed.\n"

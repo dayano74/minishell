@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_perser.c                                      :+:      :+:    :+:   */
+/*   test_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:28:00 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:20:15 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:55:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "tokenizer.h"
+# include "initialize.h"
 
 static void	_free_tokens(char **tokens)
 {
@@ -36,16 +37,18 @@ static void	_show_cmd(t_cmd *cmd)
 	printf("NULL]\n");
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	int		i;
 	char	**tokens;
 	t_cmd	**cmds;
+	t_minish	*minish;
 
+	minish = initialize(envp);
 	if (argc != 2)
 		return (printf("usage: ./test_tokenizer.out <any message>"), 1);
 	tokens = tokenizer(argv[1]);
-	cmds = parser(tokens);
+	cmds = parser(tokens, minish);
 	if (!tokens)
 		return (1);
 	i = 0;
