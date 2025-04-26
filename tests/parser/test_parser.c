@@ -6,11 +6,12 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:28:00 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:27:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:55:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "initialize.h"
+#include "env_utils_2.h"
 #include "parser.h"
 #include "tokenizer.h"
 
@@ -56,5 +57,6 @@ int	main(int argc, char **argv, char **envp)
 		_show_cmd(cmds[i++]);
 	_free_tokens(tokens);
 	free_cmds(cmds, cmds_len(cmds));
+	cleanup_minish(minish);
 	return (0);
 }
