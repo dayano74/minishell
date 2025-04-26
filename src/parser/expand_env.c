@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:23:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:36:39 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,23 @@ char	*expand_env(char *token, t_minish *minish)
 	const char		*env_ptr;
 	t_expand_env	ex_env;
 	t_expand_temp	tmp;
+	char			*result;
 
 	env_ptr = ft_strchr(token, '$');
 	if (!env_ptr)
-		return (token);
+		return (ft_strdup(token));
 	ft_bzero(&tmp, sizeof(tmp));
 	ex_env.key_len = 0;
 	ex_env.pre_len = env_ptr - token;
 	ex_env.key_st = ex_env.pre_len + 1;
 	if (!is_key_start(token[ex_env.key_st]))
-		return (token);
+		return (ft_strdup(token));
 	while (is_key_char(token[ex_env.key_st + ex_env.key_len]))
 		ex_env.key_len++;
 	_set_tmpstr(minish, token, &ex_env, &tmp);
 	if (!tmp.result)
-		return (_free_tmp(&tmp), token);
-	free(token);
-	token = tmp.result;
-	return (token);
+		return (_free_tmp(&tmp), ft_strdup(token));
+	result = ft_strdup(tmp.result);
+	_free_tmp(&tmp);
+	return (result);
 }
