@@ -6,14 +6,17 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:13:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:16:26 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
+# include "env_utils.h"
 # include "libft.h"
+# include "struct.h"
+# include <stdbool.h>
 # include <stdio.h>
 
 # define ERR_UNEXPECTED_STR "unexpected error occureed.\n"
@@ -54,6 +57,27 @@ typedef struct s_tokenizer
 	int		in_squote;
 	int		in_dquote;
 }			t_tokenizer;
+
+// TODO: あとでexpand.hに分割する
+typedef struct s_expand_env
+{
+	size_t	pre_len;
+	size_t	key_st;
+	size_t	key_len;
+}			t_expand_env;
+
+typedef struct s_expand_temp
+{
+	char	*key;
+	char	*value;
+	char	*prefix;
+	char	*suffix;
+	char	*result;
+}			t_expand_temp;
+
+// expand_utils.c
+bool		is_key_start(int c);
+bool		is_key_char(int c);
 
 char		*read_token(t_tokenizer *tkn);
 void		show_tokenizer_error(t_tokenizer_errors err_code);
