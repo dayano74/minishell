@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:52:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 21:22:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define TOKENIZER_H
 
 # include "libft.h"
-# include "struct.h"
 # include <stdio.h>
 
 # define ERR_UNEXPECTED_STR "unexpected error occureed.\n"
