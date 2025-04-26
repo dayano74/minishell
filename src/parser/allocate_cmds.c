@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:19:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:39:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_cmd	**_allocate_cmds(size_t count)
 	t_cmd	**cmds;
 
 	i = 0;
-	cmds = ft_calloc(count, sizeof(t_cmd *) + 1);
+	cmds = ft_calloc(count + 1, sizeof(t_cmd *));
 	if (!cmds)
 		return (NULL);
 	while (i < count)
