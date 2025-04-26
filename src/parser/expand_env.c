@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:43:31 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:23:07 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	_free_tmp(t_expand_temp *tmp)
 	free(tmp->key);
 	free(tmp->value);
 	free(tmp->prefix);
+	free(tmp->suffix);
 }
 
 static void	_set_tmpstr(t_minish *minish, char *token,
@@ -68,7 +69,7 @@ static void	_set_tmpstr(t_minish *minish, char *token,
 	if (!tmp->value)
 		tmp->value = ft_strdup("");
 	tmp->prefix = _ft_strndup(token, ex_env->pre_len);
-	tmp->suffix = token + ex_env->key_st + ex_env->key_len;
+	tmp->suffix = ft_strdup(token + ex_env->key_st + ex_env->key_len);
 	tmp->result = _join_str(*tmp);
 }
 

@@ -6,13 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:28:00 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:55:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:27:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "initialize.h"
 #include "parser.h"
 #include "tokenizer.h"
-# include "initialize.h"
 
 static void	_free_tokens(char **tokens)
 {
@@ -39,9 +39,9 @@ static void	_show_cmd(t_cmd *cmd)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		i;
-	char	**tokens;
-	t_cmd	**cmds;
+	int			i;
+	char		**tokens;
+	t_cmd		**cmds;
 	t_minish	*minish;
 
 	minish = initialize(envp);

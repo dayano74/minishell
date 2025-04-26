@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 12:02:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:27:15 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	_set_type(t_cmd *cmd, char *token)
 		cmd->type = REDIR_NONE;
 }
 
-static char *_expand_arg(char *token, t_minish *minish)
+static char	*_expand_arg(char *token, t_minish *minish)
 {
-	size_t token_i;
-	bool is_squote;
+	size_t	token_i;
+	bool	is_squote;
 
 	token_i = 0;
 	is_squote = 0;
@@ -56,7 +56,7 @@ static char *_expand_arg(char *token, t_minish *minish)
 		if (token[token_i] == '\'')
 			is_squote = !is_squote;
 		if (!is_squote && token[token_i] == '$')
-			expand_env(token, minish);
+			token = expand_env(token, minish);
 		token_i++;
 	}
 	return (ft_strdup(token));
