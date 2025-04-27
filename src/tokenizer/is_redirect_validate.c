@@ -6,17 +6,17 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/18 14:55:08 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:03:26 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
 /**
- * @brief 正しいリダイレクトかチェックします。
+ * @brief Checks if the redirect symbol is a valid value.
  * @param str
  * @return int
- * @note 現状のチェックは連続したREDIRCTをチェックしています。
+ * @note For now, this function only checks for consecutive redirect symbols.
  */
 int	is_redirect_validate(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:29:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:05:30 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	skip_spaces(t_tokenizer *tkn)
 }
 
 /**
- * @brief 生文字を意味のある単語単位で切り分けます。
+ * @brief Split a string into meaningful words.
  *
  * @param str
  * @return char**

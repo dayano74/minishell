@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 12:58:51 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 14:59:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static t_token_type	_check_token_type(char c, int in_quote)
 }
 
 /**
- * @brief 文字列配列のキャパシティを計算します。
+ * @brief Calculates the capacity of a string array.
  *
  * @param str
  * @return size_t
- * @note 空白・リダイレクト・パイプの個数を求めています。
+ * @note Count the number of blanks, redirections, and pipes.
  */
 size_t	get_token_capa(char *str)
 {

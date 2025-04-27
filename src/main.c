@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:19:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 14:49:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /**
- * @brief debug用　cmdを表示します。　後で削除予定。
+ * @brief [debug] show cmds. Delete later
  *
  * @param tokens
  */
