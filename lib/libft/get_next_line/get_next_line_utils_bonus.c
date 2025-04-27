@@ -6,19 +6,19 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:08:41 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/12/07 18:29:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:50:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
 /**
- * @brief srcをdstに文字数srcsizeまでコピーします 
- *
- * @param [out] dst		: コピー先の文字列領域
- * @param [in]	src 	: コピーする文字列
- * @param [in]	srcsize	: コピーサイズ
- * @return char* 		: dstの先頭ポインタ
+ * @brief Copy src to dst up to the number of characters srcsize 
+ * 
+ * @param dst 
+ * @param src 
+ * @param srcsize 
+ * @return char* 
  */
 char	*gnl_strncpy(char *dst, const char *src, size_t srcsize)
 {
@@ -33,12 +33,12 @@ char	*gnl_strncpy(char *dst, const char *src, size_t srcsize)
 }
 
 /**
- * @brief メモリ領域bにサイズlenまでcの内容で埋めます
- *
- * @param b			: セットするメモリ領域
- * @param c			: セットする文字(255以上の上位ビットは無視されます)
- * @param len		: セットするサイズ
- * @return void*	: bのアドレス
+ * @brief Fill memory area b with the contents of c up to size len
+ * 
+ * @param b 
+ * @param c 
+ * @param len 
+ * @return void* 
  */
 void	*gnl_memset(void *b, int c, size_t len)
 {
@@ -53,11 +53,11 @@ void	*gnl_memset(void *b, int c, size_t len)
 }
 
 /**
- * @brief count * sizeのメモリ領域を0埋めした状態で確保します
+ * @brief Allocate a memory area of count * size filled with 0. 
  * 
- * @param count		: 確保するメモリ領域の個数 
- * @param size		: メモリ領域のサイズ
- * @return void*	: 確保したメモリ領域の先頭ポインタ 
+ * @param count 
+ * @param size 
+ * @return void* 
  */
 void	*gnl_calloc(size_t count, size_t size)
 {
@@ -75,10 +75,10 @@ void	*gnl_calloc(size_t count, size_t size)
 }
 
 /**
- * @brief lineの中の文字列を解放してNULLをセットします。
+ * @brief Releases the string in line and sets NULL.
  * 
- * @param line		: 行の情報を管理する構造体
- * @return void*	: NULLを返します
+ * @param line 
+ * @return void* 
  */
 void	*gnl_line_free(t_string *line)
 {
@@ -90,15 +90,12 @@ void	*gnl_line_free(t_string *line)
 	return (NULL);
 }
 
-/**
- * @brief putcとgetcの状態からgnlの状態を設定します
- *
- * @param [out]	status	: 状態管理用の構造体
- * @return t_sts*		: gnlの状態適用後のstatus
- * @note	GNL_READ	: 行読み取り中
- * @note	GNL_EOF		: EOFに達した
- * @note	GNL_ERR		: 処理中にエラーが発生
- */
+ /**
+  * @brief Sets the status of gnl.
+  * 
+  * @param status 
+  * @return t_sts* 
+  */
 t_sts	*set_sts(t_sts *status)
 {
 	if (status->getc_sts == GETC_OTHER && status->putc_sts == PUTC_OK)
