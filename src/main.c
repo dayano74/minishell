@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/27 16:31:53 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 16:33:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	destroy_minish(t_minish *minish)
 
 /**
  * @brief I used bool type since it seems to be available.
- * @brief I have created a prototype of parse_command_line on my own, so you can modify it as you like!
  * @param program_name
  * @param minish
  * @return true
