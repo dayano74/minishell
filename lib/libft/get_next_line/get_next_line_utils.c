@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:08:41 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/27 15:52:50 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 16:24:15 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	*gnl_line_free(t_string *line)
 	return (NULL);
 }
 
- /**
-  * @brief Sets the status of gnl.
-  * 
-  * @param status 
-  * @return t_sts* 
-  */
+/**
+ * @brief Sets the status of gnl.
+ * 
+ * @param status 
+ * @return t_sts* 
+ */
 t_sts	*set_sts(t_sts *status)
 {
 	if (status->getc_sts == GETC_OTHER && status->putc_sts == PUTC_OK)
