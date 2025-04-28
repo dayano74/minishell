@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 16:33:09 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 16:36:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 static int	_update_value(char *key, char *value, t_minish *minish)
 {
+	t_env	*node;
+
+	node = get_env_node(minish->env, key);
+	if (!node)
+		return (EXIT_FAILURE);
+	if (node->value)
+		free(node->value);
+	node->value = ft_strdup(value);
 	return (EXIT_SUCCESS);
 }
 
