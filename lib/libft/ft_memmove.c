@@ -6,24 +6,24 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:44:03 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/12/23 19:56:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:10:56 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief src領域をdst領域にオーバーラップを考慮したコピーを行います。
+ * @brief Copy the src area to the dst area considering overlap.
  * 
- * @param [out]	dst	: コピー先のメモリ領域
- * @param [in]	src	: コピー元のメモリ領域
- * @param [in]	len	: コピーする領域の長さ
- * @return void* 	: dstを返します
+ * @param [out]	dst	:  
+ * @param [in]	src	: 
+ * @param [in]	len	: 
+ * @return void* 	: return dst
  * @note : 
- * 	dstとsrcのメモリアドレス番地の位置で挙動が変わります。
- * 	dst <  src なら前方からコピー
- *  dst == src ならdをそのまま返す（内容が同じのため）
- *  それ以外は後方コピーを行います
+ * 	The behavior of this function changes with the position of dst and src.
+ *  If dst < src, copy from the front.	
+ *  If dst == src, returns dst as is.
+ *  Otherwise, copy from behind.
  */
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

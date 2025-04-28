@@ -6,21 +6,21 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:07:44 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/12/07 19:07:02 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:44:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
 /**
- * @brief fd_buf内にあるバッファから1文字取り出しcpにセットします
- *
- * @param [out] fd_buf	: fd_buf 構造体
- * @param [out] cp		: 文字のポインタ
- * @retval PUTC_OK		: 文字の取り出しに成功
- * @retval PUTC_ERR		: 文字取り出し中にエラーになった
- * @retval PUTC_EOF		: EOFに達した
- * @note	<pre> fd_buf != NULL (呼出し側でfd_bufを設定する必要がある)
+ * @brief Takes one character out of the buffer and sets it in cp.
+ * 
+ * @param [out] fd_buf	: fd_buf
+ * @param [out] cp		: char pointer.
+ * @retval PUTC_OK		: Successfully retrieved the char.
+ * @retval PUTC_ERR		: Error while retrieving char.
+ * @retval PUTC_EOF		: EOF was reached.
+ * @note	<pre> fd_buf != NULL
  */
 static int	_ft_getc(t_buf *fd_buf, unsigned char *cp)
 {
@@ -42,13 +42,12 @@ static int	_ft_getc(t_buf *fd_buf, unsigned char *cp)
 }
 
 /**
- * @brief  string構造体に含まれるstrにcを追加します
- *
- * @param [out]	line	: 行情報を管理する構造体
- * @param [in]	c		: line.strに追加する文字
- * @param sts 			: getcの状態
- * @retval PUTC_OK		: lineにcを追加できた
- * @retval PUTC_ERR		: 追加する処理の途中でエラーになった
+ * @brief  Add c to t_string->str
+ * 
+ * @param line 
+ * @param c 
+ * @param sts 
+ * @return int 
  */
 static int	_ft_putc(t_string *line, char c, t_getc_sts sts)
 {
@@ -74,12 +73,11 @@ static int	_ft_putc(t_string *line, char c, t_getc_sts sts)
 }
 
 /**
- * @brief 対象のfd用バッファが未作成の場合に初期化します
- *
- * @param [out]	s_buf	: バッファ構造体のアドレス
- * @param [in]	fd		: ファイルディスクプリタ
- * @retval t_buf* 		: 初期化済みの構造体
- * @retval NULL 		: 初期化に失敗
+ * @brief Initialize t_buf. (but only if not yet created).
+ * 
+ * @param s_buf 
+ * @param fd 
+ * @return t_buf* 
  */
 static t_buf	*_gnl_buf_init(t_buf **s_buf, int fd)
 {
@@ -105,9 +103,9 @@ static t_buf	*_gnl_buf_init(t_buf **s_buf, int fd)
 }
 
 /**
- * @brief 渡されたバッファ構造体メモリを解放してNULLをセットします
+ * @brief free s_buf.
  *
- * @param [out]	s_buf	: メモリ解放するバッファ構造体
+ * @param [out]	s_buf
  */
 static void	_gnl_buf_free(t_buf **s_buf)
 {
@@ -126,10 +124,10 @@ static void	_gnl_buf_free(t_buf **s_buf)
 }
 
 /**
- * @brief fdから改行までの文字列を改行込みで取得します 
- * @param [in] fd	: ファイルディスクリプタ
- * @retval char* 	: fdから取得した改行を含む文字列
- * @retval NULL		: 読み込み失敗エラー 
+ * @brief Get string from fd to newline
+ * 
+ * @param fd 
+ * @return char* 
  */
 char	*get_next_line(int fd)
 {

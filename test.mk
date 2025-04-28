@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 18:20:43 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/26 12:06:35 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ test_%.out: tests/tokenizer/test_%.c
 	$(CC) $^ src/tokenizer/*.c $(L_FLG) $(I_FLG) -o $@
 
 test_%.out: tests/parser/test_%.c
-	$(CC) $^ src/parser/*.c src/tokenizer/*.c $(L_FLG) $(I_FLG) -o $@
+	$(CC) $^ src/parser/*.c src/tokenizer/*.c src/builtin/*.c src/initialize.c $(L_FLG) $(I_FLG) -o $@
 
 test_unset.out: tests/builtin/test_unset.c
 	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@

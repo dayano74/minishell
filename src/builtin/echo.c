@@ -6,18 +6,18 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 12:24:30 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 14:58:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /**
- * @brief オプションがnのみか判定します
+ * @brief Determines if the option is n only. 
  *
- * @param arg1
- * @return 0: n以外が含まれている
- * @return 1: nのみ
+ * @param arg
+ * @return 0: Contains other than n
+ * @return 1: only n
  */
 static int	_has_only_n_option(char *arg)
 {
@@ -36,11 +36,11 @@ static int	_has_only_n_option(char *arg)
 }
 
 /**
- * @brief built-inのechoコマンドです。
+ * @brief The built-in echo command.
  *
  * @param argc
  * @param argv
- * @return 0: 常に0を返します。
+ * @return 0: Always returns 0.
  */
 int	builtin_echo(int argc, char *argv[])
 {

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_until.c                                  :+:      :+:    :+:   */
+/*   expand_env_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 15:38:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/27 15:16:08 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/26 11:15:24 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/26 11:49:30 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-/**
- * @brief Returns the length of string s up to character stop. 
- *
- * @param s
- * @param stop
- * @return size_t
- * @note If stop not found, return s length.
- */
-size_t	ft_strlen_until(const char *s, char stop)
+bool	is_key_start(int c)
 {
-	const char	*pos = ft_strchr(s, stop);
+	return (ft_isalpha(c) || c == '_');
+}
 
-	if (pos)
-		return ((size_t)(pos - s));
-	else
-		return (ft_strlen(s));
+bool	is_key_char(int c)
+{
+	return (ft_isalnum(c) || c == '_');
 }
