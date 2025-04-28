@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:29:29 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 14:57:00 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 14:12:08 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ bool	is_redirect(t_cmd *cmd)
 	return (false);
 }
 
-bool	is_head(t_cmd *cmd)
+bool	is_head(t_cmd *cmd, t_cmd *cmd_head)
 {
-	(void)cmd;
-	return (true);
+	if (cmd == cmd_head)
+		return (true);
+	return (false);
 }
 
 bool	is_tail(t_cmd *cmd)
 {
-	(void)cmd;
-	return (true);
+	if (cmd->next == NULL || is_redirect(cmd->next))
+		return (true);
+	return (false);
 }
 
 bool	is_builtin(t_cmd *cmd)

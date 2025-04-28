@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 12:14:57 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 14:12:13 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
 				close(fds1[1]);
 			continue ;
 		}
-		if (!is_head(cmd))
+		if (!is_head(cmd, cmd_head))
 		{
 			close(STDIN_FILENO);
 			dup2(fds1[0], STDIN_FILENO);
