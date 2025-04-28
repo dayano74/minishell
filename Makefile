@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/25 21:59:36 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/28 12:34:11 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,8 @@ INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
 					is_quote_closed.c get_token_capa.c is_redirect_validate.c
 PARSER_SRC		=	allocate_cmds.c  parser.c  parser_utils.c  setup_cmds.c
-BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c \
-					env_utils.c env_utils_2.c builtin_utils.c
+BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c export.c \
+					env_utils.c env_utils_2.c builtin_utils.c export_print_sorted_env.c
 
 # 3.Add more directories as they are added.
 $(eval $(call add_module,root))
