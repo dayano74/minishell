@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:48:19 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 11:55:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /**
- * @brief debug用　cmdを表示します。　後で削除予定。
+ * @brief [debug] show cmds. Delete later
  *
  * @param tokens
  */
@@ -59,8 +59,7 @@ static void	destroy_minish(t_minish *minish)
 }
 
 /**
- * @brief bool型が利用できるみたいなので、使用してみました。
- * @brief parse_command_lineのプロトタイプを勝手に作成しているので、好きなように改変していただいて大丈夫です
+ * @brief I used the bool type because it seems to be available.
  * @param program_nam
  * @param minish
  * @return true

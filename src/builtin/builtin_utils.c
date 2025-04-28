@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:46:40 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 20:01:04 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 14:55:58 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /**
- * @brief "<name>: <mes>\n"形式でSTDERRに出力します。
+ * @brief Output to STDERR in the format "<name>: <mes>\n".
  *
  * @param name
  * @param mes

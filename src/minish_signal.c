@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:35:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/05 14:46:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 14:54:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minish_signal.h"
 
 /**
- * @brief ctrl+cを押されたときのハンドラ関数
+ * @brief Handler function when ctrl+c is pressed 
  * 
  * @param signum 
  */
@@ -27,14 +27,10 @@ static void	ctrl_c(int signum)
 }
 
 /**
- * @brief sigaction構造体の値を設定します。
+ * @brief Sets the value of the sigaction structure
  * 
- * @param sa		: sigaction構造体
- * @param handler	: ハンドラ関数
- * @note sigaction構造体のうち、次の値を設定しています。
- * @note - sa_handler	:ハンドラ関数。引数fを設定します。NULLの場合はSIG_IGN。
- * @note - sa_mask		:ハンドラ実行中にブロックするマスク。ブロックはしない。
- * @note - sa_flags		:ハンドラの挙動を制御するフラグ。特に設定しない。
+ * @param sa		: sigaction structure
+ * @param handler	: handler funciton
  */
 static void	_set_sigaction(struct sigaction *sa, void (*handler)(int))
 {
@@ -47,9 +43,9 @@ static void	_set_sigaction(struct sigaction *sa, void (*handler)(int))
 }
 
 /**
- * @brief SIGINT(ctrl+c), SIGQUIT(ctrl+\)を設定します。
+ * @brief Sets SIGINT(ctrl+c) and SIGQUIT(ctrl+\).
  * 
- * @note ctrl+dはEOFのため、別途管理しています。
+ * @note ctrl+d is EOF, so it is managed separately.
  */
 void	minish_signal(void)
 {

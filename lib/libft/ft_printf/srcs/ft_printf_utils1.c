@@ -6,18 +6,18 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:09:58 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/01/24 10:58:19 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:28:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_utils.h"
 
 /**
- * @brief fdに文字cを出力します
+ * @brief Outputs the letter c to fd.
  *
- * @param c			: 文字
- * @param fd 		: ファイルディスクリプタ
- * @return size_t	: 文字の長さ(おおよそ1)
+ * @param c			: char
+ * @param fd 		: file descriptor
+ * @return size_t	: char length.(approximately 1)
  */
 size_t	ptf_putchar_fd(char c, int fd)
 {
@@ -25,11 +25,11 @@ size_t	ptf_putchar_fd(char c, int fd)
 }
 
 /**
- * @brief 文字列sをfdに出力します
+ * @brief Outputs the string s to fd.
  *
- * @param s 		: 文字列
- * @param fd 		: ファイルディスクリプタ
- * @return size_t	: 文字列の長さ
+ * @param s 		: string
+ * @param fd 		: file descriptor
+ * @return size_t	: string length
  */
 size_t	ptf_putstr_fd(char *s, int fd)
 {
@@ -44,11 +44,11 @@ size_t	ptf_putstr_fd(char *s, int fd)
 }
 
 /**
- * @brief 符号ありの数字numをfdに出力します
+ * @brief Outputs the signed n num to fd.
  *
- * @param num 		: 符号あり整数
- * @param fd 		: ファイルディスクリプタ
- * @return size_t	: 符号なし数値の長さ
+ * @param num 		: int
+ * @param fd 		: file descriptor
+ * @return size_t	: n length
  */
 size_t	ptf_putnum_fd(int n, int fd)
 {
@@ -73,11 +73,11 @@ size_t	ptf_putnum_fd(int n, int fd)
 }
 
 /**
- * @brief 符号なしの数字unumをfdに出力します
+ * @brief Output unsigned number n to fd.
  *
- * @param unum 		: 符号なし数値
- * @param fd 		: ファイルディスクリプタ
- * @return size_t	: 符号なし数値の長さ
+ * @param n 		: ungigned number
+ * @param fd 		: file descriptor
+ * @return size_t	: n length
  */
 size_t	ptf_putunum_fd(unsigned int n, int fd)
 {
@@ -94,13 +94,13 @@ size_t	ptf_putunum_fd(unsigned int n, int fd)
 }
 
 /**
- * @brief 符号なし整数を１６進数形式の文字列で出力します
+ * @brief Output unsigned integer as string in hexadecimal format.
  *
- * @param num		: 変換する符号なし整数
- * @param fd 		: ファイルディスクリプタ
- * @param is_upper	: 大文字表記にするかのフラグ(1だと有効)
- * @return char*	: 変換後の文字列の先頭ポインタ
- * @note			: pre: 負の数は呼び出し元で変換すること
+ * @param num		: Unsigned integer to convert
+ * @param fd 		: file descriptor
+ * @param is_upper	: Flag for capitalization (1 means valid)
+ * @return char*	: First pointer of converted string
+ * @note			: pre: Negative numbers must be converted at the caller
  */
 size_t	ptf_puthex_fd(unsigned int n, int fd, int is_upper)
 {
