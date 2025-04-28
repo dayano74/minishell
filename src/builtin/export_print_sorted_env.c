@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:44:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 12:38:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 13:07:14 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ static void	_show_env(t_env **array, size_t count)
 	i = 0;
 	while (i < count)
 	{
-		printf("declare -x %s=\"%s\"\n", array[i]->key, array[i]->value);
+		if (array[i]->is_exported)
+			printf("declare -x %s=\"%s\"\n", array[i]->key, array[i]->value);
+		else
+			printf("declare -x %s\n", array[i]->key);
 		i++;
 	}
 }
