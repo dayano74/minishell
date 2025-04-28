@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 15:43:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 15:51:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ static int	_update_value(char *key, char *value, t_minish *minish)
 
 static int	_append_value(char *key, char *value, t_minish *minish)
 {
+	t_env	*node;
+	char	*join_str;
+
+	node = get_env_node(minish->env, key);
+	if (!node)
+		return (EXIT_FAILURE);
+	if (node->value)
+	join_str = ft_strjoin(node->value, value);
+	if (!join_str)
+		return (EXIT_FAILURE);
+	free(node->value);
+	node->value = join_str;
 	return (EXIT_SUCCESS);
 }
 
