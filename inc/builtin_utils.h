@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 15:30:13 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 16:09:32 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_export_exec_bool
 	bool	has_eq;
 }			t_export_exec_bool;
 
+char		*ft_strndup(const char *s1, size_t n);
 void		error_mes(char *name, char *mes);
 int			print_sorted_env(t_env *head);
 
