@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 19:55:44 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:25:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define BUILTIN_UTILS_H
 
 void	error_mes(char *name, char *mes);
+void	print_sorted_env(t_env *head);
 
 #endif
