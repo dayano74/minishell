@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 15:51:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 16:33:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	_append_value(char *key, char *value, t_minish *minish)
 	if (!node)
 		return (EXIT_FAILURE);
 	if (node->value)
-	join_str = ft_strjoin(node->value, value);
+		join_str = ft_strjoin(node->value, value);
 	if (!join_str)
 		return (EXIT_FAILURE);
 	free(node->value);
@@ -37,6 +37,7 @@ static int	_append_value(char *key, char *value, t_minish *minish)
 static int	_add_key_value(char *key, char *value, t_minish *minish)
 {
 	t_env	*node;
+
 	node = ft_calloc(1, sizeof(t_env));
 	if (!node)
 		return (EXIT_FAILURE);
@@ -54,6 +55,7 @@ static int	_add_key_value(char *key, char *value, t_minish *minish)
 static int	_add_key(char *key, t_minish *minish)
 {
 	t_env	*node;
+
 	node = ft_calloc(1, sizeof(t_env));
 	if (!node)
 		return (EXIT_FAILURE);

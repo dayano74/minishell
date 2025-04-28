@@ -6,13 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:26:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 15:45:20 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 16:32:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-
 
 void	free_env_content(char *value)
 {
