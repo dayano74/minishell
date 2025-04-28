@@ -79,7 +79,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	if (line[0] != '\0')
 		add_history(line);
 	tokens = tokenizer(line);
-	cmds = parser(tokens);
+	cmds = parser(tokens, minish);
 	if (!cmds)
 	{
 		error_mes(program_name, ": syntax error\n");
