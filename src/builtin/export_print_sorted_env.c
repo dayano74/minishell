@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:44:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 12:33:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:38:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	_show_env(t_env **array, size_t count)
 	}
 }
 
-void	print_sorted_env(t_env *head)
+int	print_sorted_env(t_env *head)
 {
 	size_t	i;
 	size_t	count;
@@ -77,10 +77,10 @@ void	print_sorted_env(t_env *head)
 
 	count = _count_size(head);
 	if (count == 0)
-		return ;
+		return (EXIT_FAILURE);
 	array = ft_calloc(count, sizeof(t_env *));
 	if (!array)
-		return ;
+		return (EXIT_FAILURE);
 	current = head;
 	i = 0;
 	while (i < count)
@@ -91,4 +91,5 @@ void	print_sorted_env(t_env *head)
 	_qsort(array, count);
 	_show_env(array, count);
 	free(array);
+	return (EXIT_SUCCESS);
 }
