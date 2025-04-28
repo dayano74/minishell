@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   expand_env_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 12:09:42 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 12:12:26 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/26 11:15:24 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/26 11:49:30 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "parser.h"
 
-t_cmd	*parse_command_line(char *line)
+bool	is_key_start(int c)
 {
-	(void)line;
-	return (NULL);
+	return (ft_isalpha(c) || c == '_');
 }
 
-int	invoke_commands(t_cmd *cmd)
+bool	is_key_char(int c)
 {
-	(void)cmd;
-	return (0);
+	return (ft_isalnum(c) || c == '_');
 }

@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_cmd_helper.c                               :+:      :+:    :+:   */
+/*   pipeline_helper_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 21:37:20 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/25 20:50:51 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/24 14:52:38 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/24 14:59:55 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	print_cmd_not_found(t_cmd *cmd)
+void	perror_exit(char *msg)
 {
-	ft_putstr_fd("minish: ", STDERR_FILENO);
-	ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
-	ft_putstr_fd(": command not found", STDERR_FILENO);
-	cmd->status = CMD_NOT_FOUND_EXIT_STATUS;
+	perror(msg);
+	exit(EXIT_FAILURE);
 }
 
-void	free_str_array(char **str)
+void	perror_exit_status(char *msg, int status)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-		return ;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
+	perror(msg);
+	exit(status);
 }
 
 char	*get_path_line(char **envp)

@@ -6,18 +6,18 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:09:58 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/01/24 10:58:19 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:31:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_utils.h"
 
 /**
- * @brief ptf_putptr_fdのアドレス出力用の再帰関数
- *
- * @param hex 		: 16進数のアドレス
- * @param fd 		: ファイルディスクリプタ
- * @return size_t	: 出力した文字の長さ
+ * @brief Recursive function for ptf_putptr_fd address output
+ * 
+ * @param hex 
+ * @param fd 
+ * @return size_t 
  */
 static size_t	_ptf_putptr_fd_rec(uintptr_t hex, int fd)
 {
@@ -34,11 +34,11 @@ static size_t	_ptf_putptr_fd_rec(uintptr_t hex, int fd)
 }
 
 /**
- * @brief ポインタを１６進数形式で出力します
- *
- * @param ptr		: アドレスを出力したいポインタ
- * @param fd		: ファイルディスクリプタ
- * @return size_t	: 出力した文字列の長さ
+ * @brief Output pointer in hexadecimal format
+ * 
+ * @param ptr 
+ * @param fd 
+ * @return size_t 
  */
 size_t	ptf_putptr_fd(void *ptr, int fd)
 {
@@ -52,12 +52,12 @@ size_t	ptf_putptr_fd(void *ptr, int fd)
 }
 
 /**
- * @brief メモリ領域bをcで長さlenまで埋めます
+ * @brief Fill memory area b with letter c. 
  * 
- * @param b 		: メモリ領域
- * @param c 		: 埋める形式 (0-255までの数値)
- * @param len 		: 埋める長さ
- * @return void*	: 適用後のメモリ領域の先頭アドレス
+ * @param b 
+ * @param c 
+ * @param len 
+ * @return void* 
  */
 void	*ftp_memset(void *b, int c, size_t len)
 {

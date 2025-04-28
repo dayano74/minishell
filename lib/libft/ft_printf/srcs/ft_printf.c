@@ -6,19 +6,18 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:24:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/01/24 10:58:19 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:35:04 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /**
- * @brief strが%の場合それに応じたフォーマットを出力します
- *
- * @param str	: %[csdiu%]
- * @param args	: formatに関する引数
- * @return int  : 出力した文字列の長さ
- * @note	pre: %からはじまること
+ * @brief If str is %, output format accordingly
+ * 
+ * @param str 
+ * @param args 
+ * @return int 
  */
 static int	_format(const char **str, va_list *args)
 {
@@ -50,11 +49,12 @@ static int	_format(const char **str, va_list *args)
 }
 
 /**
- * @brief 渡された引数をフォーマットに従って変換し標準出力に出力します
- *
- * @param [in] str 	: 出力する文字列(フォーマットを含む場合もある)
- * @param [in] ... 	: フォーマットに与える変数
- * @return int 		: 出力した文字列の長さ
+ * @brief Outputs str to standard output.
+ * If arguments are present, they are converted to match the format.
+ * 
+ * @param str 
+ * @param ... 
+ * @return int 
  */
 int	ft_printf(const char *str, ...)
 {

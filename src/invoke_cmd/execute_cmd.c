@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:38:33 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 21:17:14 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ char	*get_cmd_path(char *cmd, char **envp)
 	char	*path_line;
 	char	**path_set;
 	char	*full_path;
-	int		i;
 
-	i = 0;
 	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	path_line = get_path_line(envp);
@@ -60,13 +58,6 @@ bool	is_pathname(char *cmd, char **envp, char **fullpath)
 	return (true);
 }
 
-char	**create_envp(t_minish *minish)
-{
-	char	**envp;
-
-	return (envp);
-}
-
 void	execute_cmd(t_cmd *cmd, t_minish *minish)
 {
 	char	*fullpath;
@@ -75,7 +66,8 @@ void	execute_cmd(t_cmd *cmd, t_minish *minish)
 	envp = create_envp(minish);
 	if (!envp)
 	{
-		perror("create_envp");
+		print_cmd_not_found(cmd);
+		return ;
 	}
 	if (!cmd->argv[0] || ft_strlen(cmd->argv[0]) == 0)
 	{

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_cmd.h                                      :+:      :+:    :+:   */
+/*   pipeline_helper.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 21:39:18 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 12:00:45 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/24 14:32:27 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/24 15:02:17 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_CMD_H
-# define EXECUTE_CMD_H
+#ifndef PIPELINE_HELPER_H
+# define PIPELINE_HELPER_H
 
-# define PATH_PREFIX_LEN 5
-# define EQUAL_LEN 1
-# define CMD_NOT_FOUND_EXIT_STATUS 127
+# include "cmd.h"
+# include <stdbool.h>
 
-void	execute_cmd(t_cmd *cmd, t_minish *minish);
-
-// execute_cmd_helper.c
-char	*join_path(char *dir, char *cmd);
-char	*get_path_line(char **envp);
-void	free_str_array(char **str);
-void	print_cmd_not_found(t_cmd *cmd);
-
-void	execute_cmd(t_cmd *cmd, t_minish *minish);
+// pipeline_helper.c
+void	redirect_stdout(t_cmd *cmd);
+bool	is_redirect(t_cmd *cmd);
+bool	is_head(t_cmd *cmd);
+bool	is_tail(t_cmd *cmd);
+bool	is_builtin(t_cmd *cmd);
 
 #endif

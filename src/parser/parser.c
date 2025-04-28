@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_until.c                                  :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 15:38:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/27 15:16:08 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/26 11:48:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
 /**
- * @brief Returns the length of string s up to character stop. 
- *
- * @param s
- * @param stop
- * @return size_t
- * @note If stop not found, return s length.
+ * @brief 
+ * 
+ * @param tokens 
+ * @return t_cmd** 
  */
-size_t	ft_strlen_until(const char *s, char stop)
+t_cmd	**parser(char **tokens, t_minish *minish)
 {
-	const char	*pos = ft_strchr(s, stop);
+	t_cmd	**cmds;
 
-	if (pos)
-		return ((size_t)(pos - s));
-	else
-		return (ft_strlen(s));
+	cmds = allocate_cmds(tokens);
+	if (!cmds)
+		return (NULL);
+	cmds = setup_cmds(cmds, tokens, minish);
+	if (!cmds)
+		return (NULL);
+	return (cmds);
 }

@@ -6,25 +6,11 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/24 13:31:00 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:01:09 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-/**
- * @brief debug用　tokenを表示します。　後で削除予定。
- *
- * @param tokens
- */
-static void	_dbg_show_tokens(char **tokens)
-{
-	printf("DEBUG: show tokens\n");
-	printf("[");
-	while (*tokens)
-		printf("\"%s\", ", *tokens++);
-	printf("NULL]\n");
-}
 
 static void	_free_tokens(char **tokens)
 {
@@ -47,9 +33,8 @@ static void	destroy_minish(t_minish *minish)
 }
 
 /**
- * @brief bool型が利用できるみたいなので、使用してみました。
- * @brief parse_command_lineのプロトタイプを勝手に作成しているので、好きなように改変していただいて大丈夫です
- * @param program_nam
+ * @brief I used bool type since it seems to be available.
+ * @param program_name
  * @param minish
  * @return true
  * @return false
@@ -58,25 +43,26 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 {
 	char	*line;
 	char	**tokens;
-	t_cmd	*cmd;
+	t_cmd	**cmds;
 
+	(void)status;
 	line = readline("minish>");
 	if (!line)
 		return (false);
 	if (line[0] != '\0')
 		add_history(line);
 	tokens = tokenizer(line);
-	_dbg_show_tokens(tokens);
-	cmd = parse_command_line(line);
-	if (!cmd)
+	cmds = parser(tokens, minish);
+	if (!cmds)
 	{
 		error_mes(program_name, ": syntax error\n");
 		cleanup_minish(minish);
 		return (false);
 	}
-	if (cmd->argc > 0)
-		*status = invoke_commands(cmd, minish);
+	if (cmds[0]->argc > 0)
+		*status = invoke_commands(cmds[0], minish);
 	_free_tokens(tokens);
+	free_cmds(cmds, cmds_len(cmds));
 	free(line);
 	return (true);
 }

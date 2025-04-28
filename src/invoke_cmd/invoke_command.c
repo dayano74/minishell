@@ -6,20 +6,45 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:01:08 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 21:05:18 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static bool	is_unit_builtin(t_cmd *cmd_head);
-static int	exec_unit_builtin(t_cmd *cmd_head);
+/**
+ * @brief Determine whether the command list represents a standalone builtin.
+ *        Builtins include commands like cd, echo, export, exit, and pwd,
+ *        and should be executed without forking when they appear alone.
+ * @note to be implemented later
+ * @param cmd_head
+ * @return true
+ * @return false
+ */
+static bool	is_unit_builtin(t_cmd *cmd_head)
+{
+	(void)cmd_head;
+	return (true);
+}
 
 /**
- * @brief fdの0, 1, 2をもとに戻せるように確保し、コマンド実行後に戻す。
- * @brief コマンドの実行はビルトインコマンド単体 or それ以外（外部関数やパイプ）
- * @brief に分岐処理する。
- *
+ * @brief Execute a standalone builtin command directly in the current process.
+ *        Does not spawn a child process. Handles builtins such as cd (chdir),
+ *        export (environment update), exit (shell termination), etc.
+ * @note to be implemented later
+ * @param cmd_head
+ * @return int
+ */
+static int	exec_unit_builtin(t_cmd *cmd_head)
+{
+	(void)cmd_head;
+	return (0);
+}
+
+/**
+ * @brief Save and restore the original stdin and stdout file descriptors,
+ *        then execute commands—either a standalone builtin or, otherwise,
+ *        an external command sequence (pipeline).
  * @param cmd_head
  * @return int
  */
