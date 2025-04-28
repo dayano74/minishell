@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 11:55:41 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:01:09 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	char	**tokens;
 	t_cmd	**cmds;
 
-	(void) status;
+	(void)status;
 	line = readline("minish>");
 	if (!line)
 		return (false);
