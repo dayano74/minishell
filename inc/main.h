@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 12:00:56 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 15:52:52 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "minish_signal.h"
 # include "parser.h"
 # include "pipeline_helper.h"
+# include "redirect.h"
 # include "struct.h"
 # include "tokenizer.h"
 # include <readline/history.h>
