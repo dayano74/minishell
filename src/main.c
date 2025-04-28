@@ -12,32 +12,6 @@
 
 #include "main.h"
 
-/**
- * @brief [debug] show cmds. Delete later
- *
- * @param tokens
- */
-static void	_dbg_show_cmd(t_cmd **cmds)
-{
-	size_t	cmd_i;
-	size_t	arg_i;
-
-	cmd_i = 0;
-	printf("DEBUG: show cmds\n");
-	while (cmds[cmd_i])
-	{
-		arg_i = 0;
-		printf("cmd[%zu]\n", cmd_i);
-		printf("\tcmd->type=%d\n", cmds[cmd_i]->type);
-		printf("\tcmd->argc=%d\n", cmds[cmd_i]->argc);
-		printf("\tcmd->argv=[");
-		while (cmds[cmd_i]->argv[arg_i])
-			printf("%s,", cmds[cmd_i]->argv[arg_i++]);
-		printf("NULL]\n");
-		cmd_i++;
-	}
-}
-
 static void	_free_tokens(char **tokens)
 {
 	int	i;
@@ -59,8 +33,8 @@ static void	destroy_minish(t_minish *minish)
 }
 
 /**
- * @brief I used the bool type because it seems to be available.
- * @param program_nam
+ * @brief I used bool type since it seems to be available.
+ * @param program_name
  * @param minish
  * @return true
  * @return false
@@ -87,7 +61,6 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	}
 	if (cmds[0]->argc > 0)
 		*status = invoke_commands(cmds[0], minish);
-	_dbg_show_cmd(cmds);
 	_free_tokens(tokens);
 	free_cmds(cmds, cmds_len(cmds));
 	free(line);
