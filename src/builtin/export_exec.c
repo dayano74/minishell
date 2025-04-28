@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 16:36:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 16:39:36 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	_add_key_value(char *key, char *value, t_minish *minish)
 	if (!node->value)
 		return (free(node->key), free(node), EXIT_FAILURE);
 	node->is_exported = 1;
-	add_env_back(minish->env, node);
+	add_env_back(&minish->env, node);
 	return (EXIT_SUCCESS);
 }
 
@@ -72,13 +72,13 @@ static int	_add_key(char *key, t_minish *minish)
 		return (free(node), EXIT_FAILURE);
 	node->value = NULL;
 	node->is_exported = 0;
-	add_env_back(minish->env, node);
+	add_env_back(&minish->env, node);
 	return (EXIT_SUCCESS);
 }
 
 int	export_exec(int argc, char **argv, t_minish *minish)
 {
-	size_t				i;
+	int					i;
 	char				*key;
 	char				*value;
 	t_export_exec_bool	bools;
@@ -86,7 +86,7 @@ int	export_exec(int argc, char **argv, t_minish *minish)
 	i = 1;
 	while (i < argc)
 	{
-		split_key_value(argv[i], key, value);
+		split_key_value(argv[i], &key, &value);
 		bools.exists = get_env_value(minish->env, key) != NULL;
 		bools.has_plus = ft_strnstr(argv[i], "+=", ft_strlen(argv[i])) != NULL;
 		bools.has_eq = ft_strchr(argv[i], '=') != NULL;
@@ -97,7 +97,7 @@ int	export_exec(int argc, char **argv, t_minish *minish)
 		else if (!bools.exists && (bools.has_plus || bools.has_eq))
 			_add_key_value(key, value, minish);
 		else
-			_add_key(key, value);
+			_add_key(value, minish);
 		free(key);
 		free(value);
 		i++;
