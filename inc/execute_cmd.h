@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:39:18 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/25 20:46:25 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:00:45 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ char	*join_path(char *dir, char *cmd);
 char	*get_path_line(char **envp);
 void	free_str_array(char **str);
 void	print_cmd_not_found(t_cmd *cmd);
+
+void	execute_cmd(t_cmd *cmd, t_minish *minish);
 
 #endif
