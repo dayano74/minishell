@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 15:31:58 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 15:41:33 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,16 @@ static int	_add_key_value(char *key, char *value, t_minish *minish)
 
 static int	_add_key(char *key, t_minish *minish)
 {
-	// t_env	*node;
-	// node = ft_calloc(1, sizeof(t_env));
-	// if (!node)
-	// 	return (EXIT_FAILURE);
+	t_env	*node;
+	node = ft_calloc(1, sizeof(t_env));
+	if (!node)
+		return (EXIT_FAILURE);
+	node->key = ft_strdup(key);
+	if (!node->key)
+		return (free(node), EXIT_FAILURE);
+	node->value = NULL;
+	node->is_exported = 0;
+	add_env_back(minish->env, node);
 	return (EXIT_SUCCESS);
 }
 
