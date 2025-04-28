@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 16:39:36 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 16:55:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	_update_value(char *key, char *value, t_minish *minish)
 	if (node->value)
 		free(node->value);
 	node->value = ft_strdup(value);
+	node->is_exported = 1;
 	return (EXIT_SUCCESS);
 }
 
@@ -87,7 +88,7 @@ int	export_exec(int argc, char **argv, t_minish *minish)
 	while (i < argc)
 	{
 		split_key_value(argv[i], &key, &value);
-		bools.exists = get_env_value(minish->env, key) != NULL;
+		bools.exists = has_env_key(minish->env, key);
 		bools.has_plus = ft_strnstr(argv[i], "+=", ft_strlen(argv[i])) != NULL;
 		bools.has_eq = ft_strchr(argv[i], '=') != NULL;
 		if (bools.exists && bools.has_plus)
@@ -96,8 +97,8 @@ int	export_exec(int argc, char **argv, t_minish *minish)
 			_update_value(key, value, minish);
 		else if (!bools.exists && (bools.has_plus || bools.has_eq))
 			_add_key_value(key, value, minish);
-		else
-			_add_key(value, minish);
+		else if (!bools.exists)
+			_add_key(key, minish);
 		free(key);
 		free(value);
 		i++;
