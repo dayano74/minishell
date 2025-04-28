@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:24:25 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:50:18 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 15:53:59 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPAND_ENV_H
 # define EXPAND_ENV_H
 
-# include "env_utils.h"
+# include "env_utils_3.h"
 # include "struct.h"
 # include <stdbool.h>
 
