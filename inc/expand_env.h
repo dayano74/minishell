@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.h                                        :+:      :+:    :+:   */
+/*   expand_env.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 10:25:47 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 14:52:52 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/26 11:24:25 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/26 11:50:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_UTILS_H
-# define ENV_UTILS_H
+#ifndef EXPAND_ENV_H
+# define EXPAND_ENV_H
 
+# include "env_utils.h"
 # include "struct.h"
+# include <stdbool.h>
 
-void	add_env_back(t_env **lst, t_env *new);
-char	*get_env_value(t_env *current, const char *key);
-void	free_env_content(char *value);
-void	remove_env_node(t_env **env_lst, t_env *target);
+typedef struct s_expand_env
+{
+	size_t	pre_len;
+	size_t	key_st;
+	size_t	key_len;
+}			t_expand_env;
+
+typedef struct s_expand_temp
+{
+	char	*key;
+	char	*value;
+	char	*prefix;
+	char	*suffix;
+	char	*result;
+}			t_expand_temp;
+
+char		*expand_env(char *token, t_minish *minish);
+bool		is_key_start(int c);
+bool		is_key_char(int c);
 
 #endif

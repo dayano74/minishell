@@ -6,23 +6,23 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:54:35 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/12/23 19:38:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:14:49 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief メモリ領域bを文字cで穴埋めします
+ * @brief Fill memory area b with letter c. 
  *
- * @param [out]	b	: メモリ領域
- * @param [in]	c	: 穴埋めする文字
- * @param [in]	len	: 穴埋めする長さ
- * @retval void*	: 穴埋めしたメモリ領域
- * @retval NULL		: bがNULLの場合
+ * @param [out]	b	: memory area
+ * @param [in]	c	: fill letter
+ * @param [in]	len	: length
+ * @retval void*	: return b;
+ * @retval NULL		: If b is NULL.
  * @note : 
- * 内部でuchar型にキャストするので、
- * 0-255の範囲外の数字は上位ビットが無視された値で使われます。
+ * This function internally casts int c to uchar.
+ * Therefore, upper bits outside the range 0-255 are ignored in its operation.
  */
 void	*ft_memset(void *b, int c, size_t len)
 {

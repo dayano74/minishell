@@ -6,19 +6,19 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:38:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/02/15 15:42:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:16:08 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief 文字stopまでの文字列sの長さを返します。
+ * @brief Returns the length of string s up to character stop. 
  *
  * @param s
  * @param stop
  * @return size_t
- * @note stopが見つからない場合、文字列sの長さが返されます。
+ * @note If stop not found, return s length.
  */
 size_t	ft_strlen_until(const char *s, char stop)
 {

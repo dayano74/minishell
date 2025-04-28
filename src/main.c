@@ -6,37 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:19:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 11:55:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-/**
- * @brief debug用　cmdを表示します。　後で削除予定。
- *
- * @param tokens
- */
-static void	_dbg_show_cmd(t_cmd **cmds)
-{
-	size_t	cmd_i;
-	size_t	arg_i;
-
-	cmd_i = 0;
-	printf("DEBUG: show cmds\n");
-	while (cmds[cmd_i])
-	{
-		arg_i = 0;
-		printf("cmd[%zu]\n", cmd_i);
-		printf("\tcmd->type=%d\n", cmds[cmd_i]->type);
-		printf("\tcmd->argc=%d\n", cmds[cmd_i]->argc);
-		printf("\tcmd->argv=[");
-		while (cmds[cmd_i]->argv[arg_i])
-			printf("%s,", cmds[cmd_i]->argv[arg_i++]);
-		printf("NULL]\n");
-		cmd_i++;
-	}
-}
 
 static void	_free_tokens(char **tokens)
 {
@@ -59,9 +33,8 @@ static void	destroy_minish(t_minish *minish)
 }
 
 /**
- * @brief bool型が利用できるみたいなので、使用してみました。
- * @brief parse_command_lineのプロトタイプを勝手に作成しているので、好きなように改変していただいて大丈夫です
- * @param program_nam
+ * @brief I used bool type since it seems to be available.
+ * @param program_name
  * @param minish
  * @return true
  * @return false
@@ -79,7 +52,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	if (line[0] != '\0')
 		add_history(line);
 	tokens = tokenizer(line);
-	cmds = parser(tokens);
+	cmds = parser(tokens, minish);
 	if (!cmds)
 	{
 		error_mes(program_name, ": syntax error\n");
@@ -88,7 +61,6 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	}
 	if (cmds[0]->argc > 0)
 		*status = invoke_commands(cmds[0], minish);
-	_dbg_show_cmd(cmds);
 	_free_tokens(tokens);
 	free_cmds(cmds, cmds_len(cmds));
 	free(line);

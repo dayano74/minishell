@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:26:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 12:21:20 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 14:51:31 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,27 @@ void	add_env_back(t_env **lst, t_env *new)
 	}
 	else
 		*lst = new;
+}
+
+/**
+ * @brief Get the env value
+ *
+ * @param lst
+ * @param key
+ * @return char*
+ * @return NULL: if the key is not found or the key is NULL
+ */
+char	*get_env_value(t_env *current, const char *key)
+{
+	if (!current || !key)
+		return (NULL);
+	while (current)
+	{
+		if (!ft_strcmp(current->key, key))
+			return (current->value);
+		current = current->next;
+	}
+	return (NULL);
 }
 
 void	free_env_content(char *value)

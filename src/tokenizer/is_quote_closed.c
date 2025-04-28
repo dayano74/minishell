@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:59:15 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/15 16:28:32 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:16:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
 /**
- * @brief ',"が閉じているか判定します。
+ * @brief Check if single and double quotes are closed.
  *
  * @param str
  * @return int
