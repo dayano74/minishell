@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 11:17:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 12:29:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:44:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	split_key_value(char *str, char **key_out, char **val_out)
 	env_len = ft_strlen(str);
 	eq_pos = ft_strlen_until(str, '=');
 	if (eq_pos == env_len)
-		return (0);
+		return (1);
 	*key_out = ft_substr(str, 0, eq_pos);
 	*val_out = ft_substr(str, eq_pos + 1, env_len - eq_pos - 1);
 	if (!key_out || !val_out)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }

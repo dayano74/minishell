@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:35:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 12:38:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/28 13:02:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ static int	_export_key_value(char *kv, t_minish *minish)
 	node = ft_calloc(1, sizeof(t_env));
 	if (!node)
 		return (EXIT_FAILURE);
-	if (split_key_value(kv, &node->key, &node->value))
-	{
+	if (!split_key_value(kv, &node->key, &node->value))
 		node->is_exported = 1;
-	}
 	else
 	{
-		node->key = kv;
+		node->key = ft_strdup(kv);
 		node->value = NULL;
 		node->is_exported = 0;
 	}
