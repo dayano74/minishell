@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/21 11:23:43 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/28 11:39:00 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,17 @@ test_%.out: tests/tokenizer/test_%.c
 test_export.out: tests/builtin/test_export.c
 	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
 
+test_%.out: tests/parser/test_%.c
+	$(CC) $^ src/parser/*.c src/tokenizer/*.c $(L_FLG) $(I_FLG) -o $@
+
 test_unset.out: tests/builtin/test_unset.c
 	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
 
 test_env.out: tests/builtin/test_env.c
 	$(CC) $< src/initialize.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
+
+test_create_envp.out: tests/invoke_cmd/test_create_envp.c
+	$(CC) $< src/initialize.c src/invoke_cmd/create_envp.c src/builtin/*.c $(L_FLG) $(I_FLG) -o $@
 
 clean:
 	rm -f test_*.out

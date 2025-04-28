@@ -3,42 +3,110 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 13:59:09 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/25 18:19:42 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	_destructor(char *line, t_minish *minish)
+/**
+ * @brief debug用　cmdを表示します。　後で削除予定。
+ *
+ * @param tokens
+ */
+static void	_dbg_show_cmd(t_cmd **cmds)
 {
-	if (line)
-		free(line);
-	if (minish)
-		free(minish);
+	size_t	cmd_i;
+	size_t	arg_i;
+
+	cmd_i = 0;
+	printf("DEBUG: show cmds\n");
+	while (cmds[cmd_i])
+	{
+		arg_i = 0;
+		printf("cmd[%zu]\n", cmd_i);
+		printf("\tcmd->type=%d\n", cmds[cmd_i]->type);
+		printf("\tcmd->argc=%d\n", cmds[cmd_i]->argc);
+		printf("\tcmd->argv=[");
+		while (cmds[cmd_i]->argv[arg_i])
+			printf("%s,", cmds[cmd_i]->argv[arg_i++]);
+		printf("NULL]\n");
+		cmd_i++;
+	}
+}
+
+static void	_free_tokens(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		free(tokens[i]);
+		tokens[i++] = NULL;
+	}
+	free(tokens);
+	tokens = NULL;
+}
+
+static void	destroy_minish(t_minish *minish)
+{
+	cleanup_minish(minish);
 	rl_clear_history();
+}
+
+/**
+ * @brief bool型が利用できるみたいなので、使用してみました。
+ * @brief parse_command_lineのプロトタイプを勝手に作成しているので、好きなように改変していただいて大丈夫です
+ * @param program_nam
+ * @param minish
+ * @return true
+ * @return false
+ */
+static bool	prompt(char *program_name, t_minish *minish, int *status)
+{
+	char	*line;
+	char	**tokens;
+	t_cmd	**cmds;
+
+	(void) status;
+	line = readline("minish>");
+	if (!line)
+		return (false);
+	if (line[0] != '\0')
+		add_history(line);
+	tokens = tokenizer(line);
+	cmds = parser(tokens);
+	if (!cmds)
+	{
+		error_mes(program_name, ": syntax error\n");
+		cleanup_minish(minish);
+		return (false);
+	}
+	if (cmds[0]->argc > 0)
+		*status = invoke_commands(cmds[0], minish);
+	_dbg_show_cmd(cmds);
+	_free_tokens(tokens);
+	free_cmds(cmds, cmds_len(cmds));
+	free(line);
+	return (true);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
-	char		*line;
+	char		*program_name;
+	int			exit_status;
 
 	(void)argc;
-	(void)argv;
+	program_name = argv[0];
 	minish = initialize(envp);
 	minish_signal();
-	while (1)
-	{
-		line = readline("minish>");
-		if (!line)
-			break ;
-		if (line[0] != '\0')
-			add_history(line);
-		free(line);
-	}
-	_destructor(line, minish);
-	return (EXIT_SUCCESS);
+	while (prompt(program_name, minish, &exit_status))
+		;
+	destroy_minish(minish);
+	return (exit_status);
 }
