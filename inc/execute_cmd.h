@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:39:18 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 12:29:14 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 13:56:33 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define PATH_PREFIX_LEN 5
 # define EQUAL_LEN 1
 
+# define CMD_FAILED_EXIT_STATUS 126
 # define CMD_NOT_FOUND_EXIT_STATUS 127
 
 void	execute_cmd(t_cmd *cmd, t_minish *minish);
