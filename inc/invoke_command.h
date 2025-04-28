@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:00:48 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 21:21:30 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include "cmd.h"
 
 int	invoke_commands(t_cmd *cmd_head, t_minish *minish);
+int	exec_unit_builtin(t_cmd *cmd_head);
 
 #endif
