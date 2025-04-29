@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 12:20:28 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:40:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,20 @@ static int	_allocate_argv(t_cmd *cmd, char **tokens)
 	return (0);
 }
 
-
 static char	*_expand_dollar(char *str, t_minish *minish, size_t i)
 {
+	char	*dollar;
+	char	*join_str;
+
+	dollar = NULL;
 	if (str[i + 1] == '?')
-		return (ft_itoa(minish->last_status));
+	{
+		dollar = ft_itoa(minish->last_status);
+		join_str = ft_strjoin(dollar, str + 2);
+		if (dollar)
+			free(dollar);
+		return (join_str);
+	}
 	else
 		return (expand_env(str, minish));
 }
