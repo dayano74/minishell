@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 14:43:58 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:48:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ typedef struct s_export_exec_bool
 char		*ft_strndup(const char *s1, size_t n);
 int			export_exec(int argc, char **argv, t_minish *minish);
 int			print_sorted_env(t_env *head);
-void		print_export_err_invalid_arg(char *sh, char *arg);
+void		export_err_invalid(char *sh, char *arg);
 
 #endif

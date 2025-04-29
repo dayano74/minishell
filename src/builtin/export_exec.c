@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 11:51:26 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:52:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	_update_value(char *key, char *value, t_minish *minish)
 	t_env	*node;
 
 	if (!is_valid_key(key))
-		return (EXIT_FAILURE);
+		return (export_err_invalid("minish", key), EXIT_FAILURE);
 	node = get_env_node(minish->env, key);
 	if (!node)
 		return (EXIT_FAILURE);
@@ -34,7 +34,7 @@ static int	_append_value(char *key, char *value, t_minish *minish)
 	char	*join_str;
 
 	if (!is_valid_key(key))
-		return (EXIT_FAILURE);
+		return (export_err_invalid("minish", key), EXIT_FAILURE);
 	node = get_env_node(minish->env, key);
 	join_str = NULL;
 	if (!node)
@@ -53,7 +53,7 @@ static int	_add_key_value(char *key, char *value, t_minish *minish)
 	t_env	*node;
 
 	if (!is_valid_key(key))
-		return (EXIT_FAILURE);
+		return (export_err_invalid("minish", key), EXIT_FAILURE);
 	node = ft_calloc(1, sizeof(t_env));
 	if (!node)
 		return (EXIT_FAILURE);
@@ -73,7 +73,7 @@ static int	_add_key(char *key, t_minish *minish)
 	t_env	*node;
 
 	if (!is_valid_key(key))
-		return (EXIT_FAILURE);
+		return (export_err_invalid("minish", key), EXIT_FAILURE);
 	node = ft_calloc(1, sizeof(t_env));
 	if (!node)
 		return (EXIT_FAILURE);
