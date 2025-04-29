@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 12:01:09 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:07:02 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static void	destroy_minish(t_minish *minish)
  * @return true
  * @return false
  */
-static bool	prompt(char *program_name, t_minish *minish, int *status)
+static bool	prompt(char *program_name, t_minish *minish)
 {
 	char	*line;
 	char	**tokens;
 	t_cmd	**cmds;
 
-	(void)status;
 	line = readline("minish>");
 	if (!line)
 		return (false);
@@ -60,7 +59,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 		return (false);
 	}
 	if (cmds[0]->argc > 0)
-		*status = invoke_commands(cmds[0], minish);
+		minish->last_status = invoke_commands(cmds[0], minish);
 	_free_tokens(tokens);
 	free_cmds(cmds, cmds_len(cmds));
 	free(line);
@@ -71,14 +70,13 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
 	char		*program_name;
-	int			exit_status;
 
 	(void)argc;
 	program_name = argv[0];
 	minish = initialize(envp);
 	minish_signal();
-	while (prompt(program_name, minish, &exit_status))
+	while (prompt(program_name, minish))
 		;
 	destroy_minish(minish);
-	return (exit_status);
+	return (minish->last_status);
 }
