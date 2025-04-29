@@ -6,93 +6,89 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/25 21:16:09 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 16:52:01 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	initialize_fds(int fds1[2], int fds2[2])
+static void	_setup_stdin(t_cmd *cmd, t_cmd *cmd_head, int prev_fds[2])
 {
-	fds1[0] = -1;
-	fds1[1] = -1;
-	fds2[0] = -1;
-	fds2[1] = -1;
+	if (is_head(cmd, cmd_head) || prev_fds[0] < 0)
+		return ;
+	if (dup2(prev_fds[0], STDIN_FILENO) < 0)
+	{
+		print_error(cmd->argv[0]);
+		exit(EX_OSERR);
+	}
+	close(prev_fds[0]);
+	close(prev_fds[1]);
 }
 
-/**
- * @brief 	// execvp(cmd->argv[0], cmd->argv);
-			// fprintf(stderr, "%s: command not found: %s\n", program_name,
-			// 	cmd->argv[0]);
- * @brief
- * @param cmd_head
- * @param minish
- */
-// note : process in while loop of inside
-//  fds1[0] = fds2[0];
-//  fds1[1] = fds2[1];
-//  if (!is_tail(cmd))
-//  {
-// 		if (pipe(fds2) < 0)
-// 		{
-// 			perror("pipe");
-// 			exit(3);
-// 		}
-//  }
-//  cmd->pid = fork();
-//  if (cmd->pid < 0)
-//  {
-// 		perror("fork");
-// 		exit(3);
-//  }
-//  if (cmd->pid > 0)
-//  {
-// 		if (fds1[0] != -1)
-// 			close(fds1[0]);
-// 		if (fds1[1] != -1)
-// 			close(fds1[1]);
-// 		continue ;
-//  }
-//  if (!is_head(cmd))
-//  {
-// 		close(STDIN_FILENO);
-// 		dup2(fds1[0], STDIN_FILENO);
-// 		close(fds1[0]);
-// 		close(fds1[1]);
-//  }
-//  if (!is_tail(cmd))
-//  {
-// 		close(fds2[0]);
-// 		close(STDOUT_FILENO);
-// 		dup2(fds2[1], STDOUT_FILENO);
-// 		close(fds2[1]);
-//  }
-//  if ((cmd->next != NULL) && is_redirect(cmd->next))
-//  {
-// 		redirect_stdout(cmd->next);
-//  }
-//  if (!is_builtin(cmd))
-//  {
-// 		execute_cmd(cmd, minish);
-// 		exit(EXIT_FAILURE);
-//  }
-//  cmd = cmd->next;
-void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
+static void	_setup_stdout(t_cmd *cmd, int curr_fds[2])
 {
-	t_cmd	*cmd;
-	int		fds1[2];
-	int		fds2[2];
-
-	(void)minish;
-	cmd = cmd_head;
-	initialize_fds(fds1, fds2);
-	while (cmd && !is_redirect(cmd))
+	if (!is_tail(cmd) || curr_fds[1] >= 0)
 	{
+		close(curr_fds[0]);
+		if (dup2(curr_fds[1], STDOUT_FILENO) < 0)
+		{
+			print_error(cmd->argv[0]);
+			exit(EX_OSERR);
+		}
+		close(curr_fds[1]);
 	}
 }
 
-int	wait_pipeline(t_cmd *cmd_head)
+static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
+		t_minish *minish)
 {
-	(void)cmd_head;
-	return (0);
+	pid_t	pid;
+
+	pid = fork();
+	if (pid < 0)
+	{
+		print_error(cmd->argv[0]);
+		exit(EX_OSERR);
+	}
+	if (pid > 0)
+		return (pid);
+	_setup_stdin(cmd, cmd_head, pipefds->prev_fds);
+	_setup_stdout(cmd, pipefds->curr_fds);
+	if ((cmd->next != NULL) && is_redirect(cmd->next))
+		redirect(cmd->next);
+	if (is_builtin(cmd))
+		exit(exec_unit_builtin(cmd));
+	execute_cmd(cmd, minish);
+	print_error(cmd->argv[0]);
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Execute a pipeline of commands.
+ *
+ * For each command, create a pipe if needed, fork a child, redirect its
+ * stdin/stdout through the pipes, and record its PID for waiting.
+ *
+ * @param cmd_head  First command in the pipeline.
+ * @param minish    Shell context for built-ins and execution.
+ */
+void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
+{
+	t_cmd		*cmd;
+	t_pipe_io	pipefds;
+	bool		need_pipe;
+
+	cmd = cmd_head;
+	init_fds(pipefds.prev_fds);
+	init_fds(pipefds.curr_fds);
+	while (cmd && !is_redirect(cmd))
+	{
+		need_pipe = !is_tail(cmd);
+		create_pipe(need_pipe, pipefds.curr_fds, cmd);
+		cmd->pid = _fork_command(cmd, cmd_head, &pipefds, minish);
+		cleanup_fds(pipefds.prev_fds);
+		swap_fds(pipefds.prev_fds, pipefds.curr_fds);
+		init_fds(pipefds.curr_fds);
+		cmd = cmd->next;
+	}
 }

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 13:47:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/14 21:30:15 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 16:53:33 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CMD_H
 # define CMD_H
+
+# include <unistd.h>
 
 typedef enum e_redir_type
 {
@@ -29,7 +31,7 @@ typedef struct s_cmd
 	char			**argv;
 	int				capa;
 	int				status;
-	int				pid;
+	pid_t			pid;
 	struct s_cmd	*next;
 }					t_cmd;
 

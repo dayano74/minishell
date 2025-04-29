@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 21:00:48 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 16:47:04 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 # define INVOKE_COMMAND_H
 
 # include "cmd.h"
+# include <stdbool.h>
 
-int	invoke_commands(t_cmd *cmd_head, t_minish *minish);
+int		invoke_commands(t_cmd *cmd_head, t_minish *minish);
+int		exec_unit_builtin(t_cmd *cmd_head);
+
+// wait_pipeline.c
+int		wait_pipeline(t_cmd *cmd_head);
+
+// fds.c
+void	init_fds(int fds[2]);
+void	cleanup_fds(int fds1[2]);
+void	swap_fds(int prev_fds[2], int curr_fds[2]);
+void	create_pipe(bool need, int fds[2], t_cmd *cmd);
 
 #endif
