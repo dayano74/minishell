@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 13:25:47 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 13:31:04 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 
 #endif
