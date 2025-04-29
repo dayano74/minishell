@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_utils.h                                    :+:      :+:    :+:   */
+/*   export_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 14:43:58 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/28 14:11:06 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/29 14:43:45 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_UTILS_H
-# define BUILTIN_UTILS_H
+#include "main.h"
 
-# include <stdbool.h>
-# include <stddef.h>
-
-typedef struct s_export_exec_bool
+void	print_export_err_invalid_arg(char *sh, char *arg)
 {
-	bool	exists;
-	bool	has_plus;
-	bool	has_eq;
-}			t_export_exec_bool;
-
-char		*ft_strndup(const char *s1, size_t n);
-int			export_exec(int argc, char **argv, t_minish *minish);
-int			print_sorted_env(t_env *head);
-void		print_export_err_invalid_arg(char *sh, char *arg);
-
-#endif
+	ft_putstr_fd(sh,STDERR_FILENO);
+	ft_putstr_fd(": export: `",STDERR_FILENO);
+	ft_putstr_fd(arg,STDERR_FILENO);
+	ft_putendl_fd("': not a valid identifier",STDERR_FILENO);
+}
