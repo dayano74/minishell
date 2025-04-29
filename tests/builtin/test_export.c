@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:53:38 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 11:25:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 13:52:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		cmds = ft_split(line, ' ');
 		_exec_cmd(cmds, minish);
+		add_history(line);
 		cmds_free(cmds);
 		free(line);
 	}
 	cleanup_minish(minish);
+	rl_clear_history();
 	free(line);
 	return (EXIT_SUCCESS);
 }
