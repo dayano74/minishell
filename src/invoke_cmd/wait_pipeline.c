@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:14 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 16:42:50 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 21:51:02 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,9 @@ static int	_get_status(t_cmd *cmd)
 int	wait_pipeline(t_cmd *cmd_head)
 {
 	int		last_status;
-	int		ret;
 	t_cmd	*cmd;
 
 	last_status = 0;
-	ret = 0;
 	cmd = cmd_head;
 	while (cmd)
 	{
