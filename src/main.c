@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 12:01:09 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 13:06:39 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	prompt(char *program_name, t_minish *minish, int *status)
 	t_cmd	**cmds;
 
 	(void)status;
-	line = readline("minish>");
+	line = readline("$ ");
 	if (!line)
 		return (false);
 	if (line[0] != '\0')
