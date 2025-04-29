@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 11:48:11 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:17:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "expand_env.h"
 
 t_cmd	**parser(char **tokens, t_minish *minish);
+void	set_cmd_type(t_cmd *cmd, char *token);
 size_t	cmds_len(t_cmd **cmds);
 int		is_separator(char *token);
 void	free_cmds(t_cmd **cmds, size_t count);

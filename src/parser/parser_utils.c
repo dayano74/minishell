@@ -6,11 +6,25 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:40:56 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 18:22:08 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:16:53 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+void	set_cmd_type(t_cmd *cmd, char *token)
+{
+	if (!ft_strcmp(token, ">"))
+		cmd->type = REDIR_OUT;
+	else if (!ft_strcmp(token, ">>"))
+		cmd->type = REDIR_APPEND;
+	else if (!ft_strcmp(token, "<"))
+		cmd->type = REDIR_IN;
+	else if (!ft_strcmp(token, "<<"))
+		cmd->type = REDIR_HEREDOC;
+	else
+		cmd->type = REDIR_NONE;
+}
 
 size_t	cmds_len(t_cmd **cmds)
 {
