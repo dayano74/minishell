@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 21:40:44 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 11:47:57 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,26 @@ void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
 
 int	wait_pipeline(t_cmd *cmd_head)
 {
-	(void)cmd_head;
-	return (0);
+	int		last_status;
+	int		status;
+	t_cmd	*cmd;
+
+	last_status = 0;
+	cmd = cmd_head;
+	while (cmd)
+	{
+		if (!is_builtin(cmd) && !is_redirect(cmd))
+		{
+			waitpid(cmd->pid, &status, NULL);
+			if (WIFEXITED(status))
+				cmd->status = WEXITSTATUS(status);
+			else
+				cmd->status = EXIT_FAILURE;
+			last_status = cmd->status;
+		}
+		if (is_builtin(cmd))
+			last_status = cmd->status;
+		cmd = cmd->next;
+	}
+	return (last_status);
 }
