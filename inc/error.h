@@ -6,13 +6,13 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:48:47 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 13:49:23 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:35:12 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-void	print_error(const char *cmd_or_path);
+void	print_error(char *cmd_or_path);
 
 #endif

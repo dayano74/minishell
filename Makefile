@@ -6,7 +6,7 @@
 #    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/28 16:59:19 by dayano           ###   ########.fr        #
+#    Updated: 2025/04/29 14:33:30 by dayano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ define define_rule
 endef
 
 # 2.Add the source code when it is added
-ROOT_SRC		=	main.c minish_signal.c initialize.c
+ROOT_SRC		=	main.c minish_signal.c initialize.c error.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c \
 					redirect.c

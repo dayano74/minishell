@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:16:23 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 13:29:14 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:33:57 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  *
  * @param cmd_or_path
  */
-void	print_error(const char *cmd_or_path)
+void	print_error(char *cmd_or_path)
 {
 	char	*error_msg;
 

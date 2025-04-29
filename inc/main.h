@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 13:31:04 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 13:55:06 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "create_envp.h"
 # include "env_utils.h"
 # include "env_utils_2.h"
+# include "error.h"
 # include "exec_pipeline.h"
 # include "execute_cmd.h"
 # include "initialize.h"
@@ -39,6 +40,7 @@
 # include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sysexits.h>
 # include <unistd.h>
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 12:51:12 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:05:04 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	initialize_fds(int fds1[2], int fds2[2])
 	fds1[1] = -1;
 	fds2[0] = -1;
 	fds2[1] = -1;
+}
+
+void	cleanup_fds(int fds1[2])
+{
+	if (fds1[0] != -1)
+		close(fds1[0]);
+	if (fds1[1] != -1)
+		close(fds1[1]);
 }
 
 /**
@@ -41,26 +49,20 @@ void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
 	{
 		fds1[0] = fds2[0];
 		fds1[1] = fds2[1];
-		if (!is_tail(cmd))
+		if (!is_tail(cmd) && pipe(fds2) < 0)
 		{
-			if (pipe(fds2) < 0)
-			{
-				perror("pipe");
-				exit(3);
-			}
+			print_error(cmd->argv[0]);
+			exit(EX_OSERR);
 		}
 		cmd->pid = fork();
 		if (cmd->pid < 0)
 		{
-			perror("fork");
-			exit(3);
+			print_error(cmd->argv[0]);
+			exit(EX_OSERR);
 		}
 		if (cmd->pid > 0)
 		{
-			if (fds1[0] != -1)
-				close(fds1[0]);
-			if (fds1[1] != -1)
-				close(fds1[1]);
+			cleanup_fds(fds1);
 			cmd = cmd->next;
 			continue ;
 		}
@@ -77,9 +79,7 @@ void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
 			close(fds2[1]);
 		}
 		if ((cmd->next != NULL) && is_redirect(cmd->next))
-		{
 			redirect(cmd->next);
-		}
 		if (is_builtin(cmd))
 		{
 			exec_unit_builtin(cmd);
