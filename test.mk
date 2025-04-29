@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 11:48:18 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/29 13:51:31 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/04/29 14:14:45 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OUT = $(addprefix test_, $(SRC:.c=.out))
 all: $(OUT)
 
 test_%.out: tests/builtin/test_%.c src/builtin/%.c
-	$(CC) $^ src/builtin/builtin_utils.c $(L_FLG) $(I_FLG) -o $@
+	$(CC) $^ src/builtin/builtin_utils.c src/common/*.c $(L_FLG) $(I_FLG) -o $@
 
 test_%.out: tests/tokenizer/test_%.c
 	$(CC) $^ src/tokenizer/*.c $(L_FLG) $(I_FLG) -o $@

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:46:40 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/28 16:09:07 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:12:25 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,4 @@ char	*ft_strndup(const char *s1, size_t n)
 		return (NULL);
 	ft_strlcpy(d, s1, n + 1);
 	return (d);
-}
-
-/**
- * @brief Output to STDERR in the format "<name>: <mes>\n".
- *
- * @param name
- * @param mes
- */
-void	error_mes(char *name, char *mes)
-{
-	ft_putstr_fd(name, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putendl_fd(mes, STDERR_FILENO);
 }
