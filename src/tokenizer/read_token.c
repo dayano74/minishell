@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:33:33 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/25 22:20:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 15:20:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static char	*_read_quoted_token(t_tokenizer *tkn)
 	start = tkn->pos++;
 	while (tkn->input[tkn->pos] && tkn->input[tkn->pos] != quote)
 		tkn->pos++;
-	tkn->pos++;
+	if (tkn->input[tkn->pos] == quote)
+		tkn->pos++;
 	return (ft_substr(tkn->input, start, tkn->pos - start));
 }
 
@@ -44,6 +45,7 @@ static char	*_read_word_token(t_tokenizer *tkn)
 	start = tkn->pos;
 	while (tkn->input[tkn->pos]
 		&& !ft_isspace(tkn->input[tkn->pos])
+		&& !(tkn->input[tkn->pos] == '\'' || tkn->input[tkn->pos] == '"')
 		&& tkn->input[tkn->pos] != '|'
 		&& tkn->input[tkn->pos] != '>'
 		&& tkn->input[tkn->pos] != '<')
