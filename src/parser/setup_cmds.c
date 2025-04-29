@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 12:40:11 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:56:28 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,22 @@ static int	_allocate_argv(t_cmd *cmd, char **tokens)
 
 static char	*_expand_dollar(char *str, t_minish *minish, size_t i)
 {
-	char	*dollar;
-	char	*join_str;
+	char	*pre;
+	char	*suf;
+	char	*sts_str;
+	char	*joined;
+	char	*final;
 
-	dollar = NULL;
-	if (str[i + 1] == '?')
+	if (str[i + 1] && str[i + 1] == '?')
 	{
-		dollar = ft_itoa(minish->last_status);
-		join_str = ft_strjoin(dollar, str + 2);
-		if (dollar)
-			free(dollar);
-		return (join_str);
+		pre = ft_substr(str, 0, i);
+		sts_str = ft_itoa(minish->last_status);
+		suf = ft_strdup(str + i + 2);
+		if (!pre || !sts_str || !suf)
+			return (free(pre), free(sts_str), free(suf), NULL);
+		joined = ft_strjoin(pre, sts_str);
+		final = ft_strjoin(joined, suf);
+		return (free(pre), free(sts_str), free(suf), free(joined), final);
 	}
 	else
 		return (expand_env(str, minish));
@@ -65,6 +70,8 @@ static char	*_expand_arg(char *token, t_minish *minish)
 		if (!is_squote && result[token_i] == '$')
 		{
 			expanded = _expand_dollar(result, minish, token_i);
+			if (!expanded)
+				return (result);
 			free(result);
 			result = expanded;
 			token_i = 0;
