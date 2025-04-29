@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 11:43:40 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 11:43:59 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 13:53:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	is_key_char(int c)
 bool	is_valid_key(char *str)
 {
 	size_t	i;
-	
+
 	if (!str || !is_key_start(str[0]))
 		return (false);
 	i = 1;
