@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/01 16:39:56 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:07:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ static bool	is_unit_builtin(t_cmd *cmd_head)
 
 static int	_execute_builtin(t_cmd *cmd, t_minish *minish)
 {
-	static const builtin	builtin_funcs[] = {builtin_echo, builtin_pwd,
-			builtin_exit, builtin_cd, builtin_env, builtin_export,
-			builtin_unset, NULL};
-	static char				*builtin_list[] = {"echo", "pwd", "exit", "cd",
-						"env", "export", "unset", NULL};
+	static const t_builtin	builtin_funcs[] = {
+		builtin_echo, builtin_pwd, builtin_exit, builtin_cd,
+		builtin_env, builtin_export, builtin_unset, NULL
+	};
+	static char				*builtin_list[] = {
+		"echo", "pwd", "exit", "cd",
+		"env", "export", "unset", NULL
+	};
 	int						i;
 
 	i = 0;

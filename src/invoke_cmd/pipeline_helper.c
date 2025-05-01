@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline_helper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:29:29 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/01 16:20:19 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:08:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ static bool	str_in_list(char *cmd, char **list)
 
 bool	is_builtin(t_cmd *cmd)
 {
-	static char	*builtin_list[] = {"echo", "pwd", "exit", "cd", "env", "export",
-			"unset", NULL};
+	static char	*builtin_list[] = {
+		"echo", "pwd", "exit", "cd", "env", "export", "unset", NULL
+	};
 
 	if (!cmd || !cmd->argv || !cmd->argv[0])
 		return (false);
