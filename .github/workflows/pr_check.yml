@@ -11,6 +11,8 @@ jobs:
       - name: Run build check
         shell: bash
         run: |
+          sudo apt update
+          sudo apt install libreadline-dev -y
           chmod +x copy_to_subject.sh
           echo "check" | ./copy_to_subject.sh
           make --no-print-directory -f check/Makefile
