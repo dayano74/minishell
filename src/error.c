@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipeline_helper.c                                  :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:29:29 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 21:07:41 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/29 13:16:23 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/29 14:33:57 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-bool	is_redirect(t_cmd *cmd)
+/**
+ * @brief print error
+ * format: minish: <cmd>: <error msg>
+ *
+ * @param cmd_or_path
+ */
+void	print_error(char *cmd_or_path)
 {
-	if (cmd->type != REDIR_NONE)
-		return (true);
-	return (false);
-}
+	char	*error_msg;
 
-bool	is_head(t_cmd *cmd, t_cmd *cmd_head)
-{
-	if (cmd == cmd_head)
-		return (true);
-	return (false);
-}
-
-bool	is_tail(t_cmd *cmd)
-{
-	if (cmd->next == NULL || is_redirect(cmd->next))
-		return (true);
-	return (false);
-}
-
-bool	is_builtin(t_cmd *cmd)
-{
-	(void)cmd;
-	return (false);
+	error_msg = strerror(errno);
+	ft_putstr_fd("minish: ", STDERR_FILENO);
+	ft_putstr_fd(cmd_or_path, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(error_msg, STDERR_FILENO);
 }

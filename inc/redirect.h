@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipeline_helper.c                                  :+:      :+:    :+:   */
+/*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:29:29 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 21:07:41 by dayano           ###   ########.fr       */
+/*   Created: 2025/04/28 15:20:03 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/28 15:30:35 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef REDIRECT_H
+# define REDIRECT_H
 
-bool	is_redirect(t_cmd *cmd)
-{
-	if (cmd->type != REDIR_NONE)
-		return (true);
-	return (false);
-}
+# include "cmd.h"
 
-bool	is_head(t_cmd *cmd, t_cmd *cmd_head)
-{
-	if (cmd == cmd_head)
-		return (true);
-	return (false);
-}
+void	redirect(t_cmd *cmd);
+void	redirect_stdout(t_cmd *cmd);
+void	redirect_stdin(t_cmd *cmd);
 
-bool	is_tail(t_cmd *cmd)
-{
-	if (cmd->next == NULL || is_redirect(cmd->next))
-		return (true);
-	return (false);
-}
-
-bool	is_builtin(t_cmd *cmd)
-{
-	(void)cmd;
-	return (false);
-}
+#endif

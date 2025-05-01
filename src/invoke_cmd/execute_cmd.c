@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/25 21:17:14 by dayano           ###   ########.fr       */
+/*   Updated: 2025/04/28 13:56:43 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*get_cmd_path(char *cmd, char **envp)
 	char	**path_set;
 	char	*full_path;
 
+	if (!cmd && ft_strlen(cmd) == 0)
+		return (NULL);
 	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	path_line = get_path_line(envp);
@@ -69,19 +71,14 @@ void	execute_cmd(t_cmd *cmd, t_minish *minish)
 		print_cmd_not_found(cmd);
 		return ;
 	}
-	if (!cmd->argv[0] || ft_strlen(cmd->argv[0]) == 0)
-	{
-		ft_putstr_fd("Command '' not found\n", STDERR_FILENO);
-		exit(127);
-	}
 	if (!is_pathname(cmd->argv[0], envp, &fullpath))
 	{
-		ft_putstr_fd("Command '' not found\n", STDERR_FILENO);
-		exit(127);
+		print_cmd_not_found(cmd);
+		return ;
 	}
 	if (execve(fullpath, cmd->argv, envp) < 0)
 	{
 		free(fullpath);
-		perror("execve");
+		cmd->status = CMD_FAILED_EXIT_STATUS;
 	}
 }
