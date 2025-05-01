@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:42:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 16:18:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/01 13:46:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	_split_key_value(char *env_val, char **key_out, char **val_out)
 
 	env_len = ft_strlen(env_val);
 	eq_pos = ft_strlen_until(env_val, '=');
-	node->key = NULL;
-	node->value = NULL;
 	if (eq_pos == ft_strlen(env_val))
 		return (1);
 	*key_out = ft_substr(env_val, 0, eq_pos);
