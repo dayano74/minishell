@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_utils.h                                    :+:      :+:    :+:   */
+/*   error_mes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 14:48:10 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/29 14:11:52 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/04/29 14:12:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_UTILS_H
-# define BUILTIN_UTILS_H
+#include "common.h"
 
-# include <stdbool.h>
-# include <stddef.h>
-
-typedef struct s_export_exec_bool
+/**
+ * @brief Output to STDERR in the format "<name>: <mes>\n".
+ *
+ * @param name
+ * @param mes
+ */
+void	error_mes(char *name, char *mes)
 {
-	bool	exists;
-	bool	has_plus;
-	bool	has_eq;
-}			t_export_exec_bool;
-
-char		*ft_strndup(const char *s1, size_t n);
-int			export_exec(int argc, char **argv, t_minish *minish);
-int			print_sorted_env(t_env *head);
-void		export_err_invalid(char *sh, char *arg);
-
-#endif
+	ft_putstr_fd(name, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(mes, STDERR_FILENO);
+}

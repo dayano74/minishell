@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 19:48:02 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/21 11:20:16 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	builtin_exit(int argc, char *argv[]);
 int	builtin_cd(int argc, char *argv[]);
 int	builtin_env(int argc, char **argv, t_minish *minish);
 int	builtin_unset(int argc, char *argv[], t_minish *minish);
+int	builtin_export(int argc, char **argv, t_minish *minish);
 
 #endif

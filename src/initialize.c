@@ -19,8 +19,8 @@ static int	_split_key_value(char *env_val, char **key_out, char **val_out)
 
 	env_len = ft_strlen(env_val);
 	eq_pos = ft_strlen_until(env_val, '=');
-	*key_out = NULL;
-	*val_out = NULL;
+	node->key = NULL;
+	node->value = NULL;
 	if (eq_pos == ft_strlen(env_val))
 		return (1);
 	*key_out = ft_substr(env_val, 0, eq_pos);
@@ -49,6 +49,12 @@ static void	_free_nodes(t_env **head)
 	}
 }
 
+/**
+ * @brief Create a envp list object
+ *
+ * @param envp
+ * @return t_env*
+ */
 static t_env	*create_envp_list(char **envp)
 {
 	t_env	*head;

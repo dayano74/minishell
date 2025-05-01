@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/27 15:05:30 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 14:58:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ char	**tokenizer(char *str)
 	t_tokenizer	tkn;
 
 	tkn = (t_tokenizer){.input = str, .pos = 0, .in_squote = 0, .in_dquote = 0};
-	if (!is_quote_closed(str))
-		return (NULL);
 	if (!is_redirect_validate(str))
 		return (NULL);
 	tokens = ft_calloc(get_token_capa(str) + 1, sizeof(char *));
