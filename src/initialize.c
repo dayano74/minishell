@@ -6,21 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:42:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/21 11:17:11 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 16:18:49 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-/**
- * @brief envpの構造体の値をセットします。
- *
- * @param env_val
- * @param node
- * @return 0: 失敗
- * @return 1: 成功
- */
-static int	_set_envp(char *env_val, t_env *node)
+static int	_split_key_value(char *env_val, char **key_out, char **val_out)
 {
 	size_t	env_len;
 	size_t	eq_pos;
@@ -30,13 +22,31 @@ static int	_set_envp(char *env_val, t_env *node)
 	node->key = NULL;
 	node->value = NULL;
 	if (eq_pos == ft_strlen(env_val))
-		return (0);
-	node->key = ft_substr(env_val, 0, eq_pos);
-	node->value = ft_substr(env_val, eq_pos + 1, env_len - eq_pos - 1);
-	if (!node->key || !node->value)
-		return (0);
-	node->is_exported = 1;
-	return (1);
+		return (1);
+	*key_out = ft_substr(env_val, 0, eq_pos);
+	*val_out = ft_substr(env_val, eq_pos + 1, env_len - eq_pos - 1);
+	if (!*key_out || !*val_out)
+		return (1);
+	return (0);
+}
+
+static void	_free_node(t_env *node)
+{
+	free(node->key);
+	free(node->value);
+	free(node);
+}
+
+static void	_free_nodes(t_env **head)
+{
+	t_env	*tmp;
+
+	while (*head)
+	{
+		tmp = (*head)->next;
+		_free_node(*head);
+		*head = tmp;
+	}
 }
 
 /**
@@ -44,7 +54,6 @@ static int	_set_envp(char *env_val, t_env *node)
  *
  * @param envp
  * @return t_env*
- * @note TODO: _set_envp失敗時のメモリ開放処理が不足している。envp_list全体のメモリ開放が必要
  */
 static t_env	*create_envp_list(char **envp)
 {
@@ -61,8 +70,8 @@ static t_env	*create_envp_list(char **envp)
 		node = ft_calloc(1, sizeof(t_env));
 		if (!node)
 			return (NULL);
-		if (!_set_envp(envp[i], node))
-			return (free(node), NULL);
+		if (_split_key_value(envp[i], &(node->key), &(node->value)))
+			return (_free_nodes(&head), _free_node(node), NULL);
 		node->next = NULL;
 		if (!head)
 			head = node;
