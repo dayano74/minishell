@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 21:11:33 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:56:28 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,27 @@ static int	_allocate_argv(t_cmd *cmd, char **tokens)
 	return (0);
 }
 
-static void	_set_type(t_cmd *cmd, char *token)
+static char	*_expand_dollar(char *str, t_minish *minish, size_t i)
 {
-	if (!ft_strcmp(token, ">"))
-		cmd->type = REDIR_OUT;
-	else if (!ft_strcmp(token, ">>"))
-		cmd->type = REDIR_APPEND;
-	else if (!ft_strcmp(token, "<"))
-		cmd->type = REDIR_IN;
-	else if (!ft_strcmp(token, "<<"))
-		cmd->type = REDIR_HEREDOC;
+	char	*pre;
+	char	*suf;
+	char	*sts_str;
+	char	*joined;
+	char	*final;
+
+	if (str[i + 1] && str[i + 1] == '?')
+	{
+		pre = ft_substr(str, 0, i);
+		sts_str = ft_itoa(minish->last_status);
+		suf = ft_strdup(str + i + 2);
+		if (!pre || !sts_str || !suf)
+			return (free(pre), free(sts_str), free(suf), NULL);
+		joined = ft_strjoin(pre, sts_str);
+		final = ft_strjoin(joined, suf);
+		return (free(pre), free(sts_str), free(suf), free(joined), final);
+	}
 	else
-		cmd->type = REDIR_NONE;
+		return (expand_env(str, minish));
 }
 
 static char	*_expand_arg(char *token, t_minish *minish)
@@ -49,7 +58,7 @@ static char	*_expand_arg(char *token, t_minish *minish)
 	size_t	token_i;
 	bool	is_squote;
 	char	*result;
-	char	*expaned;
+	char	*expanded;
 
 	token_i = 0;
 	is_squote = 0;
@@ -60,9 +69,11 @@ static char	*_expand_arg(char *token, t_minish *minish)
 			is_squote = !is_squote;
 		if (!is_squote && result[token_i] == '$')
 		{
-			expaned = expand_env(result, minish);
+			expanded = _expand_dollar(result, minish, token_i);
+			if (!expanded)
+				return (result);
 			free(result);
-			result = expaned;
+			result = expanded;
 			token_i = 0;
 			continue ;
 		}
@@ -77,7 +88,7 @@ static void	_next_cmd(t_cmd **cmds, size_t *cmd_i, size_t *arg_i, char *token)
 	cmds[*cmd_i]->argc = *arg_i;
 	(*arg_i) = 0;
 	(*cmd_i)++;
-	_set_type(cmds[*cmd_i], token);
+	set_cmd_type(cmds[*cmd_i], token);
 	_allocate_argv(cmds[*cmd_i], &token);
 }
 
@@ -90,7 +101,7 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens, t_minish *minish)
 	token_i = 0;
 	cmd_i = 0;
 	arg_i = 0;
-	_set_type(cmds[0], tokens[token_i]);
+	set_cmd_type(cmds[0], tokens[token_i]);
 	_allocate_argv(cmds[0], tokens);
 	while (tokens[token_i])
 	{

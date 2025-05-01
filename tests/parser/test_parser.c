@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:28:00 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:55:04 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 12:57:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		return (printf("usage: ./test_tokenizer.out <any message>"), 1);
 	tokens = tokenizer(argv[1]);
 	cmds = parser(tokens, minish);
-	if (!tokens)
+	if (!tokens || !cmds)
 		return (1);
 	i = 0;
 	while (cmds[i])
