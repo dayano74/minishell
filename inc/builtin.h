@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/01 15:48:19 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 16:59:28 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "builtin_utils.h"
 # include "struct.h"
 
-typedef int	(*builtin)(int argc, char *argv[], t_minish *minish);
+typedef int	(*t_builtin)(int argc, char *argv[], t_minish *minish);
 
 int			builtin_echo(int argc, char *argv[], t_minish *minish);
 int			builtin_pwd(int argc, char *argv[], t_minish *minish);
