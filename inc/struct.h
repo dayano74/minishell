@@ -17,6 +17,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
+	int				is_exported;
 	struct s_env	*next;
 }					t_env;
 

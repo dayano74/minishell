@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:19:11 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 19:53:20 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/04/29 11:25:22 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	builtin_env(int argc, char **argv, t_minish *minish)
 	while (current)
 	{
 		next = current->next;
-		if (printf("%s=%s\n", current->key, current->value) < 0)
-			handle_error_and_exit("printf", minish);
+		if (current->is_exported)
+			if (printf("%s=%s\n", current->key, current->value) < 0)
+				handle_error_and_exit("printf", minish);
 		current = next;
 	}
 	return (EXIT_SUCCESS);

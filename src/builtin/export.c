@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_utils.h                                    :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 14:48:10 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/15 11:35:46 by dayano            #+#    #+#             */
+/*   Updated: 2025/04/29 13:56:56 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_UTILS_H
-# define BUILTIN_UTILS_H
+#include "main.h"
 
-# include <stdbool.h>
-# include <stddef.h>
-
-typedef struct s_export_exec_bool
+int	builtin_export(int argc, char *argv[], t_minish *minish)
 {
-	bool	exists;
-	bool	has_plus;
-	bool	has_eq;
-}			t_export_exec_bool;
-
-char		*ft_strndup(const char *s1, size_t n);
-int			export_exec(int argc, char **argv, t_minish *minish);
-int			print_sorted_env(t_env *head);
-void		export_err_invalid(char *sh, char *arg);
-
-#endif
+	if (argc == 1)
+		return (print_sorted_env(minish->env));
+	if (argc >= 2)
+		return (export_exec(argc, argv, minish));
+	return (EXIT_SUCCESS);
+}

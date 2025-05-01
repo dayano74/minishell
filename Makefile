@@ -20,6 +20,7 @@ L_FLG = -lreadline -lft
 # 1.Add more directories as they are added.
 SRC_DIR 			= src/
 PARSER_SRC_DIR		= src/parser/
+COMMON_SRC_DIR		= src/common/
 TOKENIZER_SRC_DIR	= src/tokenizer/
 INVOKE_CMD_SRC_DIR	= src/invoke_cmd/
 BUILTIN_SRC_DIR		= src/builtin/
@@ -46,18 +47,21 @@ endef
 
 # 2.Add the source code when it is added
 ROOT_SRC		=	main.c minish_signal.c initialize.c error.c
+COMMON_SRC		=	validate_key.c error_mes.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c \
 					redirect.c fds.c wait_pipeline.c
 TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
 					is_quote_closed.c get_token_capa.c is_redirect_validate.c
 PARSER_SRC		=	allocate_cmds.c  parser.c  parser_utils.c  setup_cmds.c \
-					expand_env.c	expand_env_utils.c
-BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c \
-					env_utils.c env_utils_2.c builtin_utils.c
+					expand_env.c
+BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c export.c \
+					env_utils.c env_utils_2.c env_utils_3.c builtin_utils.c \
+					export_exec.c export_print_sorted_env.c export_error.c
 
 # 3.Add more directories as they are added.
 $(eval $(call add_module,root))
+$(eval $(call add_module,common))
 $(eval $(call add_module,invoke_cmd))
 $(eval $(call add_module,tokenizer))
 $(eval $(call add_module,parser))
