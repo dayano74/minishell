@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/21 11:20:16 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/01 14:20:11 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define PATH_MAX 4096
 
-# include "struct.h"
 # include "builtin_utils.h"
+# include "struct.h"
 
 int	builtin_echo(int argc, char *argv[]);
 int	builtin_pwd(int argc, char *argv[]);

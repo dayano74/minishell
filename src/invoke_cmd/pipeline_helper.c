@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:29:29 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 21:07:41 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:06:47 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,26 @@ bool	is_tail(t_cmd *cmd)
 	return (false);
 }
 
+static bool	str_in_list(char *cmd, char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list[i])
+	{
+		if (!ft_strcmp(cmd, list[i]))
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 bool	is_builtin(t_cmd *cmd)
 {
-	(void)cmd;
-	return (false);
+	static const char const	*builtin_list[] = {"echo", "pwd", "exit", "cd",
+			"env", "export", "unset", NULL};
+
+	if (!cmd || !cmd->argv || !cmd->argv[0])
+		return (false);
+	return (str_in_list(cmd->argv[0], builtin_list));
 }
