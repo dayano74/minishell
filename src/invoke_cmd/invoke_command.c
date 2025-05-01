@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 21:37:53 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 13:43:23 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,19 @@
  */
 static bool	is_unit_builtin(t_cmd *cmd_head)
 {
-	(void)cmd_head;
-	return (false);
+	t_cmd	*cmd;
+
+	cmd = cmd_head;
+	if (is_redirect)
+		cmd = cmd->next;
+	if ((is_builtin(cmd) && cmd->next == NULL) || (is_builtin(cmd)
+			&& is_redirect(cmd->next)))
+	{
+		if (is_builtin(cmd))
+			return (true);
+	}
+	else
+		return (false);
 }
 
 /**
