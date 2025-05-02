@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 16:35:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 18:12:06 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	**next_cmd_start(char **token_ptr)
 
 	token_i = 0;
 	while (token_ptr[token_i] && !is_separator(token_ptr[token_i]))
+		token_i++;
+	if (token_ptr[token_i])
 		token_i++;
 	return (&token_ptr[token_i]);
 }

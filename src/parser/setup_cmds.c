@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 17:55:38 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 18:18:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 		token_i++;
 	}
 	cmds[cmd_i]->argc = arg_i;
-	cmds[++cmd_i] = NULL;
 	return (cmds);
 }
