@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 21:37:53 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:07:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,38 @@
  */
 static bool	is_unit_builtin(t_cmd *cmd_head)
 {
-	(void)cmd_head;
-	return (false);
+	t_cmd	*cmd;
+
+	cmd = cmd_head;
+	if (is_redirect(cmd))
+		cmd = cmd->next;
+	if ((is_builtin(cmd) && cmd->next == NULL) || (is_builtin(cmd)
+			&& is_redirect(cmd->next)))
+		return (true);
+	else
+		return (false);
+}
+
+static int	_execute_builtin(t_cmd *cmd, t_minish *minish)
+{
+	static const t_builtin	builtin_funcs[] = {
+		builtin_echo, builtin_pwd, builtin_exit, builtin_cd,
+		builtin_env, builtin_export, builtin_unset, NULL
+	};
+	static char				*builtin_list[] = {
+		"echo", "pwd", "exit", "cd",
+		"env", "export", "unset", NULL
+	};
+	int						i;
+
+	i = 0;
+	while (builtin_list[i])
+	{
+		if (!ft_strcmp(cmd->argv[0], builtin_list[i]))
+			return (builtin_funcs[i](cmd->argc, cmd->argv, minish));
+		i++;
+	}
+	return (print_error(cmd->argv[0]), EXIT_FAILURE);
 }
 
 /**
@@ -35,10 +65,25 @@ static bool	is_unit_builtin(t_cmd *cmd_head)
  * @param cmd_head
  * @return int
  */
-int	exec_unit_builtin(t_cmd *cmd_head)
+int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 {
-	(void)cmd_head;
-	return (0);
+	t_cmd	*builtin_cmd;
+
+	builtin_cmd = cmd;
+	if (cmd && is_redirect(cmd))
+	{
+		redirect(cmd);
+		if (cmd->next)
+		{
+			cmd = cmd->next;
+			builtin_cmd = cmd;
+		}
+		else
+			return (print_error(cmd->argv[0]), EXIT_FAILURE);
+	}
+	if (cmd->next && is_redirect(cmd->next))
+		redirect(cmd->next);
+	return (_execute_builtin(builtin_cmd, minish));
 }
 
 /**
@@ -54,10 +99,11 @@ int	invoke_commands(t_cmd *cmd_head, t_minish *minish)
 	int	original_stdin;
 	int	original_stdout;
 
+	status = 0;
 	original_stdin = dup(STDIN_FILENO);
 	original_stdout = dup(STDOUT_FILENO);
 	if (is_unit_builtin(cmd_head))
-		status = exec_unit_builtin(cmd_head);
+		status = exec_unit_builtin(cmd_head, minish);
 	else
 	{
 		exec_pipeline(cmd_head, minish);
