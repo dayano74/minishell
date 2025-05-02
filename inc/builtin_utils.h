@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/01 15:30:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/01 16:15:02 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_UTILS_H
 # define BUILTIN_UTILS_H
 
+# include "struct.h"
 # include <stdbool.h>
 # include <stddef.h>
 

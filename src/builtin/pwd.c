@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:46:01 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 19:53:56 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:49:32 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	builtin_pwd(int argc, char *argv[])
+int	builtin_pwd(int argc, char *argv[], t_minish *minish)
 {
 	char	pwd[PATH_MAX];
 
+	(void)minish;
 	if (argc != 1)
 	{
 		error_mes(argv[0], "wrong argument");
