@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 13:06:39 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/02 20:30:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
 	char		*program_name;
+	int			last_status;
 
 	(void)argc;
 	program_name = argv[0];
@@ -77,6 +78,7 @@ int	main(int argc, char **argv, char **envp)
 	minish_signal();
 	while (prompt(program_name, minish))
 		;
+	last_status = minish->last_status;
 	destroy_minish(minish);
-	return (minish->last_status);
+	return (last_status);
 }
