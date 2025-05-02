@@ -6,23 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 19:08:14 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 21:27:58 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static void	_free_tokens(char **tokens)
-{
-	size_t	token_i;
-
-	token_i = 0;
-	while (tokens[token_i])
-		token_i++;
-	while (0 < token_i)
-		free(tokens[--token_i]);
-	free(tokens);
-}
 
 /**
  * @brief
@@ -40,10 +28,10 @@ t_cmd	**parser(char **tokens, t_minish *minish)
 		return (NULL);
 	cmds = allocate_cmds(expanded_tokens);
 	if (!cmds)
-		return (_free_tokens(expanded_tokens), NULL);
+		return (free_tokens(expanded_tokens), NULL);
 	cmds = setup_cmds(cmds, expanded_tokens);
 	if (!cmds)
-		return (_free_tokens(expanded_tokens), NULL);
-	_free_tokens(expanded_tokens);
+		return (free_tokens(expanded_tokens), NULL);
+	free_tokens(expanded_tokens);
 	return (cmds);
 }

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 18:43:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 21:26:21 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_cmd	**allocate_cmds(char **tokens)
 	{
 		cmds[cmd_i] = _allocate_cmd(token_ptr);
 		if (!cmds[cmd_i])
-			return (free_cmds(cmds, cmd_i), NULL);
+			return (free_cmds(cmds), NULL);
 		if (cmd_i > 0)
 			cmds[cmd_i - 1]->next = cmds[cmd_i];
 		token_ptr = next_cmd_start(token_ptr);
