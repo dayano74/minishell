@@ -28,5 +28,6 @@ char		*ft_strndup(const char *s1, size_t n);
 int			export_exec(int argc, char **argv, t_minish *minish);
 int			print_sorted_env(t_env *head);
 void		export_err_invalid(char *sh, char *arg);
+int			split_key_value(char *str, char **key_out, char **val_out);
 
 #endif
