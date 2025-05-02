@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 12:17:18 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 16:14:02 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include "cmd.h"
 # include "libft.h"
 # include "expand_env.h"
+
+t_cmd	**calloc_cmds(char **tokens);
+t_cmd	*calloc_cmd(void);
+char	**calloc_argv(char **tokens);
+char	*calloc_arg(char *token);
 
 t_cmd	**parser(char **tokens, t_minish *minish);
 void	set_cmd_type(t_cmd *cmd, char *token);
