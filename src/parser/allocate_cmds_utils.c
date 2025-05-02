@@ -6,11 +6,21 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 16:17:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 16:35:17 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+char	**next_cmd_start(char **token_ptr)
+{
+	size_t	token_i;
+
+	token_i = 0;
+	while (token_ptr[token_i] && !is_separator(token_ptr[token_i]))
+		token_i++;
+	return (&token_ptr[token_i]);
+}
 
 t_cmd	**calloc_cmds(char **tokens)
 {
