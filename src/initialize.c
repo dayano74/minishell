@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:42:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/02 14:04:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 14:11:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static t_env	*create_envp_list(char **envp)
 		node = ft_calloc(1, sizeof(t_env));
 		if (!node)
 			return (NULL);
-		if (!_set_envp(envp[i], node))
+		if (_set_envp(envp[i], node))
 			return (_free_nodes(&head), _free_node(node), NULL);
 		node->next = NULL;
 		if (!head)
