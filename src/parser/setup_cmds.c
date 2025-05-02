@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 18:18:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 18:59:44 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 		if (is_separator(tokens[token_i]))
 			_next_cmd(cmds, &cmd_i, &arg_i, tokens[token_i]);
 		else
-			cmds[cmd_i]->argv[arg_i++] = tokens[token_i];
+		{
+			cmds[cmd_i]->argv[arg_i] = ft_strdup(tokens[token_i]);
+			if (!cmds[cmd_i]->argv[arg_i])
+				return (free_cmds(cmds, cmd_i), NULL);
+			arg_i++;
+		}
 		token_i++;
 	}
 	cmds[cmd_i]->argc = arg_i;
