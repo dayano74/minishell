@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 16:47:04 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/01 16:38:55 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdbool.h>
 
 int		invoke_commands(t_cmd *cmd_head, t_minish *minish);
-int		exec_unit_builtin(t_cmd *cmd_head);
+int		exec_unit_builtin(t_cmd *cmd, t_minish *minish);
 
 // wait_pipeline.c
 int		wait_pipeline(t_cmd *cmd_head);

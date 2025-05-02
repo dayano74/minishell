@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/20 19:53:11 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:49:07 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	builtin_cd(int argc, char *argv[])
+int	builtin_cd(int argc, char *argv[], t_minish *minish)
 {
+	(void)minish;
 	if (argc != 2)
 		return (error_mes(argv[0], "wrong argument"), EXIT_FAILURE);
 	if (chdir(argv[1]) < 0)
