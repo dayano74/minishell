@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 16:12:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 16:17:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	**calloc_cmds(char **tokens)
 			cmd_i++;
 		token_i++;
 	}
-	cmds = ft_calloc(sizeof(t_cmd*), cmd_i + 1);
+	cmds = ft_calloc(sizeof(t_cmd *), cmd_i + 1);
 	return (cmds);
 }
 
