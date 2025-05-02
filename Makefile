@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
+#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/04/29 16:48:58 by dayano           ###   ########.fr        #
+#    Updated: 2025/05/02 14:33:45 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,8 +87,8 @@ $(foreach DIR,$(MODULE_DIRS), \
 
 clean:
 	$(MAKE) -C $(FT_DIR) clean
-	find $(OBJ_DIR) -type f -name '*.o' -exec rm -f {} +
-	find $(OBJ_DIR) -type d -empty -not -name '.' -exec rmdir {} +
+	[ -d $(OBJ_DIR) ] && find $(OBJ_DIR) -type f -name '*.o' -exec rm -f {} + || true
+	[ -d $(OBJ_DIR) ] && find $(OBJ_DIR) -type d -empty -not -name '.' -exec rmdir {} + || true
 
 fclean:
 	$(MAKE) -C $(FT_DIR) fclean
