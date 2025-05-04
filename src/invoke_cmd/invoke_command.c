@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/01 17:07:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:11:39 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool	is_unit_builtin(t_cmd *cmd_head)
 		return (false);
 }
 
-static int	_execute_builtin(t_cmd *cmd, t_minish *minish)
+int	execute_builtin(t_cmd *cmd, t_minish *minish)
 {
 	static const t_builtin	builtin_funcs[] = {
 		builtin_echo, builtin_pwd, builtin_exit, builtin_cd,
@@ -83,7 +83,7 @@ int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 	}
 	if (cmd->next && is_redirect(cmd->next))
 		redirect(cmd->next);
-	return (_execute_builtin(builtin_cmd, minish));
+	return (execute_builtin(builtin_cmd, minish));
 }
 
 /**
