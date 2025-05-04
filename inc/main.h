@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 12:01:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 12:14:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include "cmd.h"
 # include "create_envp.h"
 # include "env_utils.h"
-# include "env_utils_2.h"
-# include "env_utils_3.h"
 # include "error.h"
 # include "exec_pipeline.h"
 # include "execute_cmd.h"
