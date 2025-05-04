@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/01 16:51:13 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:14:21 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	if ((cmd->next != NULL) && is_redirect(cmd->next))
 		redirect(cmd->next);
 	if (is_builtin(cmd))
-		exit(exec_unit_builtin(cmd, minish));
+		exit(execute_builtin(cmd, minish));
 	execute_cmd(cmd, minish);
 	print_error(cmd->argv[0]);
 	exit(EXIT_FAILURE);
