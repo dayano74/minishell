@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:39:18 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 13:15:50 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:31:58 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define PATH_PREFIX_LEN 5
 
+# define INCORRECT_USAGE 2
 # define CMD_FAILED_EXIT_STATUS 126
 # define CMD_NOT_FOUND_EXIT_STATUS 127
 
