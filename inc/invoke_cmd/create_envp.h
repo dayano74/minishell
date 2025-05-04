@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils_2.h                                      :+:      :+:    :+:   */
+/*   create_envp.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 11:40:36 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/01 15:20:13 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/24 13:58:03 by dayano            #+#    #+#             */
+/*   Updated: 2025/05/04 12:26:30 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_UTILS_2_H
-# define ENV_UTILS_2_H
+#ifndef CREATE_ENVP_H
+# define CREATE_ENVP_H
 
+# define EQUAL_LEN 1
+
+# include "libft.h"
 # include "struct.h"
+# include <stdlib.h>
 
-void	free_env_list(t_env *head);
-void	cleanup_minish(t_minish *minish);
-void	handle_error_and_exit(const char *func_name, t_minish *minish);
+char	**create_envp(t_minish *minish);
 
 #endif
