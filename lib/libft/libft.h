@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:41:08 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 16:30:51 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 17:34:18 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strtrim(char const *s1, char const *set);
+long				ft_strtol(const char *nptr, char **endptr, int base);
+long long			ft_strtoll(const char *nptr, char **endptr, int base);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_atoi(const char *str);
 int					ft_isalnum(int c);
