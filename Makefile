@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/02 14:33:45 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/05/04 11:47:59 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,16 @@ define define_rule
     $(CC) $(W_FLG) $(I_FLG) -c $$< -o $$@)
 endef
 
+TMP_LOG := .tmp_build.log
+
+define run_step
+	@echo -n "$(1)... "
+	@($(2) > /dev/null 2>$(TMP_LOG)) \
+		&& echo "✅" \
+		|| (echo "❌" && cat $(TMP_LOG))
+	@rm -f $(TMP_LOG)
+endef
+
 # 2.Add the source code when it is added
 ROOT_SRC		=	main.c minish_signal.c initialize.c error.c
 COMMON_SRC		=	validate_key.c error_mes.c
@@ -73,10 +83,10 @@ TEST=MAIN
 all: $(NAME)
 
 $(NAME): $(FT_DIR)$(LIBFT) $(OBJS)
-	$(CC) $(W_FLG) $(OBJS) -L$(FT_DIR) $(L_FLG) -o $(NAME)
+	$(call run_step,Building $@, $(CC) $(W_FLG) $(OBJS) -L$(FT_DIR) $(L_FLG) -o $(NAME))
 
 $(FT_DIR)$(LIBFT):
-	$(MAKE) -C $(FT_DIR)
+	$(call run_step,Building libft, $(MAKE) -C $(FT_DIR))
 
 $(foreach DIR,$(MODULE_DIRS), \
   $(if $(filter $(DIR),root), \
@@ -86,14 +96,16 @@ $(foreach DIR,$(MODULE_DIRS), \
 )
 
 clean:
-	$(MAKE) -C $(FT_DIR) clean
-	[ -d $(OBJ_DIR) ] && find $(OBJ_DIR) -type f -name '*.o' -exec rm -f {} + || true
-	[ -d $(OBJ_DIR) ] && find $(OBJ_DIR) -type d -empty -not -name '.' -exec rmdir {} + || true
+	$(call run_step,cleaning libft, $(MAKE) -C $(FT_DIR) clean)
+	$(call run_step,cleaning $(NAME) objs, \
+	[ -d $(OBJ_DIR) ] && find $(OBJ_DIR) -type f -name '*.o' -exec rm -f {} + || true)
+	$(call run_step,cleaning $(NAME) empty dirs, \
+		[ -d $(OBJ_DIR) ] && find $(OBJ_DIR) -type d -empty -not -name '.' -exec rmdir {} + || true)
 
 fclean:
-	$(MAKE) -C $(FT_DIR) fclean
+	$(call run_step,Removing libft bin, $(MAKE) -C $(FT_DIR) fclean)
 	$(MAKE) clean
-	rm -rf $(NAME)
+	$(call run_step,Removing binary, rm -rf $(NAME))
 
 re:
 	$(MAKE) fclean
