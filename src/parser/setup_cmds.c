@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 21:26:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:11:13 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 		{
 			cmds[cmd_i]->argv[arg_i] = ft_strdup(tokens[token_i]);
 			if (!cmds[cmd_i]->argv[arg_i])
-				return (free_cmds(cmds), NULL);
+				return (free_cmds(&cmds), NULL);
 			arg_i++;
 		}
 		token_i++;

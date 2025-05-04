@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 19:57:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:10:54 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	_allocate_argv(t_cmd *cmd, char **token_ptr)
 	{
 		cmd->argv[arg_i] = calloc_arg(token_ptr[arg_i]);
 		if (!cmd->argv[arg_i])
-			return (free_cmd(cmd), 1);
+			return (free_cmd(&cmd), 1);
 		arg_i++;
 	}
 	return (0);
@@ -40,7 +40,7 @@ static t_cmd	*_allocate_cmd(char **token_ptr)
 	if (!cmd)
 		return (NULL);
 	if (_allocate_argv(cmd, token_ptr))
-		return (free_cmd(cmd), NULL);
+		return (free_cmd(&cmd), NULL);
 	return (cmd);
 }
 
@@ -61,7 +61,7 @@ t_cmd	**allocate_cmds(char **tokens)
 	{
 		cmds[cmd_i] = _allocate_cmd(token_ptr);
 		if (!cmds[cmd_i])
-			return (free_cmds(cmds), NULL);
+			return (free_cmds(&cmds), NULL);
 		if (cmd_i > 0)
 			cmds[cmd_i - 1]->next = cmds[cmd_i];
 		token_ptr = next_cmd_start(token_ptr);

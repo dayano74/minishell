@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 19:09:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:10:02 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static bool	prompt(char *program_name, t_minish *minish)
 	if (cmds[0]->argc > 0)
 		minish->last_status = invoke_commands(cmds[0], minish);
 	free_strs(&tokens);
-	free_cmds(cmds);
-	free(line);
+	free_cmds(&cmds);
+	free_str(&line);
 	return (true);
 }
 

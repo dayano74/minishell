@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:50:02 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 19:12:28 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:09:03 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_str(char **pstr);
 void	free_strs(char ***pstrs);
 void	free_node(t_env **pnode);
 void	free_nodes(t_env **phead);
-void	free_cmd(t_cmd *cmd);
-void	free_cmds(t_cmd **cmds);
+void	free_cmd(t_cmd **pcmd);
+void	free_cmds(t_cmd ***pcmds);
 
 #endif
