@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/04 11:47:59 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/05/04 12:12:23 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,11 @@ NAME = minishell
 CC = cc
 MAKEFLAGS += --no-print-directory
 W_FLG = -Wall -Wextra -Werror
-I_FLG = -Iinc/ -Ilib/libft/
 L_FLG = -lreadline -lft
+
+HEADER_DIRS = 	lib/libft/ inc/ inc/builtin/  inc/common/ \
+			inc/invoke_cmd/  inc/parser/  inc/signal/  inc/tokenizer/
+I_FLG = $(addprefix -I, $(HEADER_DIRS))
 
 # 1.Add more directories as they are added.
 SRC_DIR 			= src/
