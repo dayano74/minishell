@@ -1,0 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_functions.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/04 17:50:02 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/05/04 18:20:27 by ttsubo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FREE_FUNCTIONS_H
+# define FREE_FUNCTIONS_H
+
+# include "stdlib.h"
+# include "struct.h"
+
+void	free_str(char **pstr);
+void	free_strs(char ***pstrs);
+void	free_node(t_env **pnode);
+void	free_nodes(t_env **phead);
+
+#endif
