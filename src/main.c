@@ -6,25 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 21:25:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:09:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-static void	_free_tokens(char **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		free(tokens[i]);
-		tokens[i++] = NULL;
-	}
-	free(tokens);
-	tokens = NULL;
-}
 
 static void	destroy_minish(t_minish *minish)
 {
@@ -60,7 +46,7 @@ static bool	prompt(char *program_name, t_minish *minish)
 	}
 	if (cmds[0]->argc > 0)
 		minish->last_status = invoke_commands(cmds[0], minish);
-	_free_tokens(tokens);
+	free_strs(&tokens);
 	free_cmds(cmds);
 	free(line);
 	return (true);
