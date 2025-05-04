@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:56:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 21:02:25 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 22:09:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**create_envp(t_minish *minish)
 	int		count;
 
 	count = _count_value(minish);
-	envp = (char **)ft_calloc(count, sizeof(char *));
+	envp = (char **)ft_calloc(count + 1, sizeof(char *));
 	if (!envp)
 		return (NULL);
 	env = minish->env;
