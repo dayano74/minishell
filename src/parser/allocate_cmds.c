@@ -6,56 +6,71 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:39:41 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/02 21:26:21 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static size_t	_count_cmds(char **tokens)
+static int	_allocate_argv(t_cmd *cmd, char **token_ptr)
 {
-	size_t	i;
-	size_t	cmd_count;
+	size_t	arg_i;
+	size_t	len;
 
-	i = 0;
-	cmd_count = 1;
-	while (tokens[i])
+	cmd->argv = calloc_argv(token_ptr);
+	if (!cmd->argv)
+		return (1);
+	arg_i = 0;
+	len = count_args_until_separator(token_ptr);
+	while (arg_i < len)
 	{
-		if (is_separator(tokens[i]))
-			cmd_count++;
-		i++;
+		cmd->argv[arg_i] = calloc_arg(token_ptr[arg_i]);
+		if (!cmd->argv[arg_i])
+		{
+			while (0 < arg_i)
+				free(cmd->argv[--arg_i]);
+			free(cmd->argv);
+			return (1);
+		}
+		arg_i++;
 	}
-	return (cmd_count);
+	return (0);
 }
 
-static t_cmd	**_allocate_cmds(size_t count)
+static t_cmd	*_allocate_cmd(char **token_ptr)
 {
-	size_t	i;
-	t_cmd	**cmds;
+	t_cmd	*cmd;
 
-	i = 0;
-	cmds = ft_calloc(count + 1, sizeof(t_cmd *));
-	if (!cmds)
+	cmd = calloc_cmd();
+	if (!cmd)
 		return (NULL);
-	while (i < count)
-	{
-		cmds[i] = ft_calloc(1, sizeof(t_cmd));
-		if (!cmds[i])
-			return (free_cmds(cmds, i), NULL);
-		if (i > 0)
-			cmds[i - 1]->next = cmds[i];
-		i++;
-	}
-	cmds[i] = NULL;
-	return (cmds);
+	if (_allocate_argv(cmd, token_ptr))
+		return (free(cmd), NULL);
+	return (cmd);
 }
 
 t_cmd	**allocate_cmds(char **tokens)
 {
+	char	**token_ptr;
 	t_cmd	**cmds;
+	size_t	cmd_i;
+	size_t	len;
 
-	cmds = _allocate_cmds(_count_cmds(tokens));
+	cmds = calloc_cmds(tokens);
 	if (!cmds)
 		return (NULL);
+	cmd_i = 0;
+	len = count_cmds(tokens);
+	token_ptr = tokens;
+	while (cmd_i < len)
+	{
+		cmds[cmd_i] = _allocate_cmd(token_ptr);
+		if (!cmds[cmd_i])
+			return (free_cmds(cmds), NULL);
+		if (cmd_i > 0)
+			cmds[cmd_i - 1]->next = cmds[cmd_i];
+		token_ptr = next_cmd_start(token_ptr);
+		cmd_i++;
+	}
 	return (cmds);
 }
