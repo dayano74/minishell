@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:12:27 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 16:11:28 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/04 12:33:03 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define EXEC_PIPELINE_H
 
 # include "cmd.h"
+# include "common.h"
+# include "execute_cmd.h"
+# include "invoke_command.h"
+# include "pipeline_helper.h"
+# include "struct.h"
+# include "redirect.h"
+# include <sysexits.h>
 
 typedef struct s_pipe_io
 {

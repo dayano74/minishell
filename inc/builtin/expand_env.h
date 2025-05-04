@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:24:25 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 11:45:55 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 12:15:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXPAND_ENV_H
 
 # include "common.h"
-# include "env_utils_3.h"
+# include "env_utils.h"
 # include "struct.h"
 # include <stdbool.h>
 

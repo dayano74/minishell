@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.h                                        :+:      :+:    :+:   */
+/*   allocate_cmds_utils_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 10:25:47 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 15:47:53 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/05/02 16:58:45 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_UTILS_H
-# define ENV_UTILS_H
+#include "parser.h"
 
-# include "struct.h"
+size_t	count_cmds(char **tokens)
+{
+	size_t	i;
+	size_t	count;
 
-void	free_env_content(char *value);
-void	remove_env_node(t_env **env_lst, t_env *target);
-
-#endif
+	i = 0;
+	count = 1;
+	while (tokens[i])
+	{
+		if (is_separator(tokens[i]))
+			count++;
+		i++;
+	}
+	return (count);
+}

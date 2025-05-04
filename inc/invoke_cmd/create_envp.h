@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   create_envp.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 11:44:19 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 14:12:51 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/04/24 13:58:03 by dayano            #+#    #+#             */
+/*   Updated: 2025/05/04 12:26:30 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef CREATE_ENVP_H
+# define CREATE_ENVP_H
 
-# include <stdbool.h>
-# include <stddef.h>
+# define EQUAL_LEN 1
+
 # include "libft.h"
+# include "struct.h"
+# include <stdlib.h>
 
-bool	is_key_start(int c);
-bool	is_key_char(int c);
-bool	is_valid_key(char *str);
-void	error_mes(char *name, char *mes);
+char	**create_envp(t_minish *minish);
 
 #endif

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_envp.h                                      :+:      :+:    :+:   */
+/*   parser_free.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 13:58:03 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/24 13:59:24 by dayano           ###   ########.fr       */
+/*   Created: 2025/05/02 21:22:56 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/05/02 21:27:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CREATE_ENVP_H
-# define CREATE_ENVP_H
+#ifndef PARSER_FREE_H
+# define PARSER_FREE_H
 
-# include "struct.h"
-
-char	**create_envp(t_minish *minish);
+void	free_tokens(char **tokens);
+void	free_cmd(t_cmd *cmd);
+void	free_cmds(t_cmd **cmds);
 
 #endif
