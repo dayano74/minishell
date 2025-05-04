@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:50:02 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 20:09:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:13:57 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	free_node(t_env **pnode);
 void	free_nodes(t_env **phead);
 void	free_cmd(t_cmd **pcmd);
 void	free_cmds(t_cmd ***pcmds);
+void	free_prompt(char ***ptokens, t_cmd ***pcmds, char **pline);
 
 #endif
