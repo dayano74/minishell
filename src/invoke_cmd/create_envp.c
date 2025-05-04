@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_envp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:56:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/25 21:22:44 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/04 21:02:25 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-static void	free_envp(char **envp)
-{
-	int	i;
-
-	i = 0;
-	if (!envp)
-		return ;
-	while (envp[i])
-	{
-		if (envp[i])
-			free(envp[i]);
-		i++;
-	}
-	free(envp);
-}
 
 static int	_count_value(t_minish *minish)
 {
@@ -88,7 +72,7 @@ char	**create_envp(t_minish *minish)
 		{
 			envp[i] = _get_envp_key_value(env);
 			if (!envp[i])
-				return (free_envp(envp), NULL);
+				return (free_strs(&envp), NULL);
 		}
 		env = env->next;
 		i++;
