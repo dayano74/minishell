@@ -6,14 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 12:37:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:18:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INVOKE_COMMAND_H
 # define INVOKE_COMMAND_H
 
-# include "cmd.h"
+# include "common.h"
 # include "create_envp.h"
 # include "exec_pipeline.h"
 # include "execute_cmd.h"
