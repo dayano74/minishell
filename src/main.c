@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 20:15:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 21:05:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ static bool	prompt(char *program_name, t_minish *minish)
 	char	**tokens;
 	t_cmd	**cmds;
 
+	tokens = NULL;
+	cmds = NULL;
 	line = readline("$ ");
 	if (!line)
-		return (false);
+		return (free_prompt(&tokens, &cmds, &line), false);
 	if (line[0] != '\0')
 		add_history(line);
 	tokens = tokenizer(line);
