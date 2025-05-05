@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish_signal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:35:17 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/05 14:13:59 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:25:02 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
+# include <unistd.h>
 
 void	minish_signal(void);
 

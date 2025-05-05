@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 18:14:21 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:24:56 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ static void	_setup_stdout(t_cmd *cmd, int curr_fds[2])
 	}
 }
 
+static void	_setup_process_signals(void (*handler)(int))
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = handler;
+	sigemptyset(&(sa.sa_mask));
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
+}
+
 static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 		t_minish *minish)
 {
@@ -51,9 +62,13 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 		exit(EX_OSERR);
 	}
 	if (pid > 0)
+	{
+		_setup_process_signals(SIG_IGN);
 		return (pid);
+	}
 	_setup_stdin(cmd, cmd_head, pipefds->prev_fds);
 	_setup_stdout(cmd, pipefds->curr_fds);
+	_setup_process_signals(SIG_DFL);
 	if ((cmd->next != NULL) && is_redirect(cmd->next))
 		redirect(cmd->next);
 	if (is_builtin(cmd))
