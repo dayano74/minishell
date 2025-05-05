@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:27:33 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/01 14:54:33 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 21:03:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	split_key_value(char *str, char **key_out, char **val_out)
 	{
 		*val_out = _strip_quotes(str, val_start);
 		if (!*val_out)
-			return (free(*key_out), *key_out = NULL, 1);
+			return (free_str(key_out), 1);
 	}
 	return (0);
 }

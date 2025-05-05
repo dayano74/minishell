@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:19:28 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 18:12:06 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 22:01:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ char	**calloc_argv(char **tokens)
 
 char	*calloc_arg(char *token)
 {
-	return (ft_strdup(token));
+	return (ft_calloc(ft_strlen(token) + 1, sizeof(char)));
 }
