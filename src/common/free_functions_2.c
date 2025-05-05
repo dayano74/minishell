@@ -1,46 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_free.c                                      :+:      :+:    :+:   */
+/*   free_functions_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 20:55:39 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 21:28:08 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/05/04 17:48:51 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/05/04 20:12:33 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "free_functions.h"
 
-void	free_tokens(char **tokens)
+void	free_cmd(t_cmd **pcmd)
 {
-	size_t	token_i;
+	t_cmd	*cmd;
 
-	token_i = 0;
-	while (tokens && tokens[token_i])
-		token_i++;
-	while (0 < token_i)
-		free(tokens[--token_i]);
-	free(tokens);
-}
-
-void	free_cmd(t_cmd *cmd)
-{
-	size_t	arg_i;
-
-	arg_i = 0;
-	while (cmd->argv && cmd->argv[arg_i])
-		free(cmd->argv[arg_i++]);
-	free(cmd->argv);
+	if (!pcmd || !*pcmd)
+		return ;
+	cmd = *pcmd;
+	free_strs(&cmd->argv);
 	free(cmd);
+	*pcmd = NULL;
 }
 
-void	free_cmds(t_cmd **cmds)
+void	free_cmds(t_cmd ***pcmds)
 {
 	size_t	cmd_i;
+	t_cmd	**cmds;
 
+	if (!pcmds || !*pcmds)
+		return ;
+	cmds = *pcmds;
 	cmd_i = 0;
 	while (cmds[cmd_i])
-		free_cmd(cmds[cmd_i++]);
+		free_cmd(&cmds[cmd_i++]);
 	free(cmds);
+	*pcmds = NULL;
+}
+
+void	free_prompt(char ***ptokens, t_cmd ***pcmds, char **pline)
+{
+	free_strs(ptokens);
+	free_cmds(pcmds);
+	free_str(pline);
 }

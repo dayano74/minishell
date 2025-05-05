@@ -6,14 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:12:27 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 12:33:03 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:17:55 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_PIPELINE_H
 # define EXEC_PIPELINE_H
 
-# include "cmd.h"
 # include "common.h"
 # include "execute_cmd.h"
 # include "invoke_command.h"

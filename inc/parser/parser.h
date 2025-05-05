@@ -6,15 +6,14 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 21:25:06 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:19:21 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "cmd.h"
-# include "parser_free.h"
+# include "common.h"
 # include "expand_env.h"
 # include "libft.h"
 

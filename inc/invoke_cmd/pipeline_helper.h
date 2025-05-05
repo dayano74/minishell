@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline_helper.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:32:27 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 14:56:23 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:18:38 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPELINE_HELPER_H
 # define PIPELINE_HELPER_H
 
-# include "cmd.h"
+# include "common.h"
 # include <fcntl.h>
 # include <stdbool.h>
 

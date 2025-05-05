@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 11:44:19 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 12:18:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:17:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <stdbool.h>
 # include <stddef.h>
 # include "libft.h"
-# include "cmd.h"
 # include "error.h"
 # include "initialize.h"
 # include "struct.h"
+# include "free_functions.h"
 
 bool	is_key_start(int c);
 bool	is_key_char(int c);

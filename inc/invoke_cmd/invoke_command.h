@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 18:32:13 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:45:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INVOKE_COMMAND_H
 # define INVOKE_COMMAND_H
 
-# include "cmd.h"
+# include "common.h"
 # include "create_envp.h"
 # include "exec_pipeline.h"
 # include "execute_cmd.h"
