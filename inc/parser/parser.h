@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 19:19:21 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:38:15 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_cmd	**calloc_cmds(char **tokens);
 t_cmd	*calloc_cmd(void);
 char	**calloc_argv(char **tokens);
 char	*calloc_arg(char *token);
+char	**trim_quote_tokens(char **tokens);
 
 t_cmd	**parser(char **tokens, t_minish *minish);
 char	**expand_tokens(char **tokens, t_minish *minish);
