@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/05 17:24:56 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:33:50 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 		exit(EX_OSERR);
 	}
 	if (pid > 0)
-	{
-		_setup_process_signals(SIG_IGN);
-		return (pid);
-	}
+		return (_setup_process_signals(SIG_IGN), pid);
 	_setup_stdin(cmd, cmd_head, pipefds->prev_fds);
 	_setup_stdout(cmd, pipefds->curr_fds);
 	_setup_process_signals(SIG_DFL);
