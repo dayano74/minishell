@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 18:11:39 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:39:02 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,11 @@ static bool	is_unit_builtin(t_cmd *cmd_head)
 
 int	execute_builtin(t_cmd *cmd, t_minish *minish)
 {
-	static const t_builtin	builtin_funcs[] = {
-		builtin_echo, builtin_pwd, builtin_exit, builtin_cd,
-		builtin_env, builtin_export, builtin_unset, NULL
-	};
-	static char				*builtin_list[] = {
-		"echo", "pwd", "exit", "cd",
-		"env", "export", "unset", NULL
-	};
+	static const t_builtin	builtin_funcs[] = {builtin_echo, builtin_pwd,
+		builtin_exit, builtin_cd, builtin_env, builtin_export,
+		builtin_unset, NULL};
+	static char				*builtin_list[] = {"echo", "pwd", "exit", "cd",
+		"env", "export", "unset", NULL};
 	int						i;
 
 	i = 0;
@@ -108,6 +105,7 @@ int	invoke_commands(t_cmd *cmd_head, t_minish *minish)
 	{
 		exec_pipeline(cmd_head, minish);
 		status = wait_pipeline(cmd_head);
+		minish_signal();
 	}
 	close(STDIN_FILENO);
 	dup2(original_stdin, STDIN_FILENO);

@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   minish_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:35:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/27 14:54:18 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:07:53 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minish_signal.h"
 
 /**
- * @brief Handler function when ctrl+c is pressed 
- * 
- * @param signum 
+ * @brief Handler function when ctrl+c is pressed
+ *
+ * @param signum
  */
 static void	ctrl_c(int signum)
 {
 	(void)signum;
-	printf("\n");
+	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
@@ -28,7 +28,7 @@ static void	ctrl_c(int signum)
 
 /**
  * @brief Sets the value of the sigaction structure
- * 
+ *
  * @param sa		: sigaction structure
  * @param handler	: handler funciton
  */
@@ -44,7 +44,7 @@ static void	_set_sigaction(struct sigaction *sa, void (*handler)(int))
 
 /**
  * @brief Sets SIGINT(ctrl+c) and SIGQUIT(ctrl+\).
- * 
+ *
  * @note ctrl+d is EOF, so it is managed separately.
  */
 void	minish_signal(void)

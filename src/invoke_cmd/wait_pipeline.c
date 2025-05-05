@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:14 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 21:51:02 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:06:51 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ static int	_get_status(t_cmd *cmd)
 	if (WIFEXITED(status))
 		cmd->status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == 3)
+			write(STDOUT_FILENO, "Quit (core dumped)", 18);
+		write(STDOUT_FILENO, "\n", 1);
 		cmd->status = 128 + WTERMSIG(status);
+	}
 	else
 		cmd->status = EXIT_FAILURE;
 	return (cmd->status);
