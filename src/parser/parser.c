@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/02 21:27:58 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/04 19:20:38 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ t_cmd	**parser(char **tokens, t_minish *minish)
 		return (NULL);
 	cmds = allocate_cmds(expanded_tokens);
 	if (!cmds)
-		return (free_tokens(expanded_tokens), NULL);
+		return (free_strs(&expanded_tokens), NULL);
 	cmds = setup_cmds(cmds, expanded_tokens);
 	if (!cmds)
-		return (free_tokens(expanded_tokens), NULL);
-	free_tokens(expanded_tokens);
+		return (free_strs(&expanded_tokens), NULL);
+	free_strs(&expanded_tokens);
 	return (cmds);
 }

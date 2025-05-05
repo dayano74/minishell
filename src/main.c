@@ -12,20 +12,6 @@
 
 #include "main.h"
 
-static void	_free_tokens(char **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		free(tokens[i]);
-		tokens[i++] = NULL;
-	}
-	free(tokens);
-	tokens = NULL;
-}
-
 static void	destroy_minish(t_minish *minish)
 {
 	cleanup_minish(minish);
@@ -45,9 +31,11 @@ static bool	prompt(char *program_name, t_minish *minish)
 	char	**tokens;
 	t_cmd	**cmds;
 
+	tokens = NULL;
+	cmds = NULL;
 	line = readline("$ ");
 	if (!line)
-		return (false);
+		return (free_prompt(&tokens, &cmds, &line), false);
 	if (line[0] != '\0')
 		add_history(line);
 	else
@@ -57,14 +45,13 @@ static bool	prompt(char *program_name, t_minish *minish)
 	if (!cmds)
 	{
 		error_mes(program_name, ": syntax error\n");
+		free_prompt(&tokens, &cmds, &line);
 		cleanup_minish(minish);
 		return (false);
 	}
 	if (cmds[0]->argc > 0)
 		minish->last_status = invoke_commands(cmds[0], minish);
-	_free_tokens(tokens);
-	free_cmds(cmds);
-	free(line);
+	free_prompt(&tokens, &cmds, &line);
 	return (true);
 }
 
