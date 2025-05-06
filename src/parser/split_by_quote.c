@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:03:29 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:17:46 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:24:13 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	_handle_unquoted_segment(const char *s, size_t *i, t_list **parts)
 	t_part	*part;
 
 	start = *i;
-	while (s[*i] && is_quote(s[*i]))
+	while (s[*i] && !is_quote(s[*i]))
 		(*i)++;
 	if (*i == start)
 		return (false);
