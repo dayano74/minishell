@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 17:08:42 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:08:55 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:14:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*expand_token(char *token, t_minish *minish)
 	if (!parts)
 		return (NULL);
 	result = join_expanded_parts(parts, minish);
-	ft_lstclear(parts, _free_part);
+	ft_lstclear(&parts, _free_part);
 	return (result);
 }
 

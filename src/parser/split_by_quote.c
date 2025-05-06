@@ -6,11 +6,20 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:03:29 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:08:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:17:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+static t_quote	_get_quote_type(char quote)
+{
+	if (quote == '\'')
+		return (QUOTE_SINGLE);
+	else if (quote == '"')
+		return (QUOTE_DOUBLE);
+	return (QUOTE_NONE);
+}
 
 static t_part	*_make_part(char *text, t_quote quote)
 {
@@ -20,7 +29,7 @@ static t_part	*_make_part(char *text, t_quote quote)
 		return (NULL);
 	part = ft_calloc(1, sizeof(t_part));
 	if (!part)
-		return (free_str(text), NULL);
+		return (free_str(&text), NULL);
 	part->text = text;
 	part->quote = quote;
 	return (part);
@@ -55,7 +64,7 @@ static bool	_handle_quoted_segment(const char *s, size_t *i, t_list **parts)
 		(*i)++;
 	if (!s[*i])
 		return (false);
-	part = _make_part(ft_substr(s, start, *i - start), get_quote_type(quote));
+	part = _make_part(ft_substr(s, start, *i - start), _get_quote_type(quote));
 	if (!part)
 		return (false);
 	ft_lstadd_back(parts, ft_lstnew(part));
