@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/26 20:56:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:28:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ char	*expand_env(char *token, t_minish *minish)
 	t_expand_temp	tmp;
 	char			*result;
 
+	if (ft_strncmp(token, "$?", 2) == 0)
+		return (ft_itoa(minish->last_status));
 	env_ptr = ft_strchr(token, '$');
 	if (!env_ptr)
 		return (ft_strdup(token));
