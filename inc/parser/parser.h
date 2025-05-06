@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:14:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:01:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define PARSER_H
 
 # include "common.h"
-# include "expand_env.h"
+# include "env_utils.h"
+# include "expand_vars.h"
 # include "libft.h"
 
 typedef enum e_quote

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:28:18 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:03:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static void	_free_tmp(t_expand_temp *tmp)
 	free(tmp->suffix);
 }
 
-static void	_set_tmpstr(t_minish *minish, char *token,
-		t_expand_env *ex_env, t_expand_temp *tmp)
+static void	_set_tmpstr(t_minish *minish, const char *token, t_expand_env *ex_env,
+		t_expand_temp *tmp)
 {
 	tmp->key = _ft_strndup(token + ex_env->key_st, ex_env->key_len);
 	tmp->value = ft_strdup(get_env_value(minish->env, tmp->key));
@@ -74,14 +74,8 @@ static void	_set_tmpstr(t_minish *minish, char *token,
 	tmp->result = _join_str(*tmp);
 }
 
-/**
- * @brief Expand env vars beginning with $ in the tkn->input str.
- *
- * @param tkn
- * @param minish
- * @return t_tokenizer*
- */
-char	*expand_env(char *token, t_minish *minish)
+static char	*_expand_one(const char *token, t_minish *minish,
+		bool *has_expandable)
 {
 	const char		*env_ptr;
 	t_expand_env	ex_env;
@@ -92,19 +86,38 @@ char	*expand_env(char *token, t_minish *minish)
 		return (ft_itoa(minish->last_status));
 	env_ptr = ft_strchr(token, '$');
 	if (!env_ptr)
-		return (ft_strdup(token));
+		return (*has_expandable = false, ft_strdup(token));
 	ft_bzero(&tmp, sizeof(tmp));
 	ex_env.key_len = 0;
 	ex_env.pre_len = env_ptr - token;
 	ex_env.key_st = ex_env.pre_len + 1;
 	if (!is_key_start(token[ex_env.key_st]))
-		return (ft_strdup(token));
+		return (*has_expandable = false, ft_strdup(token));
 	while (is_key_char(token[ex_env.key_st + ex_env.key_len]))
 		ex_env.key_len++;
 	_set_tmpstr(minish, token, &ex_env, &tmp);
 	if (!tmp.result)
-		return (_free_tmp(&tmp), ft_strdup(token));
+		return (*has_expandable = false, _free_tmp(&tmp), ft_strdup(token));
 	result = ft_strdup(tmp.result);
 	_free_tmp(&tmp);
+	return (result);
+}
+
+char	*expand_vars(const char *token, t_minish *minish)
+{
+	bool has_expandable;
+	char *result;
+	char *next;
+
+	result = ft_strdup(token);
+	if (!result)
+		return (NULL);
+	has_expandable = true;
+	while (has_expandable)
+	{
+		next = _expand_one(result, minish, &has_expandable);
+		free(result);
+		result = next;
+	}
 	return (result);
 }

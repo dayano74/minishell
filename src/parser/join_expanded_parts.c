@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:05:02 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:18:19 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:56:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*join_expanded_parts(t_list *parts, t_minish *minish)
 		if (part->quote == QUOTE_SINGLE)
 			tmp = ft_strdup(part->text);
 		else
-			tmp = expand_env(part->text, minish);
+			tmp = expand_vars(part->text, minish);
 		if (!tmp)
 			return (free_str(&result), NULL);
 		result = strjoin_and_free(result, tmp);

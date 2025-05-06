@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_env.h                                       :+:      :+:    :+:   */
+/*   expand_vars.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:24:25 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 12:15:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:02:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_ENV_H
-# define EXPAND_ENV_H
+#ifndef EXPAND_VARS_H
+# define EXPAND_VARS_H
 
 # include "common.h"
-# include "env_utils.h"
 # include "struct.h"
 # include <stdbool.h>
 
@@ -34,6 +33,6 @@ typedef struct s_expand_temp
 	char	*result;
 }			t_expand_temp;
 
-char		*expand_env(char *token, t_minish *minish);
+char		*expand_vars(const char *token, t_minish *minish);
 
 #endif
