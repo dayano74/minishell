@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:38:15 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 13:08:26 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include "common.h"
 # include "expand_env.h"
 # include "libft.h"
+
+typedef enum e_quote
+{
+	QUOTE_NONE,
+	QUOTE_SINGLE,
+	QUOTE_DOUBLE
+}				t_quote;
+
+typedef struct s_part
+{
+	char		*text;
+	t_quote		quote;
+}				t_part;
 
 size_t	count_cmds(char **tokens);
 char	**next_cmd_start(char **token_ptr);
