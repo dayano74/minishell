@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 14:01:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:26:28 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ t_cmd	**allocate_cmds(char **tokens);
 t_cmd	**setup_cmds(t_cmd **cmds, char **tokens);
 t_list	*split_by_quote(char *token);
 char	*join_expanded_parts(t_list *parts, t_minish *minish);
+char	*strjoin_and_free(char *s1, char *s2);
 
 #endif

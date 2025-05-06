@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:24:25 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 14:02:52 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 14:44:25 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ typedef struct s_expand_temp
 	char	*result;
 }			t_expand_temp;
 
-char		*expand_vars(const char *token, t_minish *minish);
+char	*expand_vars(const char *token, t_minish *minish);
 
 #endif
