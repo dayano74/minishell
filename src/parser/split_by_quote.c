@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:03:29 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:10:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:33:18 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,17 @@ static bool	_handle_unquoted_segment(const char *s, size_t *i, t_list **parts)
 static bool	_handle_quoted_segment(const char *s, size_t *i, t_list **parts)
 {
 	char	quote;
-	size_t	start;
+	size_t	i_st;
 	t_part	*part;
 
 	quote = s[*i];
-	start = ++(*i);
+	i_st = (*i)++;
 	while (s[*i] && s[*i] != quote)
 		(*i)++;
 	if (!s[*i])
 		return (false);
-	part = _make_part(ft_substr(s, start, *i - start), _get_quote_type(quote));
+	(*i)++;
+	part = _make_part(ft_substr(s, i_st, *i - i_st), _get_quote_type(quote));
 	if (!part)
 		return (false);
 	ft_lstadd_back(parts, ft_lstnew(part));
