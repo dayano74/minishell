@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 17:08:42 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 13:14:37 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 15:12:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	**expand_tokens(char **tokens, t_minish *minish)
 	while (i < count)
 	{
 		result[i] = expand_token(tokens[i], minish);
-		printf("DBG:expand: '%s' → '%s'\n", tokens[i], result[i]);
 		if (!result[i])
 			return (free_strs(&result), NULL);
 		i++;
