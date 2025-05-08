@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/05 18:42:27 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/05/08 18:21:27 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ PARSER_SRC		=	allocate_cmds.c  parser.c parser_utils.c  setup_cmds.c \
 					expand_env.c expand_tokens.c trim_quote_tokens.c
 BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c export.c \
 					env_utils.c env_utils_2.c env_utils_3.c builtin_utils.c \
-					export_exec.c export_print_sorted_env.c export_error.c split_key_value.c
+					export_exec.c export_exec_utils.c \
+					export_print_sorted_env.c export_error.c split_key_value.c
 
 # 3.Add more directories as they are added.
 $(eval $(call add_module,root))

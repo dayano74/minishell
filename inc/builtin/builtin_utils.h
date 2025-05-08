@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 19:47:50 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/08 17:58:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/08 18:22:30 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@
 # include <stdbool.h>
 # include <stddef.h>
 
-typedef struct s_export_exec_bool
+typedef struct s_export_exec_vars
 {
+	int		i;
+	char	*key;
+	char	*value;
 	bool	exists;
 	bool	has_plus;
 	bool	has_eq;
-}			t_export_exec_bool;
+	int		exit_sts;
+	int		last_exit_sts;
+}			t_export_exec_vars;
 
 char		*ft_strndup(const char *s1, size_t n);
 int			export_exec(int argc, char **argv, t_minish *minish);
+int			select_export_exec(t_export_exec_vars vars, t_minish *minish);
 int			print_sorted_env(t_env *head);
 int			export_err_invalid(char *sh, char *key, char *value);
 int			export_err_invalid_opt(char *sh, char c);
