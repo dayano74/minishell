@@ -6,13 +6,13 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:35:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/08 16:24:32 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/08 16:57:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minish_signal.h"
 
-volatile sig_atomic_t g_sig_sts = 0;
+volatile sig_atomic_t	g_sig_sts = 0;
 
 /**
  * @brief Handler function when ctrl+c is pressed

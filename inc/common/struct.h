@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 19:16:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/08 16:53:17 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define STRUCT_H
 
 # include <sys/wait.h>
+
+typedef enum e_read_result
+{
+	READ_EOF,
+	READ_EMPTY,
+	READ_OK
+}					t_read_result;
 
 typedef enum e_redir_type
 {

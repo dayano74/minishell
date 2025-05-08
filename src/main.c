@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/05 18:56:10 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/08 16:57:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ static void	destroy_minish(t_minish *minish)
 	rl_clear_history();
 }
 
+static t_read_result	_read_user_input(char **line)
+{
+	*line = readline("$ ");
+	if (!*line)
+		return (READ_EOF);
+	if ((*line)[0] == '\0')
+		return (READ_EMPTY);
+	add_history(*line);
+	return (READ_OK);
+}
+
 /**
  * @brief I used bool type since it seems to be available.
  * @param program_name
@@ -27,18 +38,16 @@ static void	destroy_minish(t_minish *minish)
  */
 static bool	prompt(char *program_name, t_minish *minish)
 {
-	char	*line;
-	char	**tokens;
-	t_cmd	**cmds;
+	char			*line;
+	char			**tokens;
+	t_cmd			**cmds;
+	t_read_result	res;
 
-	tokens = NULL;
-	cmds = NULL;
-	line = readline("$ ");
-	if (!line)
-		return (free_prompt(&tokens, &cmds, &line), false);
-	if (!line[0])
-		return (free(line), true);
-	add_history(line);
+	res = _read_user_input(&line);
+	if (res == READ_EOF)
+		return (free_str(&line), false);
+	if (res == READ_EMPTY)
+		return (free_str(&line), true);
 	tokens = tokenizer(line);
 	cmds = parser(tokens, minish);
 	if (!cmds)
