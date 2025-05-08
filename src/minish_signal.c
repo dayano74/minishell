@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:35:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/08 16:57:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/08 17:00:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ctrl_c(int signum)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	g_sig_sts = signum + 2;
+	g_sig_sts = 128 + signum;
 }
 
 /**
