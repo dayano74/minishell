@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:52:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/05 14:52:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:12:44 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	_copy_quoted_content(char *token, char *result, size_t *pt_i,
 	else
 	{
 		r_i = *pr_i;
-		result[r_i++] = quote;
 		t_i = *pt_i;
 		while (token[t_i])
 			result[r_i++] = token[t_i++];
