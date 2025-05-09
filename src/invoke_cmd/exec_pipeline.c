@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/09 16:39:00 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/09 16:49:12 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	_setup_stdout(cmd, pipefds->curr_fds);
 	_setup_process_signals(SIG_DFL);
 	if ((cmd->next != NULL) && is_redirect(cmd->next))
-		if(!redirect(cmd->next))
+		if (!redirect(cmd->next))
 			exit(EXIT_FAILURE);
 	if (is_builtin(cmd))
 		exit(execute_builtin(cmd, minish));
