@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/09 11:43:50 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/09 15:58:38 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,23 @@ static bool	is_unit_builtin(t_cmd *cmd_head)
 	t_cmd	*cmd;
 
 	cmd = cmd_head;
-	if (is_redirect(cmd))
-		cmd = cmd->next;
-	if ((is_builtin(cmd) && cmd->next == NULL) || (is_builtin(cmd)
-			&& is_redirect(cmd->next)))
-		return (true);
-	else
+	if (cmd == NULL)
 		return (false);
+	if (!is_builtin(cmd))
+		return (false);
+	cmd = cmd->next;
+	while (cmd != NULL && is_redirect(cmd))
+		cmd = cmd->next;
+	return (cmd == NULL);
 }
 
 int	execute_builtin(t_cmd *cmd, t_minish *minish)
 {
 	static const t_builtin	builtin_funcs[] = {builtin_echo, builtin_pwd,
-		builtin_exit, builtin_cd, builtin_env, builtin_export,
-		builtin_unset, NULL};
+			builtin_exit, builtin_cd, builtin_env, builtin_export,
+			builtin_unset, NULL};
 	static char				*builtin_list[] = {"echo", "pwd", "exit", "cd",
-		"env", "export", "unset", NULL};
+						"env", "export", "unset", NULL};
 	int						i;
 
 	i = 0;
@@ -69,18 +70,15 @@ int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 
 	redir_result = true;
 	builtin_cmd = cmd;
-	if (cmd && is_redirect(cmd))
+	if (cmd && cmd->next && is_redirect(cmd->next))
 	{
-		redir_result = redirect(cmd);
+		redir_result = redirect(cmd->next);
 		if (redir_result && cmd->next)
-		{
 			cmd = cmd->next;
-			builtin_cmd = cmd;
-		}
 		else
 			return (print_error(cmd->argv[0]), EXIT_FAILURE);
 	}
-	if (cmd->next && is_redirect(cmd->next))
+	if (cmd && cmd->next && is_redirect(cmd->next))
 		redir_result = redirect(cmd->next);
 	if (!redir_result)
 		return (EXIT_FAILURE);
