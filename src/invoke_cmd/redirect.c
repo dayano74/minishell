@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:19 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 16:57:45 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/09 11:38:36 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	redirect_stdout(t_cmd *cmd)
+bool	redirect_stdout(t_cmd *cmd)
 {
 	int		fd;
 	char	*path;
@@ -23,19 +23,22 @@ void	redirect_stdout(t_cmd *cmd)
 	else if (cmd->type == REDIR_APPEND)
 		fd = open(path, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
-		return ;
+		return (false);
 	if (fd < 0)
 	{
 		ft_putstr_fd("minish: ", STDERR_FILENO);
 		perror(path);
-		return ;
+		return (false);
 	}
 	if (dup2(fd, STDOUT_FILENO) < 0)
 	{
 		ft_putstr_fd("minish: ", STDERR_FILENO);
 		perror(path);
+		close(fd);
+		return (false);
 	}
 	close(fd);
+	return (true);
 }
 
 bool	is_limiter(int fd, char *limiter)
@@ -81,39 +84,43 @@ void	here_doc(char *limiter)
 	close(pipefd[0]);
 }
 
-void	redirect_stdin(t_cmd *cmd)
+bool	redirect_stdin(t_cmd *cmd)
 {
 	int		fd;
 	char	*path;
 
 	path = cmd->argv[0];
 	if (cmd->type == REDIR_HEREDOC)
+		return (here_doc(path), false);
+	if (cmd->type != REDIR_IN)
+		return (true);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 	{
-		here_doc(cmd->argv[0]);
-		return ;
+		ft_putstr_fd("minish: ", STDERR_FILENO);
+		perror(path);
+		return (false);
 	}
-	else if (cmd->type == REDIR_IN)
+	if (dup2(fd, STDIN_FILENO) < 0)
 	{
-		fd = open(path, O_RDONLY);
-		if (fd < 0)
-		{
-			ft_putstr_fd("minish: ", STDERR_FILENO);
-			perror(path);
-			return ;
-		}
-		if (dup2(fd, STDIN_FILENO) < 0)
-		{
-			ft_putstr_fd("minish: ", STDERR_FILENO);
-			perror(path);
-		}
+		ft_putstr_fd("minish: ", STDERR_FILENO);
+		perror(path);
 		close(fd);
+		return (false);
 	}
+	close(fd);
+	return (true);
 }
 
-void	redirect(t_cmd *cmd)
+/**
+ * @note This function is only called if the caller's is_redirect is true
+ * @note false if the internal function is not executed.
+ */
+bool	redirect(t_cmd *cmd)
 {
 	if (cmd->type == REDIR_IN || cmd->type == REDIR_HEREDOC)
-		redirect_stdin(cmd);
+		return (redirect_stdin(cmd));
 	if (cmd->type == REDIR_OUT || cmd->type == REDIR_APPEND)
-		redirect_stdout(cmd);
+		return (redirect_stdout(cmd));
+	return (false);
 }
