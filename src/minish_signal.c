@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minish_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:35:06 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/05 17:07:53 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/08 17:00:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minish_signal.h"
+
+volatile sig_atomic_t	g_sig_sts = 0;
 
 /**
  * @brief Handler function when ctrl+c is pressed
@@ -24,6 +26,7 @@ static void	ctrl_c(int signum)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	g_sig_sts = 128 + signum;
 }
 
 /**
