@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/01 15:48:48 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/08 17:30:38 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+static int	_echo_putchar_fd(char c, int fd)
+{
+	return (write(fd, &c, 1));
+}
+
+static int	_echo_putstr_fd(char *s, int fd)
+{
+	if (s == NULL)
+		return (0);
+	return (write(fd, s, ft_strlen(s)));
+}
 
 /**
  * @brief Determines if the option is n only.
@@ -40,7 +52,7 @@ static int	_has_only_n_option(char *arg)
  *
  * @param argc
  * @param argv
- * @return 0: Always returns 0.
+ * @return 0: success. 1: output failed.
  */
 int	builtin_echo(int argc, char *argv[], t_minish *minish)
 {
@@ -60,11 +72,12 @@ int	builtin_echo(int argc, char *argv[], t_minish *minish)
 	}
 	while (i < argc)
 	{
-		ft_putstr_fd(argv[i++], STDOUT_FILENO);
-		if (i != argc)
-			ft_putchar_fd(' ', STDOUT_FILENO);
+		if (_echo_putstr_fd(argv[i++], STDOUT_FILENO) == -1)
+			return (1);
+		if (i != argc && _echo_putchar_fd(' ', STDOUT_FILENO) == -1)
+			return (1);
 	}
-	if (nl_flg)
-		ft_putchar_fd('\n', STDOUT_FILENO);
+	if (nl_flg && _echo_putchar_fd('\n', STDOUT_FILENO) == -1)
+		return (1);
 	return (0);
 }

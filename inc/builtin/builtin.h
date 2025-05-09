@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:19:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/01 16:59:28 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/08 17:44:03 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define BUILTIN_H
 
 # define PATH_MAX 4096
+# define EXIT_EXPORT_NOT_A_VALID 1
+# define EXIT_EXPORT_INVALID_OPT 2
 
 # include "builtin_utils.h"
 # include "struct.h"
