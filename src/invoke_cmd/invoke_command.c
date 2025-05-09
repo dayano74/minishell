@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/05 17:39:02 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/09 11:43:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ int	execute_builtin(t_cmd *cmd, t_minish *minish)
 int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 {
 	t_cmd	*builtin_cmd;
+	bool	redir_result;
 
+	redir_result = true;
 	builtin_cmd = cmd;
 	if (cmd && is_redirect(cmd))
 	{
-		redirect(cmd);
-		if (cmd->next)
+		redir_result = redirect(cmd);
+		if (redir_result && cmd->next)
 		{
 			cmd = cmd->next;
 			builtin_cmd = cmd;
@@ -79,7 +81,9 @@ int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 			return (print_error(cmd->argv[0]), EXIT_FAILURE);
 	}
 	if (cmd->next && is_redirect(cmd->next))
-		redirect(cmd->next);
+		redir_result = redirect(cmd->next);
+	if (!redir_result)
+		return (EXIT_FAILURE);
 	return (execute_builtin(builtin_cmd, minish));
 }
 
