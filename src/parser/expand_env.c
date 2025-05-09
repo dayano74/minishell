@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 09:15:09 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 15:10:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/09 16:16:00 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static char	*_expand_dollar(const char *token, size_t *i, t_minish *minish,
 	else if (is_key_start(token[*i]))
 		tmp = _expand_var(token, i, minish);
 	else
+	{
+		*has_expandable = false;
 		tmp = ft_strdup("$");
+	}
 	return (tmp);
 }
 
