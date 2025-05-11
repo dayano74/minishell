@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/08 18:21:27 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/05/11 16:38:17 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ endef
 
 # 2.Add the source code when it is added
 ROOT_SRC		=	main.c minish_signal.c initialize.c error.c
-COMMON_SRC		=	validate_key.c error_mes.c is_quote.c free_functions.c free_functions_2.c
+COMMON_SRC		=	validate_key.c close_fd.c error_mes.c is_quote.c free_functions.c free_functions_2.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c \
 					redirect.c fds.c wait_pipeline.c

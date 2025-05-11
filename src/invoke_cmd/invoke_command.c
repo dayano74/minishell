@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invoke_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/09 16:14:34 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:32:46 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,10 @@ int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 int	invoke_commands(t_cmd *cmd_head, t_minish *minish)
 {
 	int	status;
-	int	original_stdin;
-	int	original_stdout;
 
 	status = 0;
-	original_stdin = dup(STDIN_FILENO);
-	original_stdout = dup(STDOUT_FILENO);
+	minish->org_stdin = dup(STDIN_FILENO);
+	minish->org_stdout = dup(STDOUT_FILENO);
 	if (is_unit_builtin(cmd_head))
 		status = exec_unit_builtin(cmd_head, minish);
 	else
@@ -109,11 +107,7 @@ int	invoke_commands(t_cmd *cmd_head, t_minish *minish)
 		status = wait_pipeline(cmd_head);
 		minish_signal();
 	}
-	close(STDIN_FILENO);
-	dup2(original_stdin, STDIN_FILENO);
-	close(original_stdin);
-	close(STDOUT_FILENO);
-	dup2(original_stdout, STDOUT_FILENO);
-	close(original_stdout);
+	close_fd(STDIN_FILENO, minish->org_stdin);
+	close_fd(STDOUT_FILENO, minish->org_stdout);
 	return (status);
 }

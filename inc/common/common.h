@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 11:44:19 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 19:19:56 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:33:36 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ bool	is_valid_key(char *str);
 bool	is_quote(char c);
 bool	has_closing_quote(const char *s, char quote, size_t i);
 void	error_mes(char *name, char *mes);
+void	close_fd(int std_fileno, int minish_std);
 
 #endif
