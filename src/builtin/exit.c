@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 21:20:48 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 18:34:59 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:47:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+static void	_exec_exit(unsigned int status, t_minish *minish)
+{
+	close_fd(STDIN_FILENO, minish->org_stdin);
+	close_fd(STDOUT_FILENO, minish->org_stdout);
+	exit(status);
+}
 
 int	builtin_exit(int argc, char *argv[], t_minish *minish)
 {
@@ -23,14 +30,15 @@ int	builtin_exit(int argc, char *argv[], t_minish *minish)
 	if (printf("exit\n") < 0)
 		return (perror("printf"), EXIT_FAILURE);
 	if (argc == 1)
-		exit(EXIT_SUCCESS);
+		_exec_exit(EXIT_SUCCESS, minish);
 	errno = 0;
 	status = ft_strtol(argv[1], &endptr, 10);
 	if (errno != 0 || *endptr != '\0')
 	{
 		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
 		error_mes(argv[1], "numeric argument required");
-		exit(INCORRECT_USAGE);
+		_exec_exit(INCORRECT_USAGE, minish);
 	}
-	exit((unsigned int)status);
+	_exec_exit((unsigned int)status, minish);
+	return (EXIT_SUCCESS);
 }
