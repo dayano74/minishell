@@ -2,6 +2,24 @@
 
 TARGET="./minishell"
 
+has_noninherited_fd() {
+    local log="$1"
+    local prev_line
+
+    while IFS= read -r line; do
+        # "Open file descriptor" を見つけたら次の行をチェック
+        if [[ "$line" == *"Open file descriptor"* ]]; then
+            read -r next_line || break
+            if [[ "$next_line" != *"<inherited from parent>"* ]]; then
+                return 1  # NG
+            fi
+        fi
+    done < "$log"
+
+    return 0  # OK（inheritedなものしかなかった）
+}
+
+
 run_test() {
     name="$1"
     input="$2"
@@ -11,11 +29,11 @@ run_test() {
 
     echo -e "$input" | valgrind --track-fds=yes --log-file="$LOG" "$TARGET" > /dev/null
 
-    if grep -q "FILE DESCRIPTORS: [1-9]" "$LOG"; then
-        echo "NG"
-        grep -A 5 "FILE DESCRIPTORS:" "$LOG"
-    else
+    if has_noninherited_fd "$LOG"; then
         echo "OK"
+    else
+        echo "NG"
+        grep -A 1 "Open file descriptor" "$LOG"
     fi
 }
 
