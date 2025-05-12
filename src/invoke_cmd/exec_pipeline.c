@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/09 16:49:12 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/12 10:00:14 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	if (pid < 0)
 	{
 		print_error(cmd->argv[0]);
-		exit(EX_OSERR);
+		pipeline_exit(EX_OSERR, minish);
 	}
 	if (pid > 0)
 		return (_setup_process_signals(SIG_IGN), pid);
@@ -68,12 +68,13 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	_setup_process_signals(SIG_DFL);
 	if ((cmd->next != NULL) && is_redirect(cmd->next))
 		if (!redirect(cmd->next))
-			exit(EXIT_FAILURE);
+			pipeline_exit(EXIT_FAILURE, minish);
 	if (is_builtin(cmd))
-		exit(execute_builtin(cmd, minish));
+		pipeline_exit(execute_builtin(cmd, minish), minish);
 	execute_cmd(cmd, minish);
 	print_error(cmd->argv[0]);
-	exit(EXIT_FAILURE);
+	pipeline_exit(EXIT_FAILURE, minish);
+	return (EXIT_FAILURE);
 }
 
 /**

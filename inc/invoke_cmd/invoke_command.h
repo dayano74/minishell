@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:21:13 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 20:45:51 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/12 09:56:59 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include "create_envp.h"
 # include "exec_pipeline.h"
 # include "execute_cmd.h"
+# include "pipeline_exit.h"
 # include "pipeline_helper.h"
 # include "redirect.h"
-# include <wait.h>
 # include <stdbool.h>
+# include <wait.h>
 
 int		invoke_commands(t_cmd *cmd_head, t_minish *minish);
 int		exec_unit_builtin(t_cmd *cmd, t_minish *minish);

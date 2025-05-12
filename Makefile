@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/11 16:38:17 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/05/12 10:00:36 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ ROOT_SRC		=	main.c minish_signal.c initialize.c error.c
 COMMON_SRC		=	validate_key.c close_fd.c error_mes.c is_quote.c free_functions.c free_functions_2.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c \
-					redirect.c fds.c wait_pipeline.c
+					redirect.c fds.c wait_pipeline.c pipeline_exit.c
 TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
 					is_quote_closed.c get_token_capa.c is_redirect_validate.c
 PARSER_SRC		=	allocate_cmds.c  parser.c parser_utils.c  setup_cmds.c \
