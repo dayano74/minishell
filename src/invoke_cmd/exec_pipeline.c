@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/15 13:14:23 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/15 15:01:57 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	if (is_builtin(cmd))
 		pipeline_exit(execute_builtin(cmd, minish), minish);
 	execute_cmd(cmd, minish);
-	print_error(cmd->argv[0]);
 	pipeline_exit(EXIT_FAILURE, minish);
 	return (EXIT_FAILURE);
 }
