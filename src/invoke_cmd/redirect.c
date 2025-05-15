@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:19 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/09 14:23:25 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:05:46 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,10 @@ bool	redirect_stdin(t_cmd *cmd)
  */
 bool	redirect(t_cmd *cmd)
 {
-	if (cmd->type == REDIR_IN || cmd->type == REDIR_HEREDOC)
+	if (cmd->type == REDIR_IN)
 		return (redirect_stdin(cmd));
+	if (cmd->type == REDIR_HEREDOC)
+		return (true);
 	if (cmd->type == REDIR_OUT || cmd->type == REDIR_APPEND)
 		return (redirect_stdout(cmd));
 	return (false);

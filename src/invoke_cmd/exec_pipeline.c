@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/12 10:00:14 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:14:23 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	}
 	if (pid > 0)
 		return (_setup_process_signals(SIG_IGN), pid);
+	if (cmd->next && cmd->next->type == REDIR_HEREDOC)
+		here_doc(cmd->next->argv[0]);
 	_setup_stdin(cmd, cmd_head, pipefds->prev_fds);
 	_setup_stdout(cmd, pipefds->curr_fds);
 	_setup_process_signals(SIG_DFL);
@@ -95,8 +97,13 @@ void	exec_pipeline(t_cmd *cmd_head, t_minish *minish)
 	cmd = cmd_head;
 	init_fds(pipefds.prev_fds);
 	init_fds(pipefds.curr_fds);
-	while (cmd && !is_redirect(cmd))
+	while (cmd)
 	{
+		if (is_redirect(cmd))
+		{
+			cmd = cmd->next;
+			continue ;
+		}
 		need_pipe = !is_tail(cmd);
 		create_pipe(need_pipe, pipefds.curr_fds, cmd);
 		cmd->pid = _fork_command(cmd, cmd_head, &pipefds, minish);

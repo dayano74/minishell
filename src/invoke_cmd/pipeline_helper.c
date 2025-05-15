@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline_helper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:29:29 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/01 17:08:00 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/15 12:34:37 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ bool	is_head(t_cmd *cmd, t_cmd *cmd_head)
 
 bool	is_tail(t_cmd *cmd)
 {
-	if (cmd->next == NULL || is_redirect(cmd->next))
-		return (true);
-	return (false);
+	t_cmd	*next;
+
+	next = cmd->next;
+	while (next && is_redirect(next))
+		next = next->next;
+	return (next == NULL);
 }
 
 static bool	str_in_list(char *cmd, char **list)
