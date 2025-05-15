@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:03:29 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:50:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/15 12:00:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static bool	_handle_quoted_segment(const char *s, size_t *i, t_list **parts)
 	if (!part)
 		return (false);
 	ft_lstadd_back(parts, ft_lstnew(part));
-	(*i)++;
 	return (true);
 }
 
