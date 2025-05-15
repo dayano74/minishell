@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   pipeline_exit.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 11:44:19 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/11 16:33:36 by ttsubo           ###   ########.fr       */
+/*   Created: 2025/05/12 09:56:19 by ttsubo            #+#    #+#             */
+/*   Updated: 2025/05/12 10:01:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef PIPELINE_EXIT_H
+# define PIPELINE_EXIT_H
 
-# include "error.h"
-# include "free_functions.h"
-# include "initialize.h"
-# include "libft.h"
 # include "struct.h"
-# include <stdbool.h>
-# include <stddef.h>
 
-bool	is_key_start(int c);
-bool	is_key_char(int c);
-bool	is_valid_key(char *str);
-bool	is_quote(char c);
-bool	has_closing_quote(const char *s, char quote, size_t i);
-void	error_mes(char *name, char *mes);
-void	close_fd(int std_fileno, int minish_std);
+void	pipeline_exit(unsigned int status, t_minish *minish);
 
 #endif

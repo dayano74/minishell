@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/08 16:53:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:24:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_env
 
 typedef struct s_minish
 {
+	int				org_stdin;
+	int				org_stdout;
 	t_env			*env;
 	int				last_status;
 }					t_minish;
