@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/28 13:56:43 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/15 15:14:43 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ char	*get_cmd_path(char *cmd, char **envp)
 	char	**path_set;
 	char	*full_path;
 
+	full_path = NULL;
 	if (!cmd && ft_strlen(cmd) == 0)
 		return (NULL);
-	if (access(cmd, X_OK) == 0)
+	if (access(cmd, F_OK) == 0)
 		return (cmd);
 	path_line = get_path_line(envp);
 	if (!path_line)
@@ -52,14 +53,6 @@ char	*get_cmd_path(char *cmd, char **envp)
 	return (full_path);
 }
 
-bool	is_pathname(char *cmd, char **envp, char **fullpath)
-{
-	*fullpath = get_cmd_path(cmd, envp);
-	if (!*fullpath)
-		return (false);
-	return (true);
-}
-
 void	execute_cmd(t_cmd *cmd, t_minish *minish)
 {
 	char	*fullpath;
@@ -67,13 +60,14 @@ void	execute_cmd(t_cmd *cmd, t_minish *minish)
 
 	envp = create_envp(minish);
 	if (!envp)
+		return (print_cmd_not_found(cmd));
+	fullpath = get_cmd_path(cmd->argv[0], envp);
+	if (access(fullpath, F_OK) < 0)
+		return (print_cmd_not_found(cmd));
+	if (access(fullpath, X_OK) < 0)
 	{
-		print_cmd_not_found(cmd);
-		return ;
-	}
-	if (!is_pathname(cmd->argv[0], envp, &fullpath))
-	{
-		print_cmd_not_found(cmd);
+		print_error(cmd->argv[0]);
+		cmd->status = CMD_FAILED_EXIT_STATUS;
 		return ;
 	}
 	if (execve(fullpath, cmd->argv, envp) < 0)
