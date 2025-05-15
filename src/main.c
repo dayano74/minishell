@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/08 17:00:17 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:24:49 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,9 @@ static bool	prompt(char *program_name, t_minish *minish)
 	cmds = parser(tokens, minish);
 	if (!cmds)
 	{
-		error_mes(program_name, ": syntax error\n");
+		error_mes(program_name, ": syntax error");
 		free_prompt(&tokens, &cmds, &line);
-		cleanup_minish(minish);
-		return (false);
+		return (true);
 	}
 	if (cmds[0]->argc > 0)
 		minish->last_status = invoke_commands(cmds[0], minish);
