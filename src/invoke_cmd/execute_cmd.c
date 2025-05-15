@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/15 15:14:43 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/15 15:57:17 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ void	execute_cmd(t_cmd *cmd, t_minish *minish)
 		return (print_cmd_not_found(cmd));
 	fullpath = get_cmd_path(cmd->argv[0], envp);
 	if (access(fullpath, F_OK) < 0)
-		return (print_cmd_not_found(cmd));
+		return (free_strs(&envp), print_cmd_not_found(cmd));
 	if (access(fullpath, X_OK) < 0)
 	{
+		free_strs(&envp);
 		print_error(cmd->argv[0]);
 		cmd->status = CMD_FAILED_EXIT_STATUS;
 		return ;
