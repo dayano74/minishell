@@ -64,7 +64,6 @@ static bool	prompt(char *program_name, t_minish *minish)
 	{
 		error_mes(program_name, ": syntax error\n");
 		free_prompt(&tokens, &cmds, &line);
-		cleanup_minish(minish);
 		return (false);
 	}
 	if (cmds[0]->argc > 0)
