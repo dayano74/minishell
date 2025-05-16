@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/15 16:24:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/16 11:18:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_read_result	_read_user_input(char **line)
 	*line = readline("$ ");
 	if (!*line)
 		return (READ_EOF);
-	if ((*line)[0] == '\0')
+	if (is_line_empty(*line))
 		return (READ_EMPTY);
 	add_history(*line);
 	return (READ_OK);
