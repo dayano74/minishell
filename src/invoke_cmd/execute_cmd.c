@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/17 14:01:04 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/17 15:46:27 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ void	execute_cmd(t_cmd *cmd, t_minish *minish)
 		free_strs(&envp);
 		print_error(cmd->argv[0]);
 		cmd->status = CMD_FAILED_EXIT_STATUS;
+		exit(CMD_FAILED_EXIT_STATUS);
 		return ;
 	}
 	if (execve(fullpath, cmd->argv, envp) < 0)
 	{
 		free(fullpath);
 		cmd->status = CMD_FAILED_EXIT_STATUS;
+		exit(CMD_FAILED_EXIT_STATUS);
 	}
 }
