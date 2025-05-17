@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/17 16:26:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:30:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	main(int argc, char **argv, char **envp)
 	int			last_status;
 
 	(void)argc;
+	(void)argv;
 	minish = initialize(envp);
 	minish_signal();
 	while (prompt(minish))
