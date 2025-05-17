@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 14:26:28 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 14:19:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "common.h"
 # include "env_utils.h"
 # include "expand_vars.h"
+# include "parser_validate.h"
 # include "libft.h"
 
 typedef enum e_quote
