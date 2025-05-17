@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/17 15:42:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:26:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,9 @@ static bool	prompt(t_minish *minish)
 int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
-	char		*program_name;
 	int			last_status;
 
 	(void)argc;
-	program_name = argv[0];
 	minish = initialize(envp);
 	minish_signal();
 	while (prompt(minish))
