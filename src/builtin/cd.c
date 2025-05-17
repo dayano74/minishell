@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/17 13:31:27 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 13:36:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,16 @@ static int	_cd_home(t_minish *minish)
 static int	_cd_oldpwd(t_minish *minish)
 {
 	char	*oldpwd;
+	int		status;
 
 	oldpwd = get_env_value(minish->env, "OLDPWD");
 	if (!oldpwd)
 		return (error_mes("bash: cd", "OLDPWD not set"), EXIT_FAILURE);
-	return (_cd_common(minish, oldpwd));
+	status = _cd_common(minish, oldpwd);
+	if (status == 0)
+		return (printf("%s\n", oldpwd), status);
+	else
+		return (status);
 }
 
 static int	_cd_normal(char *path, t_minish *minish)
