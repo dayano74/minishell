@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:35:46 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/20 19:54:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:33:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ int	builtin_unset(int argc, char *argv[], t_minish *minish)
 	int		values_count;
 
 	if (argc < 2)
-	{
-		error_mes(argv[0], "wrong argument");
-		return (EXIT_FAILURE);
-	}
+		return (EXIT_SUCCESS);
 	values = &argv[1];
 	values_count = argc - 1;
 	unset_values(values, values_count, &minish->env);
