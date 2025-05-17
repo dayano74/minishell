@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:12:09 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/15 21:31:16 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:50:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	handle_all_redirection(t_cmd *cmd, t_minish *minish)
 	while (cmd->next && is_redirect(cmd->next))
 	{
 		redir = cmd->next;
-		if (!redirect(redir))
+		if (!redirect(redir, minish))
 			pipeline_exit(EXIT_FAILURE, minish);
 		cmd->next = cmd->next->next;
 		free_cmd(&redir);

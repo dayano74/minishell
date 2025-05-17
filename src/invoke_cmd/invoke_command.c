@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:19:33 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/11 16:32:46 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:54:31 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ int	exec_unit_builtin(t_cmd *cmd, t_minish *minish)
 	builtin_cmd = cmd;
 	if (cmd && cmd->next && is_redirect(cmd->next))
 	{
-		redir_result = redirect(cmd->next);
+		redir_result = redirect(cmd->next, minish);
 		if (redir_result && cmd->next)
 			cmd = cmd->next;
 		else
 			return (print_error(cmd->argv[0]), EXIT_FAILURE);
 	}
 	if (cmd && cmd->next && is_redirect(cmd->next))
-		redir_result = redirect(cmd->next);
+		redir_result = redirect(cmd->next, minish);
 	if (!redir_result)
 		return (EXIT_FAILURE);
 	return (execute_builtin(builtin_cmd, minish));

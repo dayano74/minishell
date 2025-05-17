@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:19 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/15 13:05:46 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:51:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ bool	redirect_stdout(t_cmd *cmd)
 	return (true);
 }
 
-bool	is_limiter(int fd, char *limiter)
+bool	is_limiter(int fd, char *limiter, t_minish *minish)
 {
 	char	*line;
 
+	(void)minish;
 	line = NULL;
 	line = readline("> ");
 	if (!line)
@@ -63,7 +64,7 @@ bool	is_limiter(int fd, char *limiter)
 	return (false);
 }
 
-void	here_doc(char *limiter)
+void	here_doc(char *limiter, t_minish *minish)
 {
 	int	pipefd[2];
 
@@ -73,7 +74,7 @@ void	here_doc(char *limiter)
 		perror("pipe");
 		return ;
 	}
-	while (!is_limiter(pipefd[1], limiter))
+	while (!is_limiter(pipefd[1], limiter, minish))
 		;
 	close(pipefd[1]);
 	if (dup2(pipefd[0], STDIN_FILENO) < 0)
@@ -84,14 +85,14 @@ void	here_doc(char *limiter)
 	close(pipefd[0]);
 }
 
-bool	redirect_stdin(t_cmd *cmd)
+bool	redirect_stdin(t_cmd *cmd, t_minish *minish)
 {
 	int		fd;
 	char	*path;
 
 	path = cmd->argv[0];
 	if (cmd->type == REDIR_HEREDOC)
-		return (here_doc(path), true);
+		return (here_doc(path, minish), true);
 	if (cmd->type != REDIR_IN)
 		return (true);
 	fd = open(path, O_RDONLY);
@@ -116,10 +117,10 @@ bool	redirect_stdin(t_cmd *cmd)
  * @note This function is only called if the caller's is_redirect is true
  * @note false if the internal function is not executed.
  */
-bool	redirect(t_cmd *cmd)
+bool	redirect(t_cmd *cmd, t_minish *minish)
 {
 	if (cmd->type == REDIR_IN)
-		return (redirect_stdin(cmd));
+		return (redirect_stdin(cmd, minish));
 	if (cmd->type == REDIR_HEREDOC)
 		return (true);
 	if (cmd->type == REDIR_OUT || cmd->type == REDIR_APPEND)
