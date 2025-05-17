@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/16 11:18:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:21:48 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static bool	prompt(char *program_name, t_minish *minish)
 	if (res == READ_EMPTY)
 		return (free_str(&line), true);
 	_set_g_sig_sts(minish);
-	tokens = tokenizer(line);
+	tokens = tokenizer(line, minish);
 	cmds = parser(tokens, minish);
 	if (!cmds)
 	{

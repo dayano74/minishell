@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:36:01 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/17 15:13:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:18:06 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TOKENIZER_H
 
 # include "libft.h"
+# include "common.h"
 # include <stdio.h>
 
 # define ERR_UNEXPECTED_STR "unexpected error occureed.\n"
@@ -59,7 +60,7 @@ char		*read_token(t_tokenizer *tkn);
 void		show_tokenizer_error(t_tokenizer_errors err_code);
 size_t		get_token_capa(char *str);
 int			is_quote_closed(char *str);
-int			is_redirect_validate(char *str);
-char		**tokenizer(char *str);
+int			is_redirect_validate(char *str, t_minish *minish);
+char		**tokenizer(char *str, t_minish *minish);
 
 #endif
