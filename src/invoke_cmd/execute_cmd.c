@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:25:41 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/15 15:57:17 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/17 14:01:04 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ char	*get_cmd_path(char *cmd, char **envp)
 	full_path = NULL;
 	if (!cmd && ft_strlen(cmd) == 0)
 		return (NULL);
-	if (access(cmd, F_OK) == 0)
-		return (cmd);
+	if (ft_strchr(cmd, '/'))
+	{
+		if (access(cmd, F_OK) == 0)
+			return (cmd);
+	}
 	path_line = get_path_line(envp);
 	if (!path_line)
 		return (NULL);
