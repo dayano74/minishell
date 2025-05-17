@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 11:17:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/04/29 13:53:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 13:13:50 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,23 @@ char	*get_env_value(t_env *current, const char *key)
 		current = current->next;
 	}
 	return (NULL);
+}
+
+int	set_env_value(t_env *current, const char *key, char *value)
+{
+	if (!current || !key)
+		return (1);
+	while (current)
+	{
+		if (!ft_strcmp(current->key, key))
+		{
+			free_str(&current->value);
+			current->value = ft_strdup(value);
+			return (0);
+		}
+		current = current->next;
+	}
+	return (1);
 }
 
 bool	has_env_key(t_env *current, const char *key)
