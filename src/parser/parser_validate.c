@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:03:42 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/17 15:53:35 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:02:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	_error(char *arg)
 	ft_putendl_fd("'", STDERR_FILENO);
 }
 
-static bool _check_pipe(t_cmd *cmd, t_cmd ***cmds_ptr, t_minish *minish)
+static bool	_check_pipe(t_cmd *cmd, t_cmd ***cmds_ptr, t_minish *minish)
 {
 	if (cmd->type == REDIR_NONE && cmd->argc == 0)
 	{
@@ -31,7 +31,7 @@ static bool _check_pipe(t_cmd *cmd, t_cmd ***cmds_ptr, t_minish *minish)
 	return (true);
 }
 
-static bool _check_redir(t_cmd *cmd, t_cmd ***cmds_ptr, t_minish *minish)
+static bool	_check_redir(t_cmd *cmd, t_cmd ***cmds_ptr, t_minish *minish)
 {
 	if (cmd->type != REDIR_NONE && cmd->argc == 0)
 	{
