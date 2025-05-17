@@ -58,7 +58,7 @@ static bool	prompt(t_minish *minish)
 	if (res == READ_EMPTY)
 		return (free_str(&line), true);
 	_set_g_sig_sts(minish);
-	tokens = tokenizer(line);
+	tokens = tokenizer(line, minish);
 	cmds = parser(tokens, minish);
 	if (!cmds)
 		return (free_prompt(&tokens, &cmds, &line), true);
