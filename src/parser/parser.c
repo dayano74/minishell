@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/15 15:48:56 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 15:39:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_cmd	**parser(char **tokens, t_minish *minish)
 	cmds = setup_cmds(cmds, formatted_tokens);
 	if (!cmds)
 		return (free_strs(&formatted_tokens), NULL);
+	parser_validate(&cmds, minish);
 	free_strs(&formatted_tokens);
 	return (cmds);
 }
