@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dayano <dayano@student.42.fr>              +#+  +:+       +#+         #
+#    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/15 21:18:25 by dayano           ###   ########.fr        #
+#    Updated: 2025/05/16 11:17:59 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ endef
 
 # 2.Add the source code when it is added
 ROOT_SRC		=	main.c minish_signal.c initialize.c error.c
-COMMON_SRC		=	validate_key.c close_fd.c error_mes.c is_quote.c free_functions.c free_functions_2.c
+COMMON_SRC		=	validate_key.c close_fd.c error_mes.c is_quote.c is_line_empty.c \
+					free_functions.c free_functions_2.c
 INVOKE_CMD_SRC	=	create_envp.c  exec_pipeline.c  execute_cmd.c \
 					execute_cmd_helper.c  invoke_command.c pipeline_helper.c \
 					redirect.c fds.c wait_pipeline.c pipeline_exit.c redirect_handler.c
