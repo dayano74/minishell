@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:19 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/17 16:51:41 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 17:18:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ bool	is_limiter(int fd, char *limiter, t_minish *minish)
 {
 	char	*line;
 
-	(void)minish;
 	line = NULL;
 	line = readline("> ");
 	if (!line)
@@ -58,6 +57,10 @@ bool	is_limiter(int fd, char *limiter, t_minish *minish)
 		free(line);
 		return (true);
 	}
+	if (!ft_strnstr(limiter, "\"\"", ft_strlen(limiter)))
+		line = expand_vars(line, minish);
+	if (!line)
+		return (free_str(&line), false);
 	write(fd, line, ft_strlen(line));
 	write(fd, "\n", 1);
 	free(line);
