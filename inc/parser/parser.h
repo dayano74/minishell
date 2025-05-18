@@ -38,7 +38,7 @@ t_cmd	**calloc_cmds(char **tokens);
 t_cmd	*calloc_cmd(void);
 char	**calloc_argv(char **tokens);
 char	*calloc_arg(char *token);
-char	**trim_quote_tokens(char **tokens);
+char	*trim_quote_token(char *token);
 
 t_cmd	**parser(char **tokens, t_minish *minish);
 char	**expand_tokens(char **tokens, t_minish *minish);

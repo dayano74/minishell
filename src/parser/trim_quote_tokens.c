@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:52:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/06 20:12:44 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 14:48:54 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	_exec(char *token, char *result, size_t *pt_i, size_t *pr_i)
 		result[(*pr_i)++] = token[(*pt_i)++];
 }
 
-static char	*_trim_quote_token(char *token)
+char	*trim_quote_token(char *token)
 {
 	size_t	t_i;
 	size_t	r_i;
@@ -62,17 +62,4 @@ static char	*_trim_quote_token(char *token)
 		_exec(token, result, &t_i, &r_i);
 	free(token);
 	return (result);
-}
-
-char	**trim_quote_tokens(char **tokens)
-{
-	size_t	i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		tokens[i] = _trim_quote_token(tokens[i]);
-		i++;
-	}
-	return (tokens);
 }
