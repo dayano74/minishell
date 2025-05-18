@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:19:19 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/17 17:18:23 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 15:33:05 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	redirect_stdout(t_cmd *cmd)
 	return (true);
 }
 
-bool	is_limiter(int fd, char *limiter, t_minish *minish)
+bool	is_limiter(t_cmd *cmd, int fd, char *limiter, t_minish *minish)
 {
 	char	*line;
 
@@ -57,7 +57,7 @@ bool	is_limiter(int fd, char *limiter, t_minish *minish)
 		free(line);
 		return (true);
 	}
-	if (!ft_strnstr(limiter, "\"\"", ft_strlen(limiter)))
+	if (cmd->is_expand_heredoc)
 		line = expand_vars(line, minish);
 	if (!line)
 		return (free_str(&line), false);
@@ -67,7 +67,7 @@ bool	is_limiter(int fd, char *limiter, t_minish *minish)
 	return (false);
 }
 
-void	here_doc(char *limiter, t_minish *minish)
+void	here_doc(t_cmd *cmd, char *limiter, t_minish *minish)
 {
 	int	pipefd[2];
 
@@ -77,7 +77,7 @@ void	here_doc(char *limiter, t_minish *minish)
 		perror("pipe");
 		return ;
 	}
-	while (!is_limiter(pipefd[1], limiter, minish))
+	while (!is_limiter(cmd, pipefd[1], limiter, minish))
 		;
 	close(pipefd[1]);
 	if (dup2(pipefd[0], STDIN_FILENO) < 0)
@@ -95,7 +95,7 @@ bool	redirect_stdin(t_cmd *cmd, t_minish *minish)
 
 	path = cmd->argv[0];
 	if (cmd->type == REDIR_HEREDOC)
-		return (here_doc(path, minish), true);
+		return (here_doc(cmd, path, minish), true);
 	if (cmd->type != REDIR_IN)
 		return (true);
 	fd = open(path, O_RDONLY);

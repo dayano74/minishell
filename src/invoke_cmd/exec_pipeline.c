@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 13:14:15 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/17 16:54:01 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 15:36:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static pid_t	_fork_command(t_cmd *cmd, t_cmd *cmd_head, t_pipe_io *pipefds,
 	if (pid > 0)
 		return (_setup_process_signals(SIG_IGN), pid);
 	if (cmd->next && cmd->next->type == REDIR_HEREDOC)
-		here_doc(cmd->next->argv[0], minish);
+		here_doc(cmd->next, cmd->next->argv[0], minish);
 	_setup_stdin(cmd, cmd_head, pipefds->prev_fds);
 	_setup_stdout(cmd, pipefds->curr_fds);
 	_setup_process_signals(SIG_DFL);
