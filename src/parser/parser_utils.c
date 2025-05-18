@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:40:56 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/18 15:00:33 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 15:59:41 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	set_heredoc_flg(t_cmd *cmd, char *token)
 {
-	cmd->is_expand_heredoc = cmd->type == REDIR_HEREDOC
-		&& ft_strnstr(token, "\"\"", ft_strlen(token));
+	bool	has_quote;
+
+	has_quote = ft_strchr(token, '\'') != NULL
+		|| ft_strchr(token, '"') != NULL;
+	cmd->is_expand_heredoc = !(cmd->type == REDIR_HEREDOC && has_quote);
 }
 
 void	set_cmd_type(t_cmd *cmd, char *token)
