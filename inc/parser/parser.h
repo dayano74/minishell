@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:14:59 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/17 14:19:47 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 15:01:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_cmd	**calloc_cmds(char **tokens);
 t_cmd	*calloc_cmd(void);
 char	**calloc_argv(char **tokens);
 char	*calloc_arg(char *token);
-char	**trim_quote_tokens(char **tokens);
+char	*trim_quote_token(char *token);
 
 t_cmd	**parser(char **tokens, t_minish *minish);
 char	**expand_tokens(char **tokens, t_minish *minish);
@@ -51,5 +51,6 @@ t_cmd	**setup_cmds(t_cmd **cmds, char **tokens);
 t_list	*split_by_quote(char *token);
 char	*join_expanded_parts(t_list *parts, t_minish *minish);
 char	*strjoin_and_free(char *s1, char *s2);
+void	set_heredoc_flg(t_cmd *cmd, char *token);
 
 #endif

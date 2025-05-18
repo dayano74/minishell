@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:10:22 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/11 16:24:51 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 14:55:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_minish
 typedef struct s_cmd
 {
 	t_redir_type	type;
+	int				is_expand_heredoc;
 	int				argc;
 	char			**argv;
 	int				capa;
