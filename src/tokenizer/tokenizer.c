@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:35:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/04/29 14:58:23 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:10:10 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	skip_spaces(t_tokenizer *tkn)
  * @param str
  * @return char**
  */
-char	**tokenizer(char *str)
+char	**tokenizer(char *str, t_minish *minish)
 {
 	int			token_i;
 	char		**tokens;
 	t_tokenizer	tkn;
 
 	tkn = (t_tokenizer){.input = str, .pos = 0, .in_squote = 0, .in_dquote = 0};
-	if (!is_redirect_validate(str))
+	if (!is_redirect_validate(str, minish))
 		return (NULL);
 	tokens = ft_calloc(get_token_capa(str) + 1, sizeof(char *));
 	if (!tokens)

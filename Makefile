@@ -6,7 +6,7 @@
 #    By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/03 12:55:20 by ttsubo            #+#    #+#              #
-#    Updated: 2025/05/16 11:17:59 by ttsubo           ###   ########.fr        #
+#    Updated: 2025/05/17 15:33:38 by ttsubo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ TOKENIZER_SRC	= 	tokenizer.c tokenizer_error.c read_token.c \
 PARSER_SRC		=	allocate_cmds.c  parser.c parser_utils.c  setup_cmds.c \
 					allocate_cmds_utils.c allocate_cmds_utils_2.c \
 					expand_env.c expand_tokens.c trim_quote_tokens.c \
-					split_by_quote.c join_expanded_parts.c
+					split_by_quote.c join_expanded_parts.c parser_validate.c
 BUILTIN_SRC		=	cd.c exit.c pwd.c echo.c env.c unset.c export.c \
 					env_utils.c env_utils_2.c env_utils_3.c builtin_utils.c \
 					export_exec.c export_exec_utils.c \

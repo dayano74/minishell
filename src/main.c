@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:50:11 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/16 11:18:40 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/17 16:30:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	_set_g_sig_sts(t_minish *minish)
  * @return true
  * @return false
  */
-static bool	prompt(char *program_name, t_minish *minish)
+static bool	prompt(t_minish *minish)
 {
 	char			*line;
 	char			**tokens;
@@ -58,14 +58,10 @@ static bool	prompt(char *program_name, t_minish *minish)
 	if (res == READ_EMPTY)
 		return (free_str(&line), true);
 	_set_g_sig_sts(minish);
-	tokens = tokenizer(line);
+	tokens = tokenizer(line, minish);
 	cmds = parser(tokens, minish);
 	if (!cmds)
-	{
-		error_mes(program_name, ": syntax error");
-		free_prompt(&tokens, &cmds, &line);
-		return (true);
-	}
+		return (free_prompt(&tokens, &cmds, &line), true);
 	if (cmds[0]->argc > 0)
 		minish->last_status = invoke_commands(cmds[0], minish);
 	free_prompt(&tokens, &cmds, &line);
@@ -75,14 +71,13 @@ static bool	prompt(char *program_name, t_minish *minish)
 int	main(int argc, char **argv, char **envp)
 {
 	t_minish	*minish;
-	char		*program_name;
 	int			last_status;
 
 	(void)argc;
-	program_name = argv[0];
+	(void)argv;
 	minish = initialize(envp);
 	minish_signal();
-	while (prompt(program_name, minish))
+	while (prompt(minish))
 		;
 	last_status = minish->last_status;
 	destroy_minish(minish);
