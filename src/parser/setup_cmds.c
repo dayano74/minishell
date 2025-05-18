@@ -6,45 +6,56 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:38:36 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/04 22:06:35 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/18 15:26:52 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	_next_cmd(t_cmd **cmds, size_t *cmd_i, size_t *arg_i, char *token)
+static void	_next_cmd(t_cmd **cmds, size_t *c_i, size_t *a_i, char *token)
 {
-	cmds[*cmd_i]->argv[*arg_i] = NULL;
-	cmds[*cmd_i]->argc = *arg_i;
-	(*arg_i) = 0;
-	(*cmd_i)++;
-	set_cmd_type(cmds[*cmd_i], token);
+	cmds[*c_i]->argv[*a_i] = NULL;
+	cmds[*c_i]->argc = *a_i;
+	(*a_i) = 0;
+	(*c_i)++;
+	set_cmd_type(cmds[*c_i], token);
+	set_heredoc_flg(cmds[*c_i], token);
+}
+
+static bool	_copy_token(char **arg_p, char **token_p)
+{
+	size_t	len;
+
+	if (!arg_p || !token_p || !*arg_p || !*token_p)
+		return (false);
+	len = ft_strlen(*token_p) + 1;
+	return (ft_strlcpy(*arg_p, *token_p, len) < len);
 }
 
 t_cmd	**setup_cmds(t_cmd **cmds, char **tokens)
 {
-	size_t	token_i;
-	size_t	cmd_i;
-	size_t	arg_i;
+	size_t	t_i;
+	size_t	c_i;
+	size_t	a_i;
 
-	token_i = 0;
-	cmd_i = 0;
-	arg_i = 0;
-	set_cmd_type(cmds[0], tokens[token_i]);
-	while (tokens[token_i])
+	t_i = 0;
+	c_i = 0;
+	a_i = 0;
+	set_cmd_type(cmds[0], tokens[t_i]);
+	set_heredoc_flg(cmds[0], tokens[t_i]);
+	while (tokens[t_i])
 	{
-		if (is_separator(tokens[token_i]))
-			_next_cmd(cmds, &cmd_i, &arg_i, tokens[token_i]);
+		if (is_separator(tokens[t_i]))
+			_next_cmd(cmds, &c_i, &a_i, tokens[t_i]);
 		else
 		{
-			ft_strlcpy(cmds[cmd_i]->argv[arg_i], tokens[token_i],
-				ft_strlen(tokens[token_i]) + 1);
-			if (!cmds[cmd_i]->argv[arg_i])
+			tokens[t_i] = trim_quote_token(tokens[t_i]);
+			if (!_copy_token(&(cmds[c_i]->argv[a_i]), &(tokens[t_i])))
 				return (free_cmds(&cmds), NULL);
-			arg_i++;
+			a_i++;
 		}
-		token_i++;
+		t_i++;
 	}
-	cmds[cmd_i]->argc = arg_i;
+	cmds[c_i]->argc = a_i;
 	return (cmds);
 }
