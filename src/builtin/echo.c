@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/08 17:30:38 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:14:44 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	_has_only_n_option(char *arg)
 {
 	int	i;
 
-	if (arg[0] != '-')
+	if (arg[0] != '-' || ft_strcmp(arg, "-") == 0)
 		return (0);
 	i = 1;
 	while (arg[i])
