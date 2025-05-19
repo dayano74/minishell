@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 21:20:48 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/19 13:41:10 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/19 15:38:46 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@ int	builtin_exit(int argc, char *argv[], t_minish *minish)
 		return (perror("printf"), EXIT_FAILURE);
 	if (argc == 1)
 		_exec_exit(EXIT_SUCCESS, minish);
-	errno = 0;
-	status = ft_strtol(argv[1], &endptr, 10);
-	if (errno != 0 || *endptr != '\0')
+	if (argc >= 2)
 	{
-		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
-		error_mes(argv[1], "numeric argument required");
-		_exec_exit(INCORRECT_USAGE, minish);
+		errno = 0;
+		status = ft_strtol(argv[1], &endptr, 10);
+		if (errno != 0 || *endptr != '\0')
+		{
+			ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
+			error_mes(argv[1], "numeric argument required");
+			_exec_exit(INCORRECT_USAGE, minish);
+		}
+		if (argc >= 3)
+			return (ft_putstr_fd("minishell: exit: too many arguments\n",
+					STDERR_FILENO), EXIT_FAILURE);
+		_exec_exit(status, minish);
 	}
-	_exec_exit((unsigned int)status, minish);
 	return (EXIT_SUCCESS);
 }
