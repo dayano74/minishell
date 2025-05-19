@@ -6,7 +6,7 @@
 /*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 21:20:48 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/19 15:38:46 by dayano           ###   ########.fr       */
+/*   Updated: 2025/05/19 15:41:34 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	builtin_exit(int argc, char *argv[], t_minish *minish)
 	long	status;
 	char	*endptr;
 
-	(void)minish;
 	if (printf("exit\n") < 0)
 		return (perror("printf"), EXIT_FAILURE);
 	if (argc == 1)
