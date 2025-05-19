@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/17 13:36:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:49:09 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 static int	_cd_common(t_minish *minish, char *path)
 {
-	char	*pwd;
-	char	*newpwd;
+	const char	*unset_argv[] = {"unset", "OLDPWD", NULL};
+	char		*pwd;
+	char		*newpwd;
 
-	pwd = get_env_value(minish->env, "PWD");
 	if (chdir(path) < 0)
 		return (perror(path), 1);
 	newpwd = getcwd(NULL, 0);
 	if (!newpwd)
 		return (perror("getcwd"), 1);
-	set_env_value(minish->env, "OLDPWD", pwd);
-	set_env_value(minish->env, "PWD", newpwd);
+	pwd = get_env_value(minish->env, "PWD");
+	if (pwd)
+	{
+		set_env_value(minish->env, "OLDPWD", pwd);
+		set_env_value(minish->env, "PWD", newpwd);
+	}
+	else
+		builtin_unset(2, (char **)unset_argv, minish);
 	free_str(&newpwd);
 	return (0);
 }
