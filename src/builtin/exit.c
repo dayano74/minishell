@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dayano <dayano@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 21:20:48 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/11 16:47:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/19 13:41:10 by dayano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	builtin_exit(int argc, char *argv[], t_minish *minish)
 	char	*endptr;
 
 	(void)minish;
-	if (argc > 2)
-		return (error_mes(argv[0], "too many arguments"), EXIT_FAILURE);
 	if (printf("exit\n") < 0)
 		return (perror("printf"), EXIT_FAILURE);
 	if (argc == 1)
