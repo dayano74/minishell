@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:56:59 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/04 22:09:48 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:36:37 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ char	**create_envp(t_minish *minish)
 			envp[i] = _get_envp_key_value(env);
 			if (!envp[i])
 				return (free_strs(&envp), NULL);
+			i++;
 		}
 		env = env->next;
-		i++;
 	}
 	envp[i] = NULL;
 	return (envp);
