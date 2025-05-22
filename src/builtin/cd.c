@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 11:12:37 by ttsubo            #+#    #+#             */
-/*   Updated: 2025/05/19 16:49:09 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:38:42 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,30 @@
 
 static int	_cd_common(t_minish *minish, char *path)
 {
-	const char	*unset_argv[] = {"unset", "OLDPWD", NULL};
-	char		*pwd;
-	char		*newpwd;
+	char	*pwd;
+	char	*newpwd;
+	char	*oldpwd;
 
 	if (chdir(path) < 0)
 		return (perror(path), 1);
 	newpwd = getcwd(NULL, 0);
 	if (!newpwd)
 		return (perror("getcwd"), 1);
-	pwd = get_env_value(minish->env, "PWD");
-	if (pwd)
+	pwd = ft_strdup(get_env_value(minish->env, "PWD"));
+	oldpwd = get_env_value(minish->env, "OLDPWD");
+	if (pwd && oldpwd)
 	{
-		set_env_value(minish->env, "OLDPWD", pwd);
 		set_env_value(minish->env, "PWD", newpwd);
+		set_env_value(minish->env, "OLDPWD", pwd);
 	}
-	else
-		builtin_unset(2, (char **)unset_argv, minish);
-	free_str(&newpwd);
-	return (0);
+	if (!pwd && oldpwd)
+		remove_env_value(minish->env, "OLDPWD");
+	if (pwd && !oldpwd)
+	{
+		set_env_value(minish->env, "PWD", newpwd);
+		add_env_value(minish->env, "OLDPWD", pwd);
+	}
+	return (free_str(&pwd), free_str(&newpwd), 0);
 }
 
 static int	_cd_home(t_minish *minish)

@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:25:47 by dayano            #+#    #+#             */
-/*   Updated: 2025/05/17 12:40:38 by ttsubo           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:30:11 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ t_env	*get_env_node(t_env *current, const char *key);
 char	*get_env_value(t_env *current, const char *key);
 int		set_env_value(t_env *current, const char *key, char *value);
 bool	has_env_key(t_env *current, const char *key);
+void	remove_env_value(t_env *env, char *key);
+int		add_env_value(t_env *env, char *key, char *value);
 
 #endif
