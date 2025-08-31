@@ -52,8 +52,20 @@ $ echo "hello world"
 hello world
 $ touch file.txt
 $ echo hi > file.txt
-$ ls -l >> file.txt | cat file.txt
 hi
+total 112
+-rw-r--r-- 1 dayano dayano  1064 Aug 31 19:20 LICENSE
+-rw-r--r-- 1 dayano dayano  4327 Aug 31 19:20 Makefile
+-rw-r--r-- 1 dayano dayano  1962 Aug 31 19:29 README.md
+-rwxr-xr-x 1 dayano dayano   170 Aug 31 19:20 copy_to_subject.sh
+-rw-r--r-- 1 dayano dayano     3 Aug 31 19:30 file.txt
+drwxr-xr-x 8 dayano dayano  4096 Aug 31 19:20 inc
+drwxr-xr-x 3 dayano dayano  4096 Aug 31 19:20 lib
+-rwxr-xr-x 1 dayano dayano 65448 Aug 31 19:29 minishell
+drwxr-xr-x 8 dayano dayano  4096 Aug 31 19:29 obj
+drwxr-xr-x 7 dayano dayano  4096 Aug 31 19:20 src
+-rw-r--r-- 1 dayano dayano  2296 Aug 31 19:20 test.mk
+drwxr-xr-x 6 dayano dayano  4096 Aug 31 19:20 tests
 $ cat file.txt
 hi
 total 112
